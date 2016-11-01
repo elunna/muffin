@@ -38,3 +38,17 @@ def test_setupdirs_data_dir():
     srcdir = TEST_PROJ + 'data'
     assert os.path.isdir(srcdir)  # Error making project/data dir
     cleanup()
+
+
+def test_setupdirs_tests_dir():
+    pystart.setup_dirs(TEST_PROJ)
+    srcdir = TEST_PROJ + 'tests'
+    assert os.path.isdir(srcdir)  # Error making project/tests dir
+    cleanup()
+
+
+def test_setupdirs_temp_dir():
+    pystart.setup_dirs(TEST_PROJ)
+    srcdir = TEST_PROJ + 'temp'
+    assert os.path.isdir(srcdir)  # Error making project/temp dir
+    cleanup()
