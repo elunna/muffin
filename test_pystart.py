@@ -1,3 +1,4 @@
+import licenses
 import os
 import shutil
 import pystart
@@ -56,6 +57,7 @@ def readme_factory():
         'start': '2016-01-01',
         'end': '2017-01-01',
         'purpose': 'Test',
+        'license': licenses.MIT,
     }
     pystart.make_readme(proj)
     return f
@@ -108,5 +110,3 @@ def test_makereadme_mit_licence():
     t = "The MIT License (MIT)"
     with open(readme, 'r') as f:
         assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
-
-

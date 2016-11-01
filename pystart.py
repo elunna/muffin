@@ -29,6 +29,12 @@ def make_readme(info_dict):
         f.write('Purpose: {}'.format(info_dict['purpose']))
         f.write('\n')
 
+        # Write license
+        license = info_dict.get('license', None)
+        if license:
+            license_text = license.format(info_dict['start'], info_dict['name'])
+        f.write(license_text)
+
 
 def setup_virtualenv():
     # Setup python 2 virtualenv
