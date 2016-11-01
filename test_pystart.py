@@ -51,6 +51,7 @@ def readme_factory():
     pystart.setup_dirs(TEST_PROJ)
     f = TEST_PROJ + '/' + 'README.md'
     proj = {
+        'name': TEST_PROJ,
         'homedir': TEST_PROJ,
         'author': 'lunatunez',
         'start': '2016-01-01',
@@ -71,6 +72,13 @@ def test_makereadme_author():
     t = "Author: lunatunez"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Author field is in README
+
+
+def test_makereadme_projectname():
+    readme = readme_factory()
+    t = "Project Name: testproject"
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
 def test_makereadme_startdate():
