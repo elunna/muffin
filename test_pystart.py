@@ -37,6 +37,20 @@ def test_setupdirs_subdirs():
         yield check_dir, subdir
 
 
+def test_setupdirs_initfiles():
+    init_files = ['/', '/src', '/tests']
+
+    # Uses a test generator to go through all the init files we want to test.
+    for i in init_files:
+        init = TEST_PROJ + i + '/__init__.py'
+        yield check_file, init
+
+
+def check_file(filename):
+    pystart.setup_dirs(TEST_PROJ)
+    assert os.path.exists(filename)  # Filename doesn't exist
+
+
 def check_dir(d):
     # This has to go here bc cleanup get called before and after this method.
     pystart.setup_dirs(TEST_PROJ)
