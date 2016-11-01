@@ -1,9 +1,20 @@
-# First field is year
-# Second field is copywrite holder
+def get(license):
+    available = {
+        'MIT': MIT,
+        'GNU': GNU,
+    }
+    return available.get(license, None)
+
+
+def format_text(key, name):
+    year = str(2016)
+    license = get(key)
+    return license.format(year=year, name=name) or None
+
+
 # The MIT License (MIT://opensource.org/licenses/mit-license.php
-MIT = """
-The MIT License (MIT)
-Copyright (c) <{}> <{}>
+MIT = """The MIT License (MIT)
+Copyright (c) <{year}> <{name}>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -24,8 +35,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-GNU = """
-GNU GENERAL PUBLIC LICENSE
+# http://www.gnu.org/licenses/gpl.html
+GNU = """GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
 one line to give the program's name and an idea of what it does.
