@@ -110,3 +110,10 @@ def test_makereadme_mit_licence():
     t = "The MIT License (MIT)"
     with open(readme, 'r') as f:
         assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
+
+
+def test_makereadme_gnu_licence():
+    readme = readme_factory()
+    t = "GNU GENERAL PUBLIC LICENSE"
+    with open(readme, 'r') as f:
+        assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
