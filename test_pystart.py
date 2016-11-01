@@ -50,7 +50,12 @@ Tests for make_readme(info_dict)
 def readme_factory():
     pystart.setup_dirs(TEST_PROJ)
     f = TEST_PROJ + '/' + 'README.md'
-    proj = {'homedir': TEST_PROJ, 'author': 'lunatunez', 'start': '2016-01-01'}
+    proj = {
+        'homedir': TEST_PROJ,
+        'author': 'lunatunez',
+        'start': '2016-01-01',
+        'end': '2017-01-01',
+    }
     pystart.make_readme(proj)
     return f
 
@@ -73,3 +78,10 @@ def test_makereadme_startdate():
     t = "Start Date: 2016-01-01"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Start Date field is in README
+
+
+def test_makereadme_enddate():
+    readme = readme_factory()
+    t = "End Date: 2017-01-01",
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if End Date field is in README
