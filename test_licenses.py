@@ -34,16 +34,18 @@ def test_formattext_MIT():
     name = 'lunatunez'
     date = '2016'
     expected = 'Copyright (c) <2016> <lunatunez>'
-    # Result is on MIT line 1
     result = licenses.format_text(license, year=date, name=name)
-    assert expected == result
+    # Result is on MIT line 1
+    line1 = result.split('\n')[1]
+    assert expected == line1
 
 
 def test_formattext_GNU():
     license = licenses.get('GNU')
     name = 'lunatunez'
     date = '2016'
-    expected = 'Copyright (C) {2016}  {lunatunez}'
-    # Result is on GNU line 4
+    expected = 'Copyright (C) 2016  lunatunez'
     result = licenses.format_text(license, year=date, name=name)
-    assert expected == result
+    # Result is on GNU line 4
+    line4 = result.split('\n')[4]
+    assert expected == line4

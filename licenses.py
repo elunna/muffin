@@ -6,9 +6,8 @@ def get(license):
     return available.get(license, None)
 
 
-def format_text(key, name):
+def format_text(license, name, year=None):
     year = str(2016)
-    license = get(key)
     return license.format(year=year, name=name) or None
 
 
@@ -40,7 +39,7 @@ GNU = """GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
 one line to give the program's name and an idea of what it does.
-Copyright (C) {yyyy}  {name}
+Copyright (C) {year}  {name}
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
