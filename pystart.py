@@ -8,9 +8,11 @@ def setup_dirs(projectname):
     # Create main/src
     os.makedirs(projectname + 'src')
     # Create main/tests
+    os.makedirs(projectname + 'tests')
     # Create main/data
     os.makedirs(projectname + 'data')
     # Create main/temp
+    os.makedirs(projectname + 'temp')
     pass
 
 
