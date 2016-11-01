@@ -82,6 +82,7 @@ def test_makereadme_startdate():
 
 def test_makereadme_enddate():
     readme = readme_factory()
-    t = "End Date: 2017-01-01",
+    t = "End Date: 2017-01-01"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if End Date field is in README
+        #  assert any(l.strip() == t for l in f.readlines())  # Check if End Date field is in README
