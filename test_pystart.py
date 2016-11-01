@@ -8,11 +8,16 @@ Tests for setup_dirs()
 TEST_PROJ = 'testproject/'
 
 
-@pytest.yield_fixture(autouse=True)
-def cleanup():
-    yield None
+def rm_dir():
     if os.path.isdir(TEST_PROJ):
         shutil.rmtree(TEST_PROJ)
+
+
+@pytest.yield_fixture(autouse=True)
+def cleanup():
+    rm_dir()
+    yield None
+    rm_dir()
 
 
 def test_setupdirs_makes_project_dir():
