@@ -50,7 +50,7 @@ Tests for make_readme(info_dict)
 def readme_factory():
     pystart.setup_dirs(TEST_PROJ)
     f = TEST_PROJ + '/' + 'README.md'
-    proj = {'homedir': TEST_PROJ, 'author': 'lunatunez'}
+    proj = {'homedir': TEST_PROJ, 'author': 'lunatunez', 'start': '2016-01-01'}
     pystart.make_readme(proj)
     return f
 
@@ -64,5 +64,12 @@ def test_makereadme_empty():
 def test_makereadme_author():
     readme = readme_factory()
     t = "Author: lunatunez"
+    with open(readme, 'r') as f:
+        assert t in f.readlines()
+
+
+def test_makereadme_startdate():
+    readme = readme_factory()
+    t = "Start Date: 2016-01-01"
     with open(readme, 'r') as f:
         assert t in f.readlines()
