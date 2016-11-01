@@ -61,7 +61,7 @@ def test_wizard():
 
     # Cleanup
     # test_python.TEST_PROJ,
-    test_pystart.rm_dir()
+    test_pystart.wipe_project()
 
 
 def usecase_wizard():
