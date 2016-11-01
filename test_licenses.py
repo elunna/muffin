@@ -25,5 +25,25 @@ def test_get_INVALID():
     assert firstline is expected
 
 """
-Tests for format_license(key, name, date)
+Tests for format_text(license, name, date=None):
 """
+
+
+def test_formattext_MIT():
+    license = licenses.get('MIT')
+    name = 'lunatunez'
+    date = '2016'
+    expected = 'Copyright (c) <2016> <lunatunez>'
+    # Result is on MIT line 1
+    result = licenses.format_text(license, year=date, name=name)
+    assert expected == result
+
+
+def test_formattext_GNU():
+    license = licenses.get('GNU')
+    name = 'lunatunez'
+    date = '2016'
+    expected = 'Copyright (C) {2016}  {lunatunez}'
+    # Result is on GNU line 4
+    result = licenses.format_text(license, year=date, name=name)
+    assert expected == result
