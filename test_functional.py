@@ -1,5 +1,6 @@
 import os
 import pystart
+import test_pystart
 
 """
 Functional tests for pystart.
@@ -9,7 +10,7 @@ projects that are ready for professional use.
 """
 
 STARTDICT = {
-    'name': 'testproject',
+    'name': test_pystart.TEST_PROJ,
     'author': 'erik',
     'start': '1999',
     'end': '2000',
@@ -48,15 +49,19 @@ def test_wizard():
     assert os.path.isdir(project_name + '/temp')    # Error making temp dir
 
     # __init__ files in the root, src, and tests directories.
-    assert os.exists(project_name + '/__init__.py')         # Error making root __init__.py
-    assert os.exists(project_name + '/src/__init__.py')     # Error making src __init__.py
-    assert os.exists(project_name + '/tests/__init__.py')   # Error making tests __init__.py
+    assert os.path.exists(project_name + '/__init__.py')         # Error making root __init__.py
+    assert os.path.exists(project_name + '/src/__init__.py')     # Error making src __init__.py
+    assert os.path.exists(project_name + '/tests/__init__.py')   # Error making tests __init__.py
 
     # README.md.
-    assert os.exists(project_name + '/README.md')   # Error making README.md
+    assert os.path.exists(project_name + '/README.md')   # Error making README.md
 
     # .gitignore
-    assert os.exists(project_name + '/.gitignore')  # Error making .gitignore
+    assert os.path.exists(project_name + '/.gitignore')  # Error making .gitignore
+
+    # Cleanup
+    # test_python.TEST_PROJ,
+    test_pystart.rm_dir()
 
 
 def usecase_wizard():

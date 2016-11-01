@@ -113,7 +113,9 @@ def wizard():
 
 
 def new_project(config):
+    project_name = config['name']
     # Create the directory structure
+    setup_dirs(project_name)
     # Populate the __init_.py files
     # Create the README.md
     # Create the .gitignore
