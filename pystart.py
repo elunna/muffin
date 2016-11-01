@@ -80,12 +80,6 @@ def get_date():
     pass
 
 
-def setup_README():
-    # Add info from wizard
-    # Add licence info
-    pass
-
-
 def user_prompt(prompt):
     input = raw_input()
     return input
@@ -128,6 +122,6 @@ def new_project(config):
     setup_init_files(project_name)
 
     # Create the README.md
-
+    make_readme(config)
     # Create the .gitignore
     pass
