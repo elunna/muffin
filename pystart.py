@@ -1,4 +1,3 @@
-import datetime
 import licenses
 import os
 
@@ -84,7 +83,11 @@ def wizard():
     """
     Collects project info and returns a dict.
     """
+    wiz_dict = {}
+
     # Ask for author
+    wiz_dict['name'] = user_prompt('Project name?')
+
     # Ask for project name
     # Ask for project purpose
     # Ask for Start date
@@ -100,4 +103,12 @@ def wizard():
         # Functional test
     # Ask if we want scrapy
         # Functional test
+    pass
+
+
+def new_project(config):
+    # Create the directory structure
+    # Populate the __init_.py files
+    # Create the README.md
+    # Create the .gitignore
     pass
