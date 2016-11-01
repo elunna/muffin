@@ -1,4 +1,7 @@
+import datetime
+import licenses
 import os
+
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
 
@@ -29,11 +32,11 @@ def make_readme(info_dict):
         f.write('Purpose: {}'.format(info_dict['purpose']))
         f.write('\n')
 
-        # Write license
-        license = info_dict.get('license', None)
+        license = licenses.get(info_dict['license'])
         if license:
-            license_text = license.format(info_dict['start'], info_dict['name'])
-        f.write(license_text)
+            year = 2017
+            license_txt = licenses.format_text(license, name=info_dict['name'], year=year)
+            f.write(license_txt)
 
 
 def setup_virtualenv():

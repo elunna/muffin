@@ -1,4 +1,3 @@
-import licenses
 import os
 import shutil
 import pystart
@@ -48,7 +47,7 @@ Tests for make_readme(info_dict)
 """
 
 
-def readme_factory():
+def readme_factory(**params):
     pystart.setup_dirs(TEST_PROJ)
     f = TEST_PROJ + '/' + 'README.md'
     proj = {
@@ -57,8 +56,11 @@ def readme_factory():
         'start': '2016-01-01',
         'end': '2017-01-01',
         'purpose': 'Test',
-        'license': licenses.MIT,
+        'license': 'MIT'
     }
+    if params:
+        proj.update(params)
+
     pystart.make_readme(proj)
     return f
 
@@ -106,14 +108,14 @@ def test_makereadme_enddate():
 
 
 def test_makereadme_mit_licence():
-    readme = readme_factory()
+    readme = readme_factory(license='MIT')
     t = "The MIT License (MIT)"
     with open(readme, 'r') as f:
         assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
 
 
 def test_makereadme_gnu_licence():
-    readme = readme_factory()
+    readme = readme_factory(license='GNU')
     t = "GNU GENERAL PUBLIC LICENSE"
     with open(readme, 'r') as f:
         assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
