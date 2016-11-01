@@ -1,8 +1,10 @@
 import os
 
 
-def setup_dir_structure():
+def setup_dirs(projectname):
     # Create main project directory
+    os.makedirs(projectname)
+
     # Create main/src
     # Create main/tests
     # Create main/data
@@ -34,9 +36,11 @@ def setup_main():
     # Create main run func
     pass
 
+
 def get_date():
     # Returns todays date
     pass
+
 
 def setup_README():
     # Add info from wizard
