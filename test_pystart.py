@@ -5,7 +5,7 @@ import pytest
 """
 Tests for setup_dirs()
 """
-TEST_PROJ = 'testproject/'
+TEST_PROJ = 'testproject'
 
 
 def rm_dir():

@@ -9,7 +9,7 @@ def setup_dirs(projectname):
 
     for sub in SUBDIRS:
         # Create each subdirectory
-        os.makedirs(projectname + sub)
+        os.makedirs(projectname + '/' + sub)
 
 
 def make_readme(info_dict):
