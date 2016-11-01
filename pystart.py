@@ -19,7 +19,7 @@ def make_readme(info_dict):
     homedir = info_dict['homedir']
     filename = homedir + '/' + 'README.md'
     with open(filename, 'w') as f:
-        pass
+        f.write('Author: {}'.format(info_dict['author']))
 
 
 def setup_virtualenv():
