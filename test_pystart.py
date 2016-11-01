@@ -47,9 +47,19 @@ Tests for make_readme(info_dict)
 """
 
 
-def test_makereadme_empty():
+def readme_factory():
     pystart.setup_dirs(TEST_PROJ)
-    f = TEST_PROJ + 'README.md'
+    f = TEST_PROJ + '/' + 'README.md'
     proj = {'homedir': TEST_PROJ}
-    pystart.make_readme(proj)  # README.md was not created in project/
-    assert os.path.exists(f)
+    pystart.make_readme(proj)
+    return f
+
+
+def test_makereadme_empty():
+    f = readme_factory()
+    print(f)
+    assert os.path.exists(f)  # README.md was not created in project/
+
+
+#  def test_makereadme_author(readme_factory):
+    #  pytest.fail("Fill in later")
