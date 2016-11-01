@@ -1,4 +1,6 @@
+import os
 import pystart
+
 """
 Functional tests for pystart.
 
@@ -6,41 +8,55 @@ Pystart is a Python project templating engine. It is for quickly and efficiently
 projects that are ready for professional use.
 """
 
+STARTDICT = {
+    'name': 'testproject',
+    'author': 'erik',
+    'start': '1999',
+    'end': '2000',
+    'purpose': 'testing pystart',
+    'license': 'MIT',
+}
+
 
 def test_wizard():
     """
-    Erik wants to start a new project.
-    He just wants the core directory structure and README setup so he can start a git repo quickly.
+    Erik wants to start a new project, nothing fancy, but it should at least have this:
+        * A modern Directory
+            root_project_dir/
+                /src
+                /tests
+                /data
+                /temp
+        * README.md for git
+        * .gitigore for git
+    The README.md and .gitignore are essential, but annoying to make, so he would rather stream-
+    line the creation and make life as painless as possible - I mean, there is code to be written!
+
     Erik starts : $ python startpy.py
-    He is presented with a wizard which asks him all the basic info:
 
-    After completing the wizard we should have a dict
+    He is presented with a wizard which asks him all the basic info.
+    After completing the wizard we should have a few things:
     """
-    startdict = pystart.wizard()
+    pystart.new_project(STARTDICT)
+    project_name = STARTDICT['name']
 
-    # Dict should have the project name
-    assert 'name' in startdict
+    # The directory structure (unit tested)
+    assert os.path.isdir(project_name + '/')        # Error making root dir
+    assert os.path.isdir(project_name + '/src')     # Error making src dir
+    assert os.path.isdir(project_name + '/tests')   # Error making tests dir
+    assert os.path.isdir(project_name + '/data')    # Error making data dir
+    assert os.path.isdir(project_name + '/temp')    # Error making temp dir
 
-    # Dict should have the author
-    assert 'author' in startdict
+    # __init__ files in the root, src, and tests directories.
+    assert os.exists(project_name + '/__init__.py')         # Error making root __init__.py
+    assert os.exists(project_name + '/src/__init__.py')     # Error making src __init__.py
+    assert os.exists(project_name + '/tests/__init__.py')   # Error making tests __init__.py
 
-    # Dict should have the project purpose
-    assert 'purpose' in startdict
+    # README.md.
+    assert os.exists(project_name + '/README.md')   # Error making README.md
 
-    # Dict should have the start date
-    assert 'start' in startdict
-
-    # Dict should have the end date
-    #   (anything is permissiable - perhaps small parser to do dates or length of time later)
-    assert 'end' in startdict
-
-    # Dict should have the license type(ex:[MIT, GNU])
-    assert 'license' in startdict
-
-    # The project then generates the directory structure (unit tested)
-
-    # The wizard dict is then used to generate the README.md.
-    # The README should have all the info from the wizard but in markdown format.
+    # .gitignore
+    assert os.exists(project_name + '/.gitignore')  # Error making .gitignore
 
 
 def usecase_wizard():
