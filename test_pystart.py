@@ -101,3 +101,12 @@ def test_makereadme_enddate():
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if End Date field is in README
         #  assert any(l.strip() == t for l in f.readlines())  # Check if End Date field is in README
+
+
+def test_makereadme_mit_licence():
+    readme = readme_factory()
+    t = "The MIT License (MIT)"
+    with open(readme, 'r') as f:
+        assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
+
+
