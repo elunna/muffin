@@ -26,6 +26,8 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('End Date: {}'.format(info_dict['end']))
         f.write('\n')
+        f.write('Purpose: {}'.format(info_dict['purpose']))
+        f.write('\n')
 
 
 def setup_virtualenv():

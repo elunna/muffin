@@ -55,6 +55,7 @@ def readme_factory():
         'author': 'lunatunez',
         'start': '2016-01-01',
         'end': '2017-01-01',
+        'purpose': 'Test',
     }
     pystart.make_readme(proj)
     return f
