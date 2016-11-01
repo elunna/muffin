@@ -32,7 +32,7 @@ def test_setupdirs_makes_project_dir():
 def test_setupdirs_subdirs():
     # Uses a test generator to go through all the subdirectories we want to test.
     for i in pystart.SUBDIRS:
-        subdir = TEST_PROJ + i
+        subdir = TEST_PROJ + '/' + i
         yield check_dir, subdir
 
 
