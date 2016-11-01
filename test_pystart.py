@@ -1,3 +1,4 @@
+import licenses
 import os
 import shutil
 import pystart
@@ -109,13 +110,13 @@ def test_makereadme_enddate():
 
 def test_makereadme_mit_licence():
     readme = readme_factory(license='MIT')
-    t = "The MIT License (MIT)"
+    expected = licenses.MIT_TEXT
     with open(readme, 'r') as f:
-        assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
+        assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
 
 def test_makereadme_gnu_licence():
     readme = readme_factory(license='GNU')
-    t = "GNU GENERAL PUBLIC LICENSE"
+    expected = licenses.GNU_TEXT
     with open(readme, 'r') as f:
-        assert any(l.strip() == t for l in f.readlines())  # Check if MIT Licence is in README
+        assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README

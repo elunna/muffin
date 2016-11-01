@@ -1,20 +1,19 @@
 import licenses
 
+
 """
 Tests for get(license):
 """
 
 
 def test_get_MIT():
-    expected = 'The MIT License (MIT)'
-    #  firstline = licenses.get('MIT')[0].strip()
+    expected = licenses.MIT_TEXT
     firstline = licenses.get('MIT').split('\n')[0]
     assert firstline == expected
 
 
 def test_get_GNU():
-    expected = 'GNU GENERAL PUBLIC LICENSE'
-    #  firstline = licenses.get('GNU')[0].strip()
+    expected = licenses.GNU_TEXT
     firstline = licenses.get('GNU').split('\n')[0]
     assert firstline == expected
 

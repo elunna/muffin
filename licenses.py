@@ -16,6 +16,11 @@ def current_year():
     now = dt.datetime.now()
     return now.year
 
+
+# These are helpful for tests
+MIT_TEXT = 'The MIT License (MIT)'
+GNU_TEXT = 'GNU GENERAL PUBLIC LICENSE'
+
 # The MIT License (MIT://opensource.org/licenses/mit-license.php
 MIT = """The MIT License (MIT)
 Copyright (c) <{year}> <{name}>
