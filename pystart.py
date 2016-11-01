@@ -1,11 +1,12 @@
 import os
 
+SUBDIRS = ['src', 'tests', 'data', 'temp']
+
 
 def setup_dirs(projectname):
     # Create main project directory
     os.makedirs(projectname)
 
-    SUBDIRS = ['src', 'tests', 'data', 'temp']
     for sub in SUBDIRS:
         # Create each subdirectory
         os.makedirs(projectname + sub)
