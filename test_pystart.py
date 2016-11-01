@@ -48,7 +48,8 @@ Tests for make_readme(info_dict)
 
 
 def test_makereadme_empty():
+    pystart.setup_dirs(TEST_PROJ)
     f = TEST_PROJ + 'README.md'
-    proj = {}
+    proj = {'homedir': TEST_PROJ}
     pystart.make_readme(proj)  # README.md was not created in project/
     assert os.path.exists(f)

@@ -16,7 +16,10 @@ def make_readme(info_dict):
     """
     Creates the README.md file and uses the passed in dictionary to fill in the fields.
     """
-    pass
+    homedir = info_dict['homedir']
+    filename = homedir + 'README.md'
+    with open(filename, 'w') as f:
+        pass
 
 
 def setup_virtualenv():
