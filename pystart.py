@@ -13,8 +13,14 @@ def setup_dirs(projectname):
         # Create each subdirectory
         os.makedirs(projectname + '/' + sub)
 
-    init_files = ['/__init__.py', '/src/__init__.py', '/tests/__init__.py']
+
+def setup_init_files(projectname):
     # Make __init__.py files
+    init_files = [
+        '/__init__.py',
+        '/src/__init__.py',
+        '/tests/__init__.py'
+    ]
     for i in init_files:
         filename = projectname + i
         open(filename, 'w').close()
