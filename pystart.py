@@ -5,15 +5,10 @@ def setup_dirs(projectname):
     # Create main project directory
     os.makedirs(projectname)
 
-    # Create main/src
-    os.makedirs(projectname + 'src')
-    # Create main/tests
-    os.makedirs(projectname + 'tests')
-    # Create main/data
-    os.makedirs(projectname + 'data')
-    # Create main/temp
-    os.makedirs(projectname + 'temp')
-    pass
+    SUBDIRS = ['src', 'tests', 'data', 'temp']
+    for sub in SUBDIRS:
+        # Create each subdirectory
+        os.makedirs(projectname + sub)
 
 
 def setup_virtualenv():
