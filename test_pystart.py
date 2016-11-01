@@ -52,7 +52,6 @@ def readme_factory():
     f = TEST_PROJ + '/' + 'README.md'
     proj = {
         'name': TEST_PROJ,
-        'homedir': TEST_PROJ,
         'author': 'lunatunez',
         'start': '2016-01-01',
         'end': '2017-01-01',
