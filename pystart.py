@@ -48,11 +48,6 @@ def setup_README():
     pass
 
 
-def check_existing():
-    # Checks if the project folder exists already
-    pass
-
-
 def wizard():
     # Ask for author
     # Ask for project name
