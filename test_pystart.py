@@ -25,25 +25,14 @@ def test_setupdirs_makes_project_dir():
     assert os.path.isdir(TEST_PROJ)  # Error making project dir
 
 
-def test_setupdirs_src_dir():
+def test_setupdirs_subdirs():
+    # Uses a test generator to go through all the subdirectories we want to test.
+    for i in pystart.SUBDIRS:
+        subdir = TEST_PROJ + i
+        yield check_dir, subdir
+
+
+def check_dir(d):
+    # This has to go here bc cleanup get called before and after this method.
     pystart.setup_dirs(TEST_PROJ)
-    srcdir = TEST_PROJ + 'src'  # Error making project/src dir
-    assert os.path.isdir(srcdir)
-
-
-def test_setupdirs_data_dir():
-    pystart.setup_dirs(TEST_PROJ)
-    srcdir = TEST_PROJ + 'data'
-    assert os.path.isdir(srcdir)  # Error making project/data dir
-
-
-def test_setupdirs_tests_dir():
-    pystart.setup_dirs(TEST_PROJ)
-    srcdir = TEST_PROJ + 'tests'
-    assert os.path.isdir(srcdir)  # Error making project/tests dir
-
-
-def test_setupdirs_temp_dir():
-    pystart.setup_dirs(TEST_PROJ)
-    srcdir = TEST_PROJ + 'temp'
-    assert os.path.isdir(srcdir)  # Error making project/temp dir
+    assert os.path.isdir(d)  # Directory doesn't exist
