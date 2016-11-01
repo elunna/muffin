@@ -65,11 +65,11 @@ def test_makereadme_author():
     readme = readme_factory()
     t = "Author: lunatunez"
     with open(readme, 'r') as f:
-        assert t in f.readlines()
+        assert t in f.read().splitlines()  # Check if Author field is in README
 
 
 def test_makereadme_startdate():
     readme = readme_factory()
     t = "Start Date: 2016-01-01"
     with open(readme, 'r') as f:
-        assert t in f.readlines()
+        assert t in f.read().splitlines()  # Check if Start Date field is in README
