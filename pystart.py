@@ -9,6 +9,7 @@ def setup_dirs(projectname):
     os.makedirs(projectname + 'src')
     # Create main/tests
     # Create main/data
+    os.makedirs(projectname + 'data')
     # Create main/temp
     pass
 
