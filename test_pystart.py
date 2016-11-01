@@ -45,3 +45,10 @@ def check_dir(d):
 """
 Tests for make_readme(info_dict)
 """
+
+
+def test_makereadme_empty():
+    f = TEST_PROJ + 'README.md'
+    proj = {}
+    pystart.make_readme(proj)  # README.md was not created in project/
+    assert os.path.exists(f)
