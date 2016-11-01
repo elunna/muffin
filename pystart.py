@@ -6,6 +6,7 @@ def setup_dirs(projectname):
     os.makedirs(projectname)
 
     # Create main/src
+    os.makedirs(projectname + 'src')
     # Create main/tests
     # Create main/data
     # Create main/temp
