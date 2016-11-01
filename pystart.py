@@ -19,6 +19,8 @@ def make_readme(info_dict):
     homedir = info_dict['homedir']
     filename = homedir + '/' + 'README.md'
     with open(filename, 'w') as f:
+        f.write('Project Name: {}'.format(info_dict['name']))
+        f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
         f.write('Start Date: {}'.format(info_dict['start']))
