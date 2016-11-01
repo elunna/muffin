@@ -49,3 +49,13 @@ def test_formattext_GNU():
     # Result is on GNU line 4
     line4 = result.split('\n')[4]
     assert expected == line4
+
+
+def test_formattext_currentyear():
+    license = licenses.get('MIT')
+    name = 'lunatunez'
+    year = str(licenses.current_year())
+    result = licenses.format_text(license, name=name)
+    # Result is on MIT line 1
+    line1 = result.split('\n')[1]
+    assert year in line1  # Current year was not found where it should be

@@ -7,9 +7,14 @@ def get(license):
 
 
 def format_text(license, name, year=None):
-    year = str(2016)
+    year = str(current_year())
     return license.format(year=year, name=name) or None
 
+
+def current_year():
+    import datetime as dt
+    now = dt.datetime.now()
+    return now.year
 
 # The MIT License (MIT://opensource.org/licenses/mit-license.php
 MIT = """The MIT License (MIT)
