@@ -48,7 +48,15 @@ def setup_README():
     pass
 
 
+def user_prompt(prompt):
+    input = raw_input()
+    return input
+
+
 def wizard():
+    """
+    Collects project info and returns a dict.
+    """
     # Ask for author
     # Ask for project name
     # Ask for project purpose
@@ -57,7 +65,7 @@ def wizard():
     # Create functional tests for
         # py-test
         # logger
-        #
+
     # Ask for starting modules
         # For each module, ask for starting functions and create tests for each
 
