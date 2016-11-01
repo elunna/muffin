@@ -13,6 +13,12 @@ def setup_dirs(projectname):
         # Create each subdirectory
         os.makedirs(projectname + '/' + sub)
 
+    init_files = ['/__init__.py', '/src/__init__.py', '/tests/__init__.py']
+    # Make __init__.py files
+    for i in init_files:
+        filename = projectname + i
+        open(filename, 'w').close()
+
 
 def make_readme(info_dict):
     """
