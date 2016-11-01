@@ -12,6 +12,13 @@ def setup_dirs(projectname):
         os.makedirs(projectname + sub)
 
 
+def make_readme(info_dict):
+    """
+    Creates the README.md file and uses the passed in dictionary to fill in the fields.
+    """
+    pass
+
+
 def setup_virtualenv():
     # Setup python 2 virtualenv
     # Upgrade pip

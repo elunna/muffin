@@ -19,6 +19,10 @@ def cleanup():
     yield None
     rm_dir()
 
+"""
+Tests for setup_dirs(projectname)
+"""
+
 
 def test_setupdirs_makes_project_dir():
     pystart.setup_dirs(TEST_PROJ)
@@ -36,3 +40,8 @@ def check_dir(d):
     # This has to go here bc cleanup get called before and after this method.
     pystart.setup_dirs(TEST_PROJ)
     assert os.path.isdir(d)  # Directory doesn't exist
+
+
+"""
+Tests for make_readme(info_dict)
+"""
