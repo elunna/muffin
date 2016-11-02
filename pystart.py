@@ -1,7 +1,7 @@
 import licenses
 import os
+import readme
 import shutil
-
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
 
@@ -36,7 +36,7 @@ def make_readme(info_dict):
     twitter_handle = 'rainbowdash'
     email = 'rdash@cloudsdale.net'
     year = 2017
-    license = licenses.get(info_dict['license'])
+    license = info_dict['license']
 
     with open(filename, 'w') as f:
         f.write('# Project Name: {}'.format(info_dict['projectname']))
@@ -46,6 +46,7 @@ def make_readme(info_dict):
         f.write('\n')
 
         # Add in standard template here.
+        f.write(readme.template)
 
         f.write('## Meta')
         f.write('\n')
@@ -56,8 +57,8 @@ def make_readme(info_dict):
         f.write('Socials :wavy_dash: [@{}](https://twitter.com/{}) :wavy_dash: {}'.format(
             twitter_handle, twitter_handle, email))
         f.write('\n')
-        f.write('### Licence [![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(
-            info_dict['license']))
+        f.write('### Licence {}[![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(
+            license, license))
         f.write('\n')
         f.write('XYZ license. See ``LICENSE.txt`` for full text.'.format(info_dict['license']))
         f.write('\n')
@@ -69,6 +70,10 @@ def make_readme(info_dict):
         f.write('<p align="right"><a href="#top">:arrow_up:</a></p>')
 
     return filename
+
+
+def write_license(config):
+    license = licenses.get(config['license'])
 
 
 def make_gitignore(project_name):
@@ -165,3 +170,4 @@ def new_project(config):
 if __name__ == "__main__":
     config = wizard()
     print(config)
+    new_project(config)
