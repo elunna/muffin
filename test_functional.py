@@ -12,8 +12,6 @@ projects that are ready for professional use.
 STARTDICT = {
     'projectname': test_pystart.TEST_PROJ,
     'author': 'erik',
-    'start': '1999',
-    'end': '2000',
     'purpose': 'testing pystart',
     'license': 'MIT',
 }

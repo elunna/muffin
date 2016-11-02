@@ -33,6 +33,11 @@ def make_readme(info_dict):
     Returns the filepath of the created file.
     """
     filename = info_dict['projectname'] + '/' + 'README.md'
+    twitter_handle = 'rainbowdash'
+    email = 'rdash@cloudsdale.net'
+    year = 2017
+    license = licenses.get(info_dict['license'])
+
     with open(filename, 'w') as f:
         f.write('# Project Name: {}'.format(info_dict['projectname']))
         f.write('\n')
@@ -46,12 +51,8 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
-        f.write('Start Date: {}'.format(info_dict['start']))
+        #  f.write('Start Date: {}'.format(info_dict['start']))
         f.write('\n')
-        f.write('End Date: {}'.format(info_dict['end']))
-        f.write('\n')
-        twitter_handle = 'rainbowdash'
-        email = 'rdash@cloudsdale.net'
         f.write('Socials :wavy_dash: [@{}](https://twitter.com/{}) :wavy_dash: {}'.format(
             twitter_handle, twitter_handle, email))
         f.write('\n')
@@ -62,7 +63,6 @@ def make_readme(info_dict):
         f.write('\n')
 
         if license:
-            year = 2017
             license_txt = licenses.format_text(license, name=info_dict['projectname'], year=year)
             f.write(license_txt)
 
@@ -131,12 +131,6 @@ def wizard():
 
     # Ask for project purpose
     wiz_dict['purpose'] = user_prompt('Short project description')
-
-    # Ask for Start date
-    wiz_dict['start'] = user_prompt('Start date')
-
-    # Ask for end date
-    wiz_dict['end'] = user_prompt('End date')
 
     # Create functional tests for
         # py-test

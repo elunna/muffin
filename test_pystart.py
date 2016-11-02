@@ -72,8 +72,6 @@ def readme_factory(**params):
     proj = {
         'projectname': TEST_PROJ,
         'author': 'lunatunez',
-        'start': '2016-01-01',
-        'end': '2017-01-01',
         'purpose': 'Short blurb',
         'license': 'MIT'
     }
@@ -108,28 +106,6 @@ def test_makereadme_blurb():
     t = "> Short blurb"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
-
-
-def test_makereadme_screenshot_link():
-    readme = readme_factory()
-    t = "[comment]: <> (![](screenshot.png))"
-    with open(readme, 'r') as f:
-        assert t in f.read().splitlines()  # Check if Project Name field is in README
-
-
-def test_makereadme_startdate():
-    readme = readme_factory()
-    t = "Start Date: 2016-01-01"
-    with open(readme, 'r') as f:
-        assert t in f.read().splitlines()  # Check if Start Date field is in README
-
-
-def test_makereadme_enddate():
-    readme = readme_factory()
-    t = "End Date: 2017-01-01"
-    with open(readme, 'r') as f:
-        assert t in f.read().splitlines()  # Check if End Date field is in README
-        #  assert any(l.strip() == t for l in f.readlines())  # Check if End Date field is in README
 
 
 def test_makereadme_mit_licence():
