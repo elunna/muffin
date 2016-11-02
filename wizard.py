@@ -1,10 +1,9 @@
 from string import ascii_letters
+from licenses import available
 
 
 def user_prompt(prompt):
-    while True:
-        input = raw_input('{}:> '.format(prompt))
-    return input
+    return raw_input('{}:> '.format(prompt))
 
 
 def valid_projectname(projectname):
@@ -17,7 +16,7 @@ def valid_projectname(projectname):
 
 
 def valid_license(license):
-    pass
+    return license.strip().upper() in available
 
 
 def wizard():
@@ -26,17 +25,18 @@ def wizard():
     """
     wiz_dict = {}
 
+    # input_loop(prompt, req=True, validator=None, choices=None, default=None):
     # Ask for project name
-    wiz_dict['projectname'] = user_prompt('Project name')
+    wiz_dict['projectname'] = input_loop('Project name', validator=valid_projectname)
 
     # Ask for author
-    wiz_dict['author'] = user_prompt('Author')
+    wiz_dict['author'] = input_loop('Author')
 
     # Ask for project purpose
-    wiz_dict['purpose'] = user_prompt('Short project description')
+    wiz_dict['purpose'] = input_loop('Short project description', req=False)
 
     # Ask for license
-    wiz_dict['license'] = user_prompt('License type')
+    wiz_dict['license'] = input_loop('License type', validator=valid_license)
 
     # Create functional tests for
         # py-test
