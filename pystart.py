@@ -41,8 +41,8 @@ def make_readme(info_dict):
     Returns the filepath of the created file.
     """
     filename = info_dict['projectname'] + '/' + 'README.md'
-    twitter_handle = 'rainbowdash'
-    email = 'rdash@cloudsdale.net'
+    twitter_handle = info_dict.get('twitter', None)
+    email = info_dict.get('email', None)
     date = get_date()
     license = info_dict['license']
 

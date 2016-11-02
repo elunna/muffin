@@ -103,6 +103,12 @@ def wizard():
                                      validator=valid_license,
                                      default=dflt_dict.get('license', None))
 
+    # Ask for project purpose
+    wiz_dict['email'] = input_loop('Email', required=False)
+
+    # Ask for project purpose
+    wiz_dict['twitter'] = input_loop('Twitter', required=False)
+
     # Create functional tests for
         # py-test
         # logger
