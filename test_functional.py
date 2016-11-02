@@ -9,13 +9,6 @@ Pystart is a Python project templating engine. It is for quickly and efficiently
 projects that are ready for professional use.
 """
 
-STARTDICT = {
-    'projectname': test_pystart.TEST_PROJ,
-    'author': 'erik',
-    'purpose': 'testing pystart',
-    'license': 'MIT',
-}
-
 
 def test_wizard():
     """
@@ -36,8 +29,8 @@ def test_wizard():
     He is presented with a wizard which asks him all the basic info.
     After completing the wizard we should have a few things:
     """
-    pystart.new_project(STARTDICT)
-    project_name = STARTDICT['projectname']
+    pystart.new_project(test_pystart.MIT_CONFIG)
+    project_name = test_pystart.MIT_CONFIG['projectname']
 
     # The directory structure (unit tested)
     assert os.path.isdir(project_name + '/')        # Error making root dir
