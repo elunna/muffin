@@ -2,21 +2,50 @@ from string import ascii_letters
 from licenses import available
 
 
-def user_prompt(prompt):
-    return raw_input('{}:> '.format(prompt))
+def input_loop(prompt, required=True, validator=None, default=None):
+    while True:
+        # Show the remembered default (if we have one)
+        if default:
+            val = raw_input('{}[{}]:> '.format(prompt, default))
+        else:
+            val = raw_input('{}:> '.format(prompt))
+
+        # If we have a default, make it easy for the user to press enter and accept it.
+        if val is None and default:
+            return default
+        elif val is None and required:
+            print('A value is required.')
+            print('')
+            continue
+        elif validator:
+            # This value type has a special validator
+            if validator(val):
+                return val
+            else:
+                print('')
+        else:
+            return val
 
 
 def valid_projectname(projectname):
     # Can only contain alphabetic characters or underscores.
-    n = projectname.strip()
+    n = projectname
     if ' ' in n:
+        print('Project name cannot contain spaces.')
         return False
+    elif all(c in ascii_letters + '_' for c in n):
+        return True
     else:
-        return any(c in ascii_letters + '_' for c in n)
+        print('Project name can only contain letters(a-z, A-Z, and underscores(_)')
 
 
 def valid_license(license):
-    return license.strip().upper() in available
+    result = license.strip().upper() in available
+    if result:
+        return True
+    else:
+        print('License must be one of: {}'.format(available))
+        return False
 
 
 def wizard():
@@ -33,7 +62,7 @@ def wizard():
     wiz_dict['author'] = input_loop('Author')
 
     # Ask for project purpose
-    wiz_dict['purpose'] = input_loop('Short project description', req=False)
+    wiz_dict['purpose'] = input_loop('Short project description', required=False)
 
     # Ask for license
     wiz_dict['license'] = input_loop('License type', validator=valid_license)
