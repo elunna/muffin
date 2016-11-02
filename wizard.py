@@ -44,7 +44,7 @@ def valid_projectname(projectname):
         print('Project folder already exists with that name!')
         return False
     else:
-        True
+        return True
 
 
 def valid_license(license):
