@@ -1,4 +1,3 @@
-import licenses
 import os
 import shutil
 import pystart
@@ -108,16 +107,16 @@ def test_makereadme_blurb():
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
-def test_makereadme_mit_licence():
+def test_makereadme_mit_license():
     readme = readme_factory(license='MIT')
-    expected = '### Licence MIT'
+    expected = '### License MIT'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
 
-def test_makereadme_gnu_licence():
+def test_makereadme_gnu_license():
     readme = readme_factory(license='GNU')
-    expected = '### Licence GNU'
+    expected = '### License GNU'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
@@ -136,6 +135,7 @@ def test_writelicense_MIT():
 def test_writelicense_GNU():
     # Write the GNU license to the LICENSE file.
     pytest.fail()
+
 """
 Tests for make_gitignore(info_dict)
 """

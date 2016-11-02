@@ -57,8 +57,10 @@ def make_readme(info_dict):
         f.write('Socials :wavy_dash: [@{}](https://twitter.com/{}) :wavy_dash: {}'.format(
             twitter_handle, twitter_handle, email))
         f.write('\n')
-        f.write('### Licence {}[![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(
-            license, license))
+        f.write('### License {}'.format(license))
+        f.write('\n')
+        f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(license))
+
         f.write('\n')
         f.write('XYZ license. See ``LICENSE.txt`` for full text.'.format(info_dict['license']))
         f.write('\n')
