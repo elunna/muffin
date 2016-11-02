@@ -96,7 +96,7 @@ def wizard():
     wiz_dict['author'] = input_loop('Author', default=dflt_dict.get('author', None))
 
     # Ask for project purpose
-    wiz_dict['purpose'] = input_loop('Short summary', required=False)
+    wiz_dict['description'] = input_loop('Short summary', required=False)
 
     # Ask for license
     wiz_dict['license'] = input_loop('License type',

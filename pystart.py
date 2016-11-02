@@ -49,7 +49,7 @@ def make_readme(info_dict):
     with open(filename, 'w') as f:
         f.write('# Project Name: {}'.format(info_dict['projectname']))
         f.write('\n')
-        f.write('> {}'.format(info_dict['purpose']))
+        f.write('> {}'.format(info_dict['description']))
         f.write('\n')
         f.write('\n')
 

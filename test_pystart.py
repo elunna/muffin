@@ -9,14 +9,14 @@ TEST_PROJ = 'testproject'
 MIT_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
-    'purpose': 'Short blurb',
+    'description': 'Short blurb',
     'license': 'MIT'
 }
 
 GNU_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
-    'purpose': 'Short blurb',
+    'description': 'Short blurb',
     'license': 'GNU'
 }
 
