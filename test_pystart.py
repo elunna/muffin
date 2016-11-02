@@ -134,7 +134,6 @@ Tests for write_license(config)
 
 
 def test_writelicense_MIT():
-    # Write the MIT license to the LICENSE file.
     pystart.setup_dirs(TEST_PROJ)
     lic_path = TEST_PROJ + '/LICENSE'
     pystart.write_license(MIT_CONFIG)
@@ -142,8 +141,10 @@ def test_writelicense_MIT():
 
 
 def test_writelicense_GNU():
-    # Write the GNU license to the LICENSE file.
-    pytest.fail()
+    pystart.setup_dirs(TEST_PROJ)
+    lic_path = TEST_PROJ + '/LICENSE'
+    pystart.write_license(GNU_CONFIG)
+    assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 """
 Tests for make_gitignore(info_dict)
