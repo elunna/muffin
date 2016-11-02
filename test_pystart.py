@@ -129,7 +129,16 @@ def test_writelicense_MIT():
     # Write the MIT license to the LICENSE file.
     pystart.setup_dirs(TEST_PROJ)
     lic_path = TEST_PROJ + '/LICENSE'
-    assert os.path.exists(lic_path)  # Directory doesn't exist
+
+    config = {
+        'projectname': TEST_PROJ,
+        'author': 'lunatunez',
+        'purpose': 'Short blurb',
+        'license': 'MIT'
+    }
+
+    pystart.write_license(config)
+    assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 
 def test_writelicense_GNU():

@@ -76,6 +76,9 @@ def make_readme(info_dict):
 
 def write_license(config):
     license = licenses.get(config['license'])
+    filename = config['projectname'] + '/LICENSE'
+    with open(filename, 'w') as f:
+        f.write(license)
 
 
 def make_gitignore(project_name):
