@@ -110,13 +110,6 @@ def test_makereadme_blurb():
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
-def test_makereadme_purpose():
-    readme = readme_factory()
-    t = "Purpose: Test"
-    with open(readme, 'r') as f:
-        assert t in f.read().splitlines()  # Check if Purpose field is in README
-
-
 def test_makereadme_startdate():
     readme = readme_factory()
     t = "Start Date: 2016-01-01"
