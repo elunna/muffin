@@ -96,9 +96,9 @@ def test_makereadme_author():
         assert t in f.read().splitlines()  # Check if Author field is in README
 
 
-def test_makereadme_projectname():
+def test_makereadme_title_header():
     readme = readme_factory()
-    t = "Project Name: testproject"
+    t = "# Project Name: testproject"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 

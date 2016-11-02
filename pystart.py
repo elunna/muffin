@@ -34,7 +34,7 @@ def make_readme(info_dict):
     """
     filename = info_dict['projectname'] + '/' + 'README.md'
     with open(filename, 'w') as f:
-        f.write('Project Name: {}'.format(info_dict['projectname']))
+        f.write('# Project Name: {}'.format(info_dict['projectname']))
         f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
