@@ -104,11 +104,12 @@ def wizard():
                                      default=dflt_dict.get('license', None))
 
     # Ask for project purpose
-    wiz_dict['email'] = input_loop('Email', required=False)
+    wiz_dict['email'] = input_loop('Email', required=False,
+                                   default=dflt_dict.get('email', None))
 
     # Ask for project purpose
-    wiz_dict['twitter'] = input_loop('Twitter', required=False)
-
+    wiz_dict['twitter'] = input_loop('Twitter', required=False,
+                                     default=dflt_dict.get('twitter', None))
     # Create functional tests for
         # py-test
         # logger
