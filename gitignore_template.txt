@@ -1,0 +1,20 @@
+# -----------
+# Directories
+# -----------
+.ropeproject/*
+.cache/*
+__pycache__/*
+data/*
+logs/*
+tests/*
+venv/*
+
+# -----
+# Files
+# -----
+*.pyc
+*.log
+.DS_Store
+todo.txt
+db.sqlite3
+local_settings.py
