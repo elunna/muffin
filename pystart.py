@@ -38,7 +38,11 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('> {}'.format(info_dict['purpose']))
         f.write('\n')
-        f.write("[comment]: <> (![](screenshot.png))")
+        f.write('\n')
+
+        # Add in standard template here.
+
+        f.write('## Meta')
         f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
@@ -46,12 +50,23 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('End Date: {}'.format(info_dict['end']))
         f.write('\n')
+        twitter_handle = 'rainbowdash'
+        email = 'rdash@cloudsdale.net'
+        f.write('Socials :wavy_dash: [@{}](https://twitter.com/{}) :wavy_dash: {}'.format(
+            twitter_handle, twitter_handle, email))
+        f.write('\n')
+        f.write('### Licence [![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(
+            info_dict['license']))
+        f.write('\n')
+        f.write('XYZ license. See ``LICENSE.txt`` for full text.'.format(info_dict['license']))
+        f.write('\n')
 
-        license = licenses.get(info_dict['license'])
         if license:
             year = 2017
             license_txt = licenses.format_text(license, name=info_dict['projectname'], year=year)
             f.write(license_txt)
+
+        f.write('<p align="right"><a href="#top">:arrow_up:</a></p>')
 
     return filename
 
@@ -98,6 +113,7 @@ def get_date():
 
 
 def user_prompt(prompt):
+    print(prompt)
     input = raw_input()
     return input
 
@@ -143,3 +159,7 @@ def new_project(config):
 
     # Create the .gitignore
     make_gitignore(project_name)
+
+
+if __name__ == "__main__":
+    config = wizard()
