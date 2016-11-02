@@ -1,28 +1,31 @@
 template = """
-<h2 name="top">What's it?</h2>
-:question:
+## What's it?
 
 [Project summary]
 
-[comment]: <> (![](screenshot.png))
+![](screenshot.png)
 
 ### Features
-- **Cool thing** Super Acme 3000 batteries included
-- **Stupendis thing!** (HD Full-screen)
+- **Feature 1** Description
+- **Feature 2** Description
 
 ---
 
 ### Prerequisities
 Python 2
 
+#### Uses
+* argparse, logging, pytest
+
+
 ### Installing
-Linux:
-Max OS X: n/a
-Windows: n/a
+- **Linux:**
+- **Max OS X:** n/a
+- **Windows:** n/a
 
 ---
 
-## Usage :horse
+## Usage
 ```
 $ python main.py
 ```
@@ -42,9 +45,9 @@ $ python main.py 2
 ---
 
 ### TODO
------------------
-- [ ] Finish README :sparkles:
-- [ ] Create first functional test
+
+- [ ]  Finish README
+- [ ]  Create first functional test
 
 ---
 

@@ -27,6 +27,12 @@ def setup_init_files(projectname):
         open(filename, 'w').close()
 
 
+def get_date():
+    import datetime as dt
+    now = dt.datetime.now()
+    return str(now.date())
+
+
 def make_readme(info_dict):
     """
     Creates the README.md file and uses the passed in dictionary to fill in the fields.
@@ -35,7 +41,7 @@ def make_readme(info_dict):
     filename = info_dict['projectname'] + '/' + 'README.md'
     twitter_handle = 'rainbowdash'
     email = 'rdash@cloudsdale.net'
-    year = 2017
+    date = get_date()
     license = info_dict['license']
 
     with open(filename, 'w') as f:
@@ -50,26 +56,23 @@ def make_readme(info_dict):
 
         f.write('## Meta')
         f.write('\n')
-        f.write('Author: {}'.format(info_dict['author']))
+        f.write('##### Author: {}'.format(info_dict['author']))
         f.write('\n')
-        #  f.write('Start Date: {}'.format(info_dict['start']))
+        f.write('##### Start Date: {}'.format(date))
         f.write('\n')
-        f.write('Socials :wavy_dash: [@{}](https://twitter.com/{}) :wavy_dash: {}'.format(
+        f.write('##### Socials -- [@{}](https://twitter.com/{}) -- {}'.format(
             twitter_handle, twitter_handle, email))
         f.write('\n')
         f.write('### License {}'.format(license))
         f.write('\n')
-        f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)][license]'.format(license))
-
+        f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(license))
         f.write('\n')
-        f.write('XYZ license. See ``LICENSE.txt`` for full text.'.format(info_dict['license']))
+        f.write('See ``LICENSE`` for full text.'.format(info_dict['license']))
         f.write('\n')
 
         if license:
-            license_txt = licenses.format_text(license, name=info_dict['projectname'], year=year)
+            license_txt = licenses.format_text(license, name=info_dict['projectname'])
             f.write(license_txt)
-
-        f.write('<p align="right"><a href="#top">:arrow_up:</a></p>')
 
     return filename
 
@@ -117,11 +120,6 @@ def setup_main():
     pass
 
 
-def get_date():
-    # Returns todays date
-    pass
-
-
 def user_prompt(prompt):
     input = raw_input('{}:> '.format(prompt))
     return input
@@ -137,10 +135,13 @@ def wizard():
     wiz_dict['projectname'] = user_prompt('Project name')
 
     # Ask for author
-    wiz_dict['name'] = user_prompt('Author')
+    wiz_dict['author'] = user_prompt('Author')
 
     # Ask for project purpose
     wiz_dict['purpose'] = user_prompt('Short project description')
+
+    # Ask for license
+    wiz_dict['license'] = user_prompt('License type')
 
     # Create functional tests for
         # py-test
