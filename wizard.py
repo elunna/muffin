@@ -1,5 +1,6 @@
 from string import ascii_letters
 from licenses import available
+import json
 
 
 def input_loop(prompt, required=True, validator=None, default=None):
@@ -11,9 +12,9 @@ def input_loop(prompt, required=True, validator=None, default=None):
             val = raw_input('{}:> '.format(prompt))
 
         # If we have a default, make it easy for the user to press enter and accept it.
-        if val is None and default:
+        if val == '' and default:
             return default
-        elif val is None and required:
+        elif not val and required:
             print('A value is required.')
             print('')
             continue
@@ -48,24 +49,37 @@ def valid_license(license):
         return False
 
 
+def get_defaults():
+    # Read JSON defaults
+    DFLT_FILE = 'defaults.json'
+    with open(DFLT_FILE, 'r') as f:
+        contents = f.read()
+        defaults = json.loads(contents)
+    return defaults
+
+
 def wizard():
     """
     Collects project info and returns a dict.
     """
+    dflts = get_defaults()
     wiz_dict = {}
 
     # input_loop(prompt, req=True, validator=None, choices=None, default=None):
     # Ask for project name
-    wiz_dict['projectname'] = input_loop('Project name', validator=valid_projectname)
+    wiz_dict['projectname'] = input_loop('Project name',
+                                         validator=valid_projectname)
 
     # Ask for author
-    wiz_dict['author'] = input_loop('Author')
+    wiz_dict['author'] = input_loop('Author', default=dflts.get('author', None))
 
     # Ask for project purpose
-    wiz_dict['purpose'] = input_loop('Short project description', required=False)
+    wiz_dict['purpose'] = input_loop('Short summary', required=False)
 
     # Ask for license
-    wiz_dict['license'] = input_loop('License type', validator=valid_license)
+    wiz_dict['license'] = input_loop('License type',
+                                     validator=valid_license,
+                                     default=dflts.get('license', None))
 
     # Create functional tests for
         # py-test
