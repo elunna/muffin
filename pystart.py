@@ -1,5 +1,6 @@
 import licenses
 import os
+import shutil
 
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
@@ -58,9 +59,10 @@ def make_gitignore(project_name):
     Creates the .gitignore file. We'll just copy the one stored away - it should be pretty
     thorough - it's pretty cheap to maintain and saves a lot of future work!
     """
-    filename = project_name + '/.gitignore'
-    open(filename, 'w').close()
-    return filename
+    template = 'gitignore_template.txt'
+    filepath = project_name + '/.gitignore'
+    shutil.copy(template, filepath)
+    return filepath
 
 
 def setup_virtualenv():
