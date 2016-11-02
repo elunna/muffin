@@ -110,18 +110,32 @@ def test_makereadme_blurb():
 
 def test_makereadme_mit_licence():
     readme = readme_factory(license='MIT')
-    expected = licenses.MIT_TEXT
+    expected = '### Licence MIT'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
 
 def test_makereadme_gnu_licence():
     readme = readme_factory(license='GNU')
-    expected = licenses.GNU_TEXT
+    expected = '### Licence GNU'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
+"""
+Tests for write_license(config)
+"""
 
+
+def test_writelicense_MIT():
+    # Write the MIT license to the LICENSE file.
+    pystart.setup_dirs(TEST_PROJ)
+    lic_path = TEST_PROJ + '/LICENSE'
+    assert os.path.exists(lic_path)  # Directory doesn't exist
+
+
+def test_writelicense_GNU():
+    # Write the GNU license to the LICENSE file.
+    pytest.fail()
 """
 Tests for make_gitignore(info_dict)
 """
