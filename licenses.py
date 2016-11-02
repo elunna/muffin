@@ -1,8 +1,4 @@
 def get(license):
-    available = {
-        'MIT': MIT,
-        'GNU': GNU,
-    }
     return available.get(license, None)
 
 
@@ -69,3 +65,8 @@ type `show w'.  This is free software, and you are welcome
 to redistribute it under certain conditions; type `show c'
 for details.
 """
+
+available = {
+    'MIT': MIT,
+    'GNU': GNU,
+}
