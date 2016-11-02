@@ -38,6 +38,8 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('> {}'.format(info_dict['purpose']))
         f.write('\n')
+        f.write("[comment]: <> (![](screenshot.png))")
+        f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
         f.write('Start Date: {}'.format(info_dict['start']))
