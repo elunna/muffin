@@ -113,8 +113,7 @@ def get_date():
 
 
 def user_prompt(prompt):
-    print(prompt)
-    input = raw_input()
+    input = raw_input('{}:> '.format(prompt))
     return input
 
 
@@ -124,13 +123,21 @@ def wizard():
     """
     wiz_dict = {}
 
-    # Ask for author
-    wiz_dict['name'] = user_prompt('Project name?')
-
     # Ask for project name
+    wiz_dict['projectname'] = user_prompt('Project name')
+
+    # Ask for author
+    wiz_dict['name'] = user_prompt('Author')
+
     # Ask for project purpose
+    wiz_dict['purpose'] = user_prompt('Short project description')
+
     # Ask for Start date
+    wiz_dict['start'] = user_prompt('Start date')
+
     # Ask for end date
+    wiz_dict['end'] = user_prompt('End date')
+
     # Create functional tests for
         # py-test
         # logger
@@ -142,7 +149,7 @@ def wizard():
         # Functional test
     # Ask if we want scrapy
         # Functional test
-    pass
+    return wiz_dict
 
 
 def new_project(config):
@@ -163,3 +170,4 @@ def new_project(config):
 
 if __name__ == "__main__":
     config = wizard()
+    print(config)
