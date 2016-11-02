@@ -115,6 +115,20 @@ def test_makereadme_blurb():
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
+def test_makereadme_email():
+    readme = readme_factory(email='rdash@cloudsdale.net')
+    t = '##### Email -- rdash@cloudsdale.net'
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if Project Name field is in README
+
+
+def test_makereadme_twitter():
+    readme = readme_factory(twitter='rdashie')
+    t = '##### Twitter [@rdashie](https://twitter.com/rdashie)'
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if Project Name field is in README
+
+
 def test_makereadme_mit_license():
     readme = readme_factory(license='MIT')
     expected = '[![](http://img.shields.io/badge/license-MIT-blue.svg)]'
