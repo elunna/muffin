@@ -69,7 +69,6 @@ Tests for make_readme(info_dict)
 
 def readme_factory(**params):
     pystart.setup_dirs(TEST_PROJ)
-    f = TEST_PROJ + '/' + 'README.md'
     proj = {
         'name': TEST_PROJ,
         'author': 'lunatunez',
@@ -81,13 +80,12 @@ def readme_factory(**params):
     if params:
         proj.update(params)
 
-    pystart.make_readme(proj)
-    return f
+    return pystart.make_readme(proj)
 
 
 def test_makereadme_empty():
+    # Verify that make_readme returns the filepath
     f = readme_factory()
-    print(f)
     assert os.path.exists(f)  # README.md was not created in project/
 
 
@@ -148,6 +146,6 @@ Tests for make_gitignore(info_dict)
 
 def test_makereadme_exists():
     pystart.setup_dirs(TEST_PROJ)
-    # make_readme returns the filepath
+    # Verify that make_readme returns the filepath
     f = pystart.make_gitignore(TEST_PROJ)
     assert os.path.exists(f)  # README.md was not created in project/
