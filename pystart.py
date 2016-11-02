@@ -3,6 +3,7 @@ import licenses
 import os
 import readme
 import shutil
+import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
 
@@ -119,43 +120,6 @@ def setup_main():
     pass
 
 
-def user_prompt(prompt):
-    input = raw_input('{}:> '.format(prompt))
-    return input
-
-
-def wizard():
-    """
-    Collects project info and returns a dict.
-    """
-    wiz_dict = {}
-
-    # Ask for project name
-    wiz_dict['projectname'] = user_prompt('Project name')
-
-    # Ask for author
-    wiz_dict['author'] = user_prompt('Author')
-
-    # Ask for project purpose
-    wiz_dict['purpose'] = user_prompt('Short project description')
-
-    # Ask for license
-    wiz_dict['license'] = user_prompt('License type')
-
-    # Create functional tests for
-        # py-test
-        # logger
-
-    # Ask for starting modules
-        # For each module, ask for starting functions and create tests for each
-
-    # Ask if we want Beautiful Soup and request
-        # Functional test
-    # Ask if we want scrapy
-        # Functional test
-    return wiz_dict
-
-
 def new_project(config):
     project_name = config['projectname']
 
@@ -179,6 +143,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")
     args = parser.parse_args()
 
-    config = wizard()
+    config = wizard.wizard()
     print(config)
     new_project(config)
