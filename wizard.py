@@ -2,6 +2,8 @@ from string import ascii_letters
 from licenses import available
 import json
 
+DFLT_FILE = 'defaults.json'
+
 
 def input_loop(prompt, required=True, validator=None, default=None):
     while True:
@@ -51,18 +53,33 @@ def valid_license(license):
 
 def get_defaults():
     # Read JSON defaults
-    DFLT_FILE = 'defaults.json'
     with open(DFLT_FILE, 'r') as f:
         contents = f.read()
         defaults = json.loads(contents)
     return defaults
 
 
+def update_defaults(dflt_dict, wiz_dict):
+    # Update only the fields in the json defaults, and only write if they changed.
+    keys = dflt_dict.keys()
+    update = False
+    for k in keys:
+        if dflt_dict.get(k, None) != wiz_dict.get(k, None):
+            update = True
+            # wiz_dict has a diff val, so we'll update it.
+            dflt_dict[k] = wiz_dict.get(k, None)
+
+    if update:
+        # Write the new default settings
+        with open(DFLT_FILE, 'w') as f:
+            json.dump(dflt_dict, f)
+
+
 def wizard():
     """
     Collects project info and returns a dict.
     """
-    dflts = get_defaults()
+    dflt_dict = get_defaults()
     wiz_dict = {}
 
     # input_loop(prompt, req=True, validator=None, choices=None, default=None):
@@ -71,7 +88,7 @@ def wizard():
                                          validator=valid_projectname)
 
     # Ask for author
-    wiz_dict['author'] = input_loop('Author', default=dflts.get('author', None))
+    wiz_dict['author'] = input_loop('Author', default=dflt_dict.get('author', None))
 
     # Ask for project purpose
     wiz_dict['purpose'] = input_loop('Short summary', required=False)
@@ -79,7 +96,7 @@ def wizard():
     # Ask for license
     wiz_dict['license'] = input_loop('License type',
                                      validator=valid_license,
-                                     default=dflts.get('license', None))
+                                     default=dflt_dict.get('license', None))
 
     # Create functional tests for
         # py-test
@@ -92,4 +109,8 @@ def wizard():
         # Functional test
     # Ask if we want scrapy
         # Functional test
+
+    # Update defaults
+    update_defaults(dflt_dict, wiz_dict)
+
     return wiz_dict
