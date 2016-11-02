@@ -6,6 +6,19 @@ import pytest
 Tests for setup_dirs()
 """
 TEST_PROJ = 'testproject'
+MIT_CONFIG = {
+    'projectname': TEST_PROJ,
+    'author': 'lunatunez',
+    'purpose': 'Short blurb',
+    'license': 'MIT'
+}
+
+GNU_CONFIG = {
+    'projectname': TEST_PROJ,
+    'author': 'lunatunez',
+    'purpose': 'Short blurb',
+    'license': 'GNU'
+}
 
 
 def wipe_project():
@@ -68,16 +81,11 @@ Tests for make_readme(info_dict)
 
 def readme_factory(**params):
     pystart.setup_dirs(TEST_PROJ)
-    proj = {
-        'projectname': TEST_PROJ,
-        'author': 'lunatunez',
-        'purpose': 'Short blurb',
-        'license': 'MIT'
-    }
+    config = MIT_CONFIG
     if params:
-        proj.update(params)
+        config.update(params)
 
-    return pystart.make_readme(proj)
+    return pystart.make_readme(config)
 
 
 def test_makereadme_empty():
@@ -129,15 +137,7 @@ def test_writelicense_MIT():
     # Write the MIT license to the LICENSE file.
     pystart.setup_dirs(TEST_PROJ)
     lic_path = TEST_PROJ + '/LICENSE'
-
-    config = {
-        'projectname': TEST_PROJ,
-        'author': 'lunatunez',
-        'purpose': 'Short blurb',
-        'license': 'MIT'
-    }
-
-    pystart.write_license(config)
+    pystart.write_license(MIT_CONFIG)
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 
