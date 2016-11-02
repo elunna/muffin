@@ -29,6 +29,7 @@ def setup_init_files(projectname):
 def make_readme(info_dict):
     """
     Creates the README.md file and uses the passed in dictionary to fill in the fields.
+    Returns the filepath of the created file.
     """
     filename = info_dict['name'] + '/' + 'README.md'
     with open(filename, 'w') as f:
@@ -48,6 +49,8 @@ def make_readme(info_dict):
             year = 2017
             license_txt = licenses.format_text(license, name=info_dict['name'], year=year)
             f.write(license_txt)
+
+    return filename
 
 
 def make_gitignore(project_name):
