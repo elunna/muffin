@@ -1,6 +1,7 @@
 from string import ascii_letters
 from licenses import available
 import json
+import os
 
 DFLT_FILE = 'defaults.json'
 
@@ -36,10 +37,14 @@ def valid_projectname(projectname):
     if ' ' in n:
         print('Project name cannot contain spaces.')
         return False
-    elif all(c in ascii_letters + '_' for c in n):
-        return True
-    else:
+    elif not all(c in ascii_letters + '_' for c in n):
         print('Project name can only contain letters(a-z, A-Z, and underscores(_)')
+        return False
+    elif os.path.isdir(projectname):
+        print('Project folder already exists with that name!')
+        return False
+    else:
+        True
 
 
 def valid_license(license):
