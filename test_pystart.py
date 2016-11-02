@@ -144,8 +144,29 @@ Tests for make_gitignore(info_dict)
 """
 
 
-def test_makereadme_exists():
+def test_makegitignore_exists():
     pystart.setup_dirs(TEST_PROJ)
     # Verify that make_readme returns the filepath
     f = pystart.make_gitignore(TEST_PROJ)
-    assert os.path.exists(f)  # README.md was not created in project/
+    assert os.path.exists(f)  # .gitignore was not created in project/
+
+
+def test_makegitignore_essentialfiles():
+    pystart.setup_dirs(TEST_PROJ)
+    f = pystart.make_gitignore(TEST_PROJ)
+    lines = f.read().splitlines()
+    assert '*.pyc' in lines
+    assert '*.log' in lines
+    assert 'todo.txt' in lines
+    assert 'db.sqlite3' in lines
+
+
+def test_makegitignore_essentialdirectories():
+    pystart.setup_dirs(TEST_PROJ)
+    f = pystart.make_gitignore(TEST_PROJ)
+    lines = f.read().splitlines()
+    assert '__pycache__' in lines
+    assert '.ropeproject' in lines
+    assert 'venv' in lines
+    assert 'data' in lines
+    assert 'tests' in lines
