@@ -139,3 +139,13 @@ def test_makereadme_gnu_licence():
     expected = licenses.GNU_TEXT
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
+
+
+"""
+Tests for make_gitignore(info_dict)
+"""
+
+
+def test_makereadme_exists():
+    f = pystart.make_gitignore(TEST_PROJ)
+    assert os.path.exists(f)  # README.md was not created in project/
