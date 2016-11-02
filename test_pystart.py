@@ -110,6 +110,13 @@ def test_makereadme_blurb():
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
+def test_makereadme_screenshot_link():
+    readme = readme_factory()
+    t = "[comment]: <> (![](screenshot.png))"
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if Project Name field is in README
+
+
 def test_makereadme_startdate():
     readme = readme_factory()
     t = "Start Date: 2016-01-01"
