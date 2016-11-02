@@ -147,5 +147,7 @@ Tests for make_gitignore(info_dict)
 
 
 def test_makereadme_exists():
+    pystart.setup_dirs(TEST_PROJ)
+    # make_readme returns the filepath
     f = pystart.make_gitignore(TEST_PROJ)
     assert os.path.exists(f)  # README.md was not created in project/
