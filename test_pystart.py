@@ -96,7 +96,7 @@ def test_makereadme_empty():
 
 def test_makereadme_author():
     readme = readme_factory()
-    t = "Author: lunatunez"
+    t = "##### Author: lunatunez"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Author field is in README
 
@@ -117,14 +117,14 @@ def test_makereadme_blurb():
 
 def test_makereadme_mit_license():
     readme = readme_factory(license='MIT')
-    expected = '### License MIT'
+    expected = '[![](http://img.shields.io/badge/license-MIT-blue.svg)]'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 
 
 def test_makereadme_gnu_license():
     readme = readme_factory(license='GNU')
-    expected = '### License GNU'
+    expected = '[![](http://img.shields.io/badge/license-GNU-blue.svg)]'
     with open(readme, 'r') as f:
         assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
 

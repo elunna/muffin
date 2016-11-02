@@ -63,8 +63,6 @@ def make_readme(info_dict):
         f.write('##### Socials -- [@{}](https://twitter.com/{}) -- {}'.format(
             twitter_handle, twitter_handle, email))
         f.write('\n')
-        f.write('### License {}'.format(license))
-        f.write('\n')
         f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(license))
         f.write('\n')
         f.write('See ``LICENSE`` for full text.'.format(info_dict['license']))
