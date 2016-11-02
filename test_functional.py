@@ -57,8 +57,10 @@ def test_wizard():
     # .gitignore
     assert os.path.exists(project_name + '/.gitignore')  # Error making .gitignore
 
+    # Check that the LICENSE was copied
+    assert os.path.exists(project_name + '/LICENSE.txt')  # Error making .gitignore
+
     # Cleanup
-    # test_python.TEST_PROJ,
     test_pystart.wipe_project()
 
 
