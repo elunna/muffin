@@ -75,10 +75,10 @@ def make_readme(info_dict):
 
 
 def write_license(config):
-    license = licenses.get(config['license'])
+    text = licenses.get(config['license'])
     filename = config['projectname'] + '/LICENSE'
     with open(filename, 'w') as f:
-        f.write(license)
+        f.write(text)
 
 
 def make_gitignore(project_name):
@@ -170,6 +170,9 @@ def new_project(config):
 
     # Create the .gitignore
     make_gitignore(project_name)
+
+    # Create the LICENSE
+    write_license(config)
 
 
 if __name__ == "__main__":
