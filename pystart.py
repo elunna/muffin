@@ -71,12 +71,8 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(license))
         f.write('\n')
-        f.write('See ``LICENSE`` for full text.'.format(info_dict['license']))
+        f.write('[{}]: See ``LICENSE`` for full text.'.format(info_dict['license']))
         f.write('\n')
-
-        if license:
-            license_txt = licenses.format_text(license, name=info_dict['projectname'])
-            f.write(license_txt)
 
     return filename
 
