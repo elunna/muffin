@@ -9,7 +9,11 @@ def user_prompt(prompt):
 
 def valid_projectname(projectname):
     # Can only contain alphabetic characters or underscores.
-    pass
+    n = projectname.strip()
+    if ' ' in n:
+        return False
+    else:
+        return any(c in ascii_letters + '_' for c in n)
 
 
 def valid_license(license):

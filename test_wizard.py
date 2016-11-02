@@ -18,6 +18,6 @@ def test_valid_projectname_spaces():
 
 
 def test_valid_projectname_spacesonends():
-    t = ' new project '
+    t = ' new_project '
     expected = True
     assert wizard.valid_projectname(t) == expected
