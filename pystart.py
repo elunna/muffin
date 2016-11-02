@@ -1,3 +1,4 @@
+import argparse
 import licenses
 import os
 import readme
@@ -175,6 +176,9 @@ def new_project(config):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")
+    args = parser.parse_args()
+
     config = wizard()
     print(config)
     new_project(config)
