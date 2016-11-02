@@ -31,9 +31,9 @@ def make_readme(info_dict):
     Creates the README.md file and uses the passed in dictionary to fill in the fields.
     Returns the filepath of the created file.
     """
-    filename = info_dict['name'] + '/' + 'README.md'
+    filename = info_dict['projectname'] + '/' + 'README.md'
     with open(filename, 'w') as f:
-        f.write('Project Name: {}'.format(info_dict['name']))
+        f.write('Project Name: {}'.format(info_dict['projectname']))
         f.write('\n')
         f.write('Author: {}'.format(info_dict['author']))
         f.write('\n')
@@ -47,7 +47,7 @@ def make_readme(info_dict):
         license = licenses.get(info_dict['license'])
         if license:
             year = 2017
-            license_txt = licenses.format_text(license, name=info_dict['name'], year=year)
+            license_txt = licenses.format_text(license, name=info_dict['projectname'], year=year)
             f.write(license_txt)
 
     return filename
@@ -126,7 +126,7 @@ def wizard():
 
 
 def new_project(config):
-    project_name = config['name']
+    project_name = config['projectname']
 
     # Create the directory structure
     setup_dirs(project_name)

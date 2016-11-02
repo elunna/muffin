@@ -70,7 +70,7 @@ Tests for make_readme(info_dict)
 def readme_factory(**params):
     pystart.setup_dirs(TEST_PROJ)
     proj = {
-        'name': TEST_PROJ,
+        'projectname': TEST_PROJ,
         'author': 'lunatunez',
         'start': '2016-01-01',
         'end': '2017-01-01',

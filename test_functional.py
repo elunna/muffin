@@ -10,7 +10,7 @@ projects that are ready for professional use.
 """
 
 STARTDICT = {
-    'name': test_pystart.TEST_PROJ,
+    'projectname': test_pystart.TEST_PROJ,
     'author': 'erik',
     'start': '1999',
     'end': '2000',
@@ -39,7 +39,7 @@ def test_wizard():
     After completing the wizard we should have a few things:
     """
     pystart.new_project(STARTDICT)
-    project_name = STARTDICT['name']
+    project_name = STARTDICT['projectname']
 
     # The directory structure (unit tested)
     assert os.path.isdir(project_name + '/')        # Error making root dir
