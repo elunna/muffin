@@ -41,7 +41,7 @@ def make_readme(info_dict):
     Returns the filepath of the created file.
     """
     filename = info_dict['projectname'] + '/' + 'README.md'
-    twitter_handle = info_dict.get('twitter', None)
+    twitter = info_dict.get('twitter', None)
     email = info_dict.get('email', None)
     date = get_date()
     license = info_dict['license']
@@ -62,8 +62,12 @@ def make_readme(info_dict):
         f.write('\n')
         f.write('##### Start Date: {}'.format(date))
         f.write('\n')
-        f.write('##### Socials -- [@{}](https://twitter.com/{}) -- {}'.format(
-            twitter_handle, twitter_handle, email))
+        if twitter:
+            f.write('##### Twitter -- [@{}](https://twitter.com/{})'.format(twitter, twitter))
+            f.write('\n')
+        if email:
+            f.write('##### Email -- {}'.format(email))
+            f.write('\n')
         f.write('\n')
         f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(license))
         f.write('\n')

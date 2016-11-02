@@ -124,7 +124,7 @@ def test_makereadme_email():
 
 def test_makereadme_twitter():
     readme = readme_factory(twitter='rdashie')
-    t = '##### Twitter [@rdashie](https://twitter.com/rdashie)'
+    t = '##### Twitter -- [@rdashie](https://twitter.com/rdashie)'
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
