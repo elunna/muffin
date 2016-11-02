@@ -74,7 +74,7 @@ def readme_factory(**params):
         'author': 'lunatunez',
         'start': '2016-01-01',
         'end': '2017-01-01',
-        'purpose': 'Test',
+        'purpose': 'Short blurb',
         'license': 'MIT'
     }
     if params:
@@ -99,6 +99,13 @@ def test_makereadme_author():
 def test_makereadme_title_header():
     readme = readme_factory()
     t = "# Project Name: testproject"
+    with open(readme, 'r') as f:
+        assert t in f.read().splitlines()  # Check if Project Name field is in README
+
+
+def test_makereadme_blurb():
+    readme = readme_factory()
+    t = "> Short blurb"
     with open(readme, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
