@@ -114,6 +114,14 @@ def make_env(project_name):
     return filepath
 
 
+def make_setup_file(config):
+    filepath = config['projectname'] + '/setup.sh'
+    with open(filepath, 'w') as f:
+        f.write("#!/bin/bash")
+        f.write("# Purpose: Installs the required modules for the new project.")
+        f.write("/bin/bash bash_cmds")
+
+
 def setup_project_env(config):
     project_name = config['projectname']
     # I don't want this to rely on new_project, so we'll ensure the dir too
@@ -126,9 +134,12 @@ def setup_project_env(config):
     # Install needed packages:
     #   py.test
     #
-    # Setup an autoenv file???
+
+    # Setup an autoenv file
     make_env(project_name)
 
+    # Setup the setup.sh file - lol, this is getting rediculous.
+    make_setup_file(config)
     # Make requirements.txt?
 
 
