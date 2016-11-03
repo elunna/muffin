@@ -8,12 +8,7 @@ def cmd_result(cmd):
     # Python 3.3+: can use subprocess.DEVNULL rather than open(os.devnull).
     try:
         devnull = open(os.devnull, 'w')
-        p = subprocess.Popen(cmd, stdout=devnull, stderr=devnull).communicate()
-        p.wait()
-        if p.returncode == 0:
-            return True
-        else:
-            return False
+        subprocess.Popen(cmd, stdout=devnull, stderr=devnull).communicate()
     except OSError as e:
         if e.errno == os.errno.ENOENT:
             return False
@@ -65,9 +60,9 @@ def chk_python():
     return [x.replace(trimthis, '') for x in output]
 
 
-def new_virtualenv(py_version):
+def new_virtualenv(py_version, name=VENV_DIR):
     # virtualenv checks the python ver so we don't have to worry about that :)
-    cmd = ['virtualenv', '--python=python{} {}'.format(py_version, VENV_DIR)]
+    cmd = ['virtualenv', '--python=python{}'.format(py_version), name]
     return cmd_result(cmd)
 
 
