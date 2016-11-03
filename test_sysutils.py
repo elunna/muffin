@@ -1,6 +1,13 @@
 import os
 import pytest
+import shutil
 import sysutils
+
+
+def wipe_venv(venv):
+    if os.path.isdir(venv):
+        shutil.rmtree(venv)
+
 
 """
 Tests for cmd_result(cmd)
@@ -82,14 +89,16 @@ Tests for new_virtualenv(py_version)
 
 
 def test_newvirtualenv_py2_7():
-    venv = 'TEST_ENV'
+    venv = 'venv_test'
+    result = sysutils.new_virtualenv(venv)
+    assert result is True
+
     # Check that the virtual env directory was created
     assert os.path.isdir(venv)        # Error making virtual env directory.
 
     # Check that the python2.7 bin is present
     pythonbin = venv + '/bin/python2.7'
     assert os.path.exists(pythonbin)  # Error making .env
-
 
     wipe_venv(venv)   # Clean it up
 
