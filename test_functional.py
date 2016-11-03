@@ -1,7 +1,6 @@
 import os
 import pystart
 import test_pystart
-import pytest
 
 """
 Functional tests for pystart.
@@ -85,6 +84,9 @@ def test_setup_project_env():
 
     # Check that the .env file was created
     assert os.path.exists(ROOT + '.env')  # Error making .env
+
+    # Check that the setup.sh file was created.
+    assert os.path.exists(ROOT + '/setup.sh')  # Error making setup.sh
 
     # Clean up the mess
     pystart.wipe_dir(ROOT)
