@@ -36,6 +36,11 @@ def chk_sys_for(app):
     return result
 
 
+def run_setup_script(_dir):
+    cmd = ['sh', 'setup.sh']
+    subprocess.Popen(cmd, cwd=_dir)
+
+
 def chk_pip_for(lib):
     """
     Returns True if the library is installed in pip, False otherwise.

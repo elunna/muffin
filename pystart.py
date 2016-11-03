@@ -221,8 +221,9 @@ if __name__ == "__main__":
     new_project(config)
     setup_project_env(config)
 
+    # Run the setup file
+    sysutils.run_setup_script(config['projectname'])
+
     # Show installed programs summary
     sysutils.chk_sys_libraries()
     sysutils.chk_pip_libraries(config['python'])
-
-    # Run the setup file
