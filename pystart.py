@@ -139,11 +139,9 @@ def setup_git():
 
 def setup_pyfiles(project_name):
     """Setup the main.py, and logger.py modules."""
-    main, logger = 'main.py', 'logger.py'
-    main_path = project_name + '/main.py'
-    logger_path = project_name + '/src/logger.py'
-    shutil.copy(main, main_path)
-    shutil.copy(logger, logger_path)
+    main, logger = 'main.py', 'src/logger.py'
+    shutil.copy(main, project_name + '/' + main)
+    shutil.copy(logger, project_name + '/' + logger)
 
 
 def new_project(config):
