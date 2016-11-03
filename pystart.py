@@ -142,11 +142,11 @@ def make_setup_files(config):
 
         f.write('which python; ')
         f.write('which pip; ')
-        f.write('pip list --format legacy')
+        f.write('pip list --format legacy; pip install --upgrade pip')
         f.write('"\n')
 
-        f.write('echo \"python executable at:\"\n')
-        f.write('exec which python')
+        f.write('echo \"python executable at: \"')
+        f.write('which python')
 
 
 def setup_git():
