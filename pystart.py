@@ -7,6 +7,7 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
+CORE_MODULES = ['pytest', 'konch']
 
 
 def setup_dirs(projectname):
@@ -113,12 +114,26 @@ def make_env(project_name):
     return filepath
 
 
-def make_setup_file(config):
-    filepath = config['projectname'] + '/setup.sh'
-    with open(filepath, 'w') as f:
+def make_setup_files(config):
+    commands = [
+        '. venv/bin/activate',
+        'echo \"python executable at:\"',
+        'exec which python',
+        'exec pip install --upgrade pip'
+    ]
+
+    for i in CORE_MODULES:
+        commands.append('pip install {}'.format(i))
+
+    # Make setup.sh
+    setupfile = config['projectname'] + '/setup.sh'
+    with open(setupfile, 'w') as f:
         f.write("#!/bin/bash")
-        f.write("# Purpose: Installs the required modules for the new project.")
-        f.write("/bin/bash bash_cmds")
+        f.write("# Purpose: Installs the required modules for {}.".format(config['projectname']))
+        f.write('/bin/bash -c "')
+        for c in commands:
+            f.write(c + ';')
+        f.write('"')
 
 
 def setup_git():
@@ -151,7 +166,7 @@ def setup_project_env(config):
     make_env(project_name)
 
     # Setup the setup.sh file - lol, this is getting rediculous.
-    make_setup_file(config)
+    make_setup_files(config)
 
     # Make requirements.txt?
 
@@ -184,4 +199,6 @@ if __name__ == "__main__":
 
     config = wizard.wizard()
     print(config)
+    print('Starting up project!')
     new_project(config)
+    setup_project_env(config)
