@@ -2,6 +2,7 @@ from string import ascii_letters
 from licenses import available
 import json
 import os
+import sysutils
 
 DFLT_FILE = 'defaults.json'
 
@@ -56,6 +57,16 @@ def valid_license(license):
         return False
 
 
+def valid_python(python):
+    pythons = sysutils.chk_python()
+    result = python in pythons
+    if result:
+        return True
+    else:
+        print('Python version must be one of: {}'.format(pythons))
+        return False
+
+
 def get_defaults():
     # Read JSON defaults
     with open(DFLT_FILE, 'r') as f:
@@ -98,29 +109,28 @@ def wizard():
     # Ask for project purpose
     wiz_dict['description'] = input_loop('Short summary', required=False)
 
+    # Ask for Python version
+    wiz_dict['python'] = input_loop('Python version', required=True,
+                                    validator=valid_python,
+                                    default=dflt_dict.get('python', None))
+
     # Ask for license
     wiz_dict['license'] = input_loop('License type',
                                      validator=valid_license,
                                      default=dflt_dict.get('license', None))
 
-    # Ask for project purpose
+    # Ask for Email
     wiz_dict['email'] = input_loop('Email', required=False,
                                    default=dflt_dict.get('email', None))
 
-    # Ask for project purpose
+    # Ask for Twitter handle
     wiz_dict['twitter'] = input_loop('Twitter', required=False,
                                      default=dflt_dict.get('twitter', None))
-    # Create functional tests for
-        # py-test
-        # logger
 
-    # Ask for starting modules
-        # For each module, ask for starting functions and create tests for each
-
-    # Ask if we want Beautiful Soup and request
-        # Functional test
-    # Ask if we want scrapy
-        # Functional test
+    # Ask if we want:
+    #   Beautiful Soup
+    #   requests
+    #   scrapy
 
     # Update defaults
     update_defaults(dflt_dict, wiz_dict)
