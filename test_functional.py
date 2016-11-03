@@ -75,18 +75,11 @@ def test_virtualenv_py2():
     pystart.new_project(test_pystart.VENV_CONFIG)
     ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
 
-    # Check that the virtual env directory was created
-    assert os.path.isdir(ROOT + 'venv')        # Error making virtual env directory.
+    # Check that we can enter the virtualenv and activate it
 
-    # Check that the python2 bin is present
-    pythonbin = ROOT + 'venv/bin/python2.7'
-    assert os.path.exists(pythonbin)  # Error making .env
+    # Check that the venv is python 2.7
 
     # Check that pip was upgraded?
 
     # Check that the .env file was created
     assert os.path.exists(ROOT + '.env')  # Error making .env
-
-    # Check that we can switch into the venv
-
-    # Check that the venv is python 2.7
