@@ -67,13 +67,6 @@ def new_virtualenv(py_version, projectname):
     return cmd_result(cmd)
 
 
-def enter_venv(name):
-    # Is this even possible?  This doesn't currently work, so we probably need a separate shell.
-    #  cmd = ['source', '{}/bin/activate'.format(name)]
-    #  return cmd_result(cmd)
-    pass
-
-
 def chk_sys_libraries():
     """Essential libraries to get this template engine working."""
     # Add pip3?
@@ -95,13 +88,3 @@ def chk_pip_libraries():
             return False
     else:
         return True
-
-
-if __name__ == "__main__":
-    print('')
-    venv = 'venv_test'
-    #  print('\nTesting virtualenv 3.5: {}'.format(new_virtualenv('2.7', venv)))
-
-    print('attempting to enter it...')
-    result = enter_venv(venv)
-    print(result)
