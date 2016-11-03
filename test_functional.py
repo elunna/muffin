@@ -1,5 +1,6 @@
 import os
 import pystart
+import sysutils
 import test_pystart
 
 """
@@ -61,18 +62,6 @@ def test_newproject():
     pystart.wipe_dir(project_name)
 
 
-def test_sys_requirements():
-    # After a new project, we should have all these basic things:
-    # python2(or 3 depending)
-    # virtualenv
-    # autoenv
-    # pip,
-    # py.test
-    # konch
-    #  pytest.fail()
-    pass
-
-
 def test_setup_project_env():
     # Make a python 2.7 env
     # Setup the basic project
@@ -87,6 +76,11 @@ def test_setup_project_env():
 
     # Check that the setup.sh file was created.
     assert os.path.exists(ROOT + '/setup.sh')  # Error making setup.sh
+
+    # Check essential system and pip libraries
+    assert sysutils.chk_sys_libraries()
+    assert sysutils.chk_pip_libraries()  # This should be run in the virtual environment!
+    assert sysutils.chk_pip_for('pandas')
 
     # Clean up the mess
     pystart.wipe_dir(ROOT)

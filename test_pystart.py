@@ -28,6 +28,15 @@ VENV_CONFIG = {
     'python': '2.7',
 }
 
+VENV_CONFIG_PKGS = {
+    'projectname': TEST_PROJ,
+    'author': 'lunatunez',
+    'description': 'Short blurb',
+    'license': 'GNU',
+    'python': '2.7',
+    'packages': ['pytest', 'autoenv', 'konch', 'pip', 'pandas']
+}
+
 
 @pytest.yield_fixture(autouse=True)
 def cleanup():

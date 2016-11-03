@@ -75,9 +75,9 @@ def enter_venv(name):
 
 
 def chk_sys_libraries():
+    """Essential libraries to get this template engine working."""
     # Add pip3?
     libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
-
     for l in libs:
         if chk_sys_for(l) is False:
             print('{} is not installed, this is required.'.format(l))
@@ -87,7 +87,8 @@ def chk_sys_libraries():
 
 
 def chk_pip_libraries():
-    libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
+    """Core pip libraries that should be in the virtualenv after setup."""
+    libs = ['pip', 'pytest', 'konch', 'autoenv']
     for l in libs:
         if chk_pip_for(l) is False:
             print('{} is not installed, this is required.'.format(l))
