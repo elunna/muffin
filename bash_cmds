@@ -1,0 +1,5 @@
+. venv/bin/activate
+echo "python executable at:"
+exec which python
+
+
