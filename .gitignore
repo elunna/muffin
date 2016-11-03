@@ -1,5 +1,7 @@
 .ropeproject/*
 .cache/*
 venv/*
+logs/*
 *.pyc
 defaults.json
+__init__.py
