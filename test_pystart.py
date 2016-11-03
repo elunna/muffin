@@ -10,14 +10,22 @@ MIT_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
     'description': 'Short blurb',
-    'license': 'MIT'
+    'license': 'MIT',
 }
 
 GNU_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
     'description': 'Short blurb',
-    'license': 'GNU'
+    'license': 'GNU',
+}
+
+VENV_CONFIG = {
+    'projectname': TEST_PROJ,
+    'author': 'lunatunez',
+    'description': 'Short blurb',
+    'license': 'GNU',
+    'python': '2.7',
 }
 
 
