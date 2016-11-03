@@ -7,7 +7,12 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
-CORE_MODULES = ['pytest', 'konch']
+#  CORE_MODULES = ['pytest', 'konch', 'ipython']
+PY_MODULES = {
+    '2.7': ['urllib3[secure]', 'pytest', 'ipython'],
+    '3.4': ['pytest'],
+    '3.5': ['pytest']
+}
 
 
 def setup_dirs(projectname):
@@ -117,23 +122,30 @@ def make_env(project_name):
 def make_setup_files(config):
     commands = [
         '. venv/bin/activate',
-        'echo \"python executable at:\"',
-        'exec which python',
-        'exec pip install --upgrade pip'
+        'echo \'python executable at:\'',
+        'which python',
+        'pip install --upgrade pip'
     ]
 
-    for i in CORE_MODULES:
+    for i in PY_MODULES[config['python']]:
         commands.append('pip install {}'.format(i))
 
     # Make setup.sh
     setupfile = config['projectname'] + '/setup.sh'
     with open(setupfile, 'w') as f:
-        f.write("#!/bin/bash")
-        f.write("# Purpose: Installs the required modules for {}.".format(config['projectname']))
+        f.write("#!/bin/bash\n")
+        f.write("# Purpose: Installs the required modules for {}.\n".format(config['projectname']))
         f.write('/bin/bash -c "')
         for c in commands:
-            f.write(c + ';')
-        f.write('"')
+            f.write(c + '; ')
+
+        f.write('which python; ')
+        f.write('which pip; ')
+        f.write('pip list --format legacy')
+        f.write('"\n')
+
+        f.write('echo \"python executable at:\"\n')
+        f.write('exec which python')
 
 
 def setup_git():
