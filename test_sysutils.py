@@ -3,8 +3,6 @@ import pytest
 import shutil
 import sysutils
 
-VENV = 'venv_test'
-
 
 def wipe_venv(venv):
     if os.path.isdir(venv):
@@ -68,14 +66,14 @@ Tests for chk_python()
 py2version = pytest.mark.skipif(sysutils.chk_sys_for('python2') is False,
                                 reason="python2 required")
 
+py3version = pytest.mark.skipif(sysutils.chk_sys_for('python3') is False,
+                                reason="python3 required")
+
 
 @py2version
 def test_chkpython_2():
     result = sysutils.chk_python()
     assert '2.7' in result
-
-py3version = pytest.mark.skipif(sysutils.chk_sys_for('python3') is False,
-                                reason="python3 required")
 
 
 @py3version
@@ -90,12 +88,16 @@ Tests for new_virtualenv(py_version)
 
 
 def test_newvirtualenv_py1():
+    VENV = 'venv_test1_0'
     py = '1.0'  # This is not available, even in the older releases.
     sysutils.new_virtualenv(py, name=VENV)
     assert os.path.isdir(VENV) is False        # Should not create any dir.
 
 
+@py2version
+@pytest.mark.skip(reason="works - but uses lots of memory/files")
 def test_newvirtualenv_py2_7():
+    VENV = 'venv_test2_7'
     py = '2.7'
     result = sysutils.new_virtualenv(py, name=VENV)
     assert result is True  # 11_3_16: This is currently a false positive, but leaving it anyway.

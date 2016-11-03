@@ -75,10 +75,6 @@ def test_virtualenv_py2():
     pystart.new_project(test_pystart.VENV_CONFIG)
     ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
 
-    # Check that we can enter the virtualenv and activate it
-
-    # Check that the venv is python 2.7
-
     # Check that pip was upgraded?
 
     # Check that the .env file was created

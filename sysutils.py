@@ -66,6 +66,13 @@ def new_virtualenv(py_version, name=VENV_DIR):
     return cmd_result(cmd)
 
 
+def enter_venv(name):
+    # Is this even possible?  This doesn't currently work, so we probably need a separate shell.
+    #  cmd = ['source', '{}/bin/activate'.format(name)]
+    #  return cmd_result(cmd)
+    pass
+
+
 def chk_sys_libraries():
     # Add pip3?
     libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
@@ -112,4 +119,9 @@ if __name__ == "__main__":
         print('{:30} installed: True'.format(py))
 
     print('')
-    print('\nTesting virtualenv 3.5: {}'.format(new_virtualenv('2.7')))
+    venv = 'venv_test'
+    #  print('\nTesting virtualenv 3.5: {}'.format(new_virtualenv('2.7', venv)))
+
+    print('attempting to enter it...')
+    result = enter_venv(venv)
+    print(result)
