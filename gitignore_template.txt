@@ -12,8 +12,9 @@ venv/*
 # -----
 # Files
 # -----
-*.pyc
+.env
 *.log
+*.pyc
 .DS_Store
 todo.txt
 db.sqlite3

@@ -73,6 +73,7 @@ def test_virtualenv_py2():
     # Make a python 2.7 env
     # Setup the basic project
     pystart.new_project(test_pystart.VENV_CONFIG)
+
     ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
 
     # Check that pip was upgraded?

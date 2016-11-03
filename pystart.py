@@ -95,6 +95,13 @@ def make_gitignore(project_name):
     return filepath
 
 
+def make_env(project_name):
+    template = 'env_template.txt'
+    filepath = project_name + '/.env'
+    shutil.copy(template, filepath)
+    return filepath
+
+
 def setup_virtualenv():
     # Setup python 2 virtualenv
     # Upgrade pip
