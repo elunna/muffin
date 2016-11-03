@@ -121,11 +121,6 @@ def make_env(project_name):
 
 
 def make_setup_files(config):
-    # Check the core system utilities needed
-    sys_installs = []
-    for i in sysutils.SYS_LIBS:
-        if not sysutils.chk_sys_for(i):
-            sys_installs.append(i)
 
     # Make setup.sh
     setupfile = config['projectname'] + '/setup.sh'
@@ -134,11 +129,15 @@ def make_setup_files(config):
         f.write("# Purpose: Installs the required modules for {}.\n".format(config['projectname']))
         f.write('/bin/bash -c ". venv/bin/activate; ')
 
-        for i in sys_installs:
-            f.write('sudo apt-get install {}; '.format(i))
+        # Check the core system utilities needed
+        for i in sysutils.SYS_LIBS:
+            if not sysutils.chk_sys_for(i):
+                f.write('sudo apt-get install {}; '.format(i))
 
+        # Upgrade pip first
         f.write('pip install --upgrade pip; ')
 
+        # Check for core pip libraries
         for i in PY_MODULES[config['python']]:
             f.write('pip install {}; '.format(i))
 
