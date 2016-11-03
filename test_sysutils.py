@@ -120,8 +120,3 @@ def test_newvirtualenv_py2_7():
     assert os.path.exists(pythonbin)  # Error making .env
 
     pystart.wipe_dir(name)   # Clean it up
-
-
-"""
-Tests for touch_test()
-"""

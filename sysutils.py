@@ -1,5 +1,6 @@
 import subprocess
 import os
+import pystart
 
 VENV_DIR = 'venv'
 
@@ -31,7 +32,7 @@ def chk_sys_for(app):
     """
     cmd = [app, '--version']
     result = cmd_result(cmd)
-    #  print('{:30} installed: {}'.format(cmd[0], result))
+    print('{:30} installed: {}'.format(cmd[0], result))
     return result
 
 
@@ -43,9 +44,9 @@ def chk_pip_for(lib):
     cmd = ['pip', 'show', lib]
     try:
         ls_output = subprocess.check_output(cmd)
-        #  result = len(ls_output) > 0
+        result = len(ls_output) > 0
         #  print(ls_output)
-        #  print('{:30} installed: {}'.format(cmd[2], result))
+        print('{:30} installed: {}'.format(cmd[2], result))
         if len(ls_output) > 0:
             return True
         else:
@@ -79,8 +80,8 @@ def new_virtualenv(py_version, projectname):
 def chk_sys_libraries():
     """Essential libraries to get this template engine working."""
     # Add pip3?
-    libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
-    for l in libs:
+    sys_libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
+    for l in sys_libs:
         if chk_sys_for(l) is False:
             print('{} is not installed, this is required.'.format(l))
             return False
@@ -88,12 +89,17 @@ def chk_sys_libraries():
         return True
 
 
-def chk_pip_libraries():
+def chk_pip_libraries(py_ver):
     """Core pip libraries that should be in the virtualenv after setup."""
-    libs = ['pip', 'pytest', 'konch', 'autoenv']
-    for l in libs:
+    pip_libs = pystart.PY_MODULES[py_ver]
+    for l in pip_libs:
         if chk_pip_for(l) is False:
-            print('{} is not installed, this is required.'.format(l))
+            print('{} is not installed, this is required for Python{}.'.format(l, py_ver))
             return False
     else:
         return True
+
+
+if __name__ == "__main__":
+    chk_sys_libraries()
+    chk_pip_libraries('2.7')
