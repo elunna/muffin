@@ -1,2 +1,2 @@
 # .env
-source yenv/bin/activate
+source venv/bin/activate
