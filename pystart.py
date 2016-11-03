@@ -144,9 +144,12 @@ def make_setup_files(config):
         f.write('which pip; ')
         f.write('pip list --format legacy; pip install --upgrade pip')
         f.write('"\n')
-
-        f.write('echo \"python executable at: \"')
-        f.write('which python')
+        # Check exit code
+        f.write('if [ "$?" = "1"  ]; then')
+        f.write('   echo \"python executable at: \"')
+        f.write('   which python')
+        f.write('else')
+        f.write('   exit 1')
 
 
 def setup_git():
