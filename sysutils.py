@@ -3,6 +3,7 @@ import os
 import pystart
 
 VENV_DIR = 'venv'
+SYS_LIBS = ['python2', 'python3', 'pip', 'git', 'virtualenv']
 
 
 def cmd_result(cmd):
@@ -80,8 +81,7 @@ def new_virtualenv(py_version, projectname):
 def chk_sys_libraries():
     """Essential libraries to get this template engine working."""
     # Add pip3?
-    sys_libs = ['python', 'python2', 'python3', 'pip', 'git', 'virtualenv']
-    for l in sys_libs:
+    for l in SYS_LIBS:
         if chk_sys_for(l) is False:
             print('{} is not installed, this is required.'.format(l))
             return False
