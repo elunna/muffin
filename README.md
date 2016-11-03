@@ -23,7 +23,7 @@ usage: $ python pystart
 - [X] wizard: Purpose
 - [X] wizard: Description
 - [X] wizard: License: type
-- [ ] wizard: Ask for starting modules
+- [ ] wizard: Ask for starting modules(Beautiful Soup, Scrapy, requests)
 - [ ] wizard: Ask for Python version(2.7, 3.4, 3.5, etc)(can we list the available ones???)
 - [X] Remember project defaults for wizard
 - [X] Update defaults when new ones are input from wizard
@@ -36,9 +36,11 @@ usage: $ python pystart
 - [x] Main.py: main method, "hello project!"
 
 - [ ] Complete check of system requirements to run this script (and to have the ideal environment)
+# Sys libs
 - [x] is git installed?
 - [x] is virtualenv installed?
 - [x] is python/python3 installed?
+# Pip libs
 - [x] is pip installed?
 - [x] is autoenv installed?
 - [x] is konch installed?
@@ -47,6 +49,10 @@ usage: $ python pystart
 
 - [x] Setup virtualenv
 - [x] Autoenv config file(.env)?
+- [ ] Setup.sh script that executes program installs
+- [ ] Setup.sh: update pip
+- [ ] Setup.sh: initialize git repo 
+- [ ] Setup.sh: pip install basic packages(autoenv, konch, pytest)
 - [ ] Use Python 2(later option to use python3)
 - [ ] Initialize a git repo
 - [ ] requirements.txt for virtualenv
