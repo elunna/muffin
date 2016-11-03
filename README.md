@@ -37,10 +37,11 @@ usage: $ python pystart
 - [ ] Complete check of system requirements to run this script (and to have the ideal environment)
 - [x] is git installed?
 - [x] is virtualenv installed?
-- [x] is autoenv installed?
-- [x] is konch installed?
 - [x] is python/python3 installed?
 - [x] is pip installed?
+- [x] is autoenv installed?
+- [x] is konch installed?
+- [ ] is py.test installed?
 
 
 - [ ] Setup virtualenv
