@@ -121,35 +121,38 @@ def make_env(project_name):
 
 
 def make_setup_files(config):
-    commands = [
-        '. venv/bin/activate',
-        'echo \'python executable at:\'',
-        'which python',
-        'pip install --upgrade pip'
-    ]
-
-    for i in PY_MODULES[config['python']]:
-        commands.append('pip install {}'.format(i))
+    # Check the core system utilities needed
+    sys_installs = []
+    for i in sysutils.SYS_LIBS:
+        if not sysutils.chk_sys_for(i):
+            sys_installs.append(i)
 
     # Make setup.sh
     setupfile = config['projectname'] + '/setup.sh'
     with open(setupfile, 'w') as f:
         f.write("#!/bin/bash\n")
         f.write("# Purpose: Installs the required modules for {}.\n".format(config['projectname']))
-        f.write('/bin/bash -c "')
-        for c in commands:
-            f.write(c + '; ')
+        f.write('/bin/bash -c ". venv/bin/activate; ')
+
+        for i in sys_installs:
+            f.write('sudo apt-get install {}; '.format(i))
+
+        f.write('pip install --upgrade pip; ')
+
+        for i in PY_MODULES[config['python']]:
+            f.write('pip install {}; '.format(i))
 
         f.write('which python; ')
         f.write('which pip; ')
         f.write('pip list --format legacy; pip install --upgrade pip')
         f.write('"\n')
         # Check exit code
-        f.write('if [ "$?" = "1"  ]; then')
-        f.write('   echo \"python executable at: \"')
-        f.write('   which python')
-        f.write('else')
-        f.write('   exit 1')
+        f.write('if [ "$?" = "1"  ]; then\n')
+        f.write('\techo \"python executable at: \"\n')
+        f.write('\twhich python\n')
+        f.write('else\n')
+        f.write('\texit 1\n')
+        f.write('fi\n')
 
 
 def setup_git():
