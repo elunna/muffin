@@ -11,14 +11,28 @@ Tests for cmd_result(cmd)
 
 def test_cmdresult_touch():
     testfile = 'tempfile.xxx'
-    if os.path.exists(testfile):
-        os.remove(testfile)
-    cmd = ['touch', testfile]
-    result = sysutils.cmd_result(cmd)
+    result = sysutils.cmd_result(['touch', testfile])
     assert result is True
     assert os.path.exists(testfile)
 
     os.remove(testfile)  # Cleanup the file
+
+"""
+Tests for cmd_success(cmd)
+"""
+
+
+def test_cmdsuccess_touch():
+    testfile = 'tempfile.xxx'
+    result = sysutils.cmd_success(['touch', testfile])
+    assert result is True
+    os.remove(testfile)  # Cleanup the file
+
+
+def test_cmdsuccess_touch_invalid_arg():
+    result = sysutils.cmd_success(['touch', '-XXX'])
+    assert result is False
+
 
 """
 Tests for chk_sys_for(app)

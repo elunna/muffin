@@ -15,6 +15,15 @@ def cmd_result(cmd):
     return True
 
 
+def cmd_success(cmd):
+    result = subprocess.call(cmd)
+    pass
+    if result:
+        return False
+    else:
+        return True
+
+
 def chk_sys_for(app):
     """
     Returns True if the library is installed in the linux system, False otherwise.
