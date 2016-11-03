@@ -1,42 +1,59 @@
-Name: Professional Python Project starter
+# Professional Python Project starter
+> Makes starting up new projects with bells and whistles a breeze!
 
-usage: pystart projectname
+usage: $ python pystart 
 
-Objectives:
-    * Setup the directory structure 
-        /project/
-            /src
-                __init__.py
-            /tests
-                __init__.py
-            /logs
-            /data
-            /temp
+### TODO
+- [X] Setup the directory structure 
+- [X] /project/
+- [X] /project/src
+- [X] /project/tests
+- [X] /project/data
+- [X] /project/temp
+- [ ] /project/logs  (still need this)
 
-    * Setup the virtualenv
-        * Use Python 2(later option to use python3)
-        * Initialize a git repo
+- [X] Write startup files:
+- [X] __init__.py files for root, src, and tests to indicate packages.
+- [X] initial README.md file.
+- [X] .gitignore
 
-    * Write startup files:
-        - initial README.md file.
-        - starting tests to verify the packages work.
-        - requirements.txt
-        - .gitignore
+- [X] Basic wizard to specify project info:
+- [X] wizard: Project name
+- [X] wizard: Author - Default in my settings
+- [X] wizard: Purpose
+- [X] wizard: Description
+- [X] wizard: License: type
+- [ ] wizard: Ask for starting modules
+- [ ] wizard: Ask for Python version(2.7, 3.4, 3.5, etc)(can we list the available ones???)
+- [X] Remember project defaults for wizard
+- [X] Update defaults when new ones are input from wizard
 
-    * Use a wizard to make things nice and customizable.
-        - Project name
-        - Author - Default in my settings
-        - Start Date - default is now
-        - End Date
-        - Purpose
-        - Description
-        - License
-        - modules: Here we can list what starting modules we can outline, each will have a corresponding test file.
+- [ ] Main.py: Create empty
+- [ ] Main.py: Module doc
+- [ ] Main.py: logger, and  config file
+- [ ] Main.py: argparse
+- [ ] Main.py: main method, "hello project!"
+
+- [ ] Complete check of system requirements to run this script (and to have the ideal environment)
+- [x] is git installed?
+- [x] is virtualenv installed?
+- [x] is autoenv installed?
+- [x] is konch installed?
+- [x] is python/python3 installed?
+- [x] is pip installed?
 
 
-    * Main.py run file.
-        * logger, and  config file
-        * argparse
-        * main method
+- [ ] Setup virtualenv
+- [ ] Autoenv config?
+- [ ] Use Python 2(later option to use python3)
+- [ ] Initialize a git repo
+- [ ] requirements.txt for virtualenv
 
+# Functional tests for addons
+- [ ] Functional test for Selenium
+- [ ] Functional test for Beautiful Soup
+- [ ] Functional test for requests
 
+- [ ] Module outline: Create a template module and test for each. (Module docs, a few stub functions)
+
+- [ ] Add some fun ASCII ponies around to make life interesting.
