@@ -2,6 +2,7 @@
 .cache/*
 venv/*
 logs/*
+arc/*
 bestpony/*
 *.pyc
 defaults.json
