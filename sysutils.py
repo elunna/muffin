@@ -1,8 +1,10 @@
 import subprocess
 import os
 
+VENV_DIR = 'venv'
 
-def is_tool(cmd):
+
+def cmd_result(cmd):
     # Python 3.3+: can use subprocess.DEVNULL rather than open(os.devnull).
     try:
         devnull = open(os.devnull, 'w')
@@ -19,7 +21,7 @@ def chk_sys_for(app):
     This is installed by pip.
     """
     cmd = [app, '--version']
-    result = is_tool(cmd)
+    result = cmd_result(cmd)
     print('{:30} installed: {}'.format(cmd[0], result))
     return result
 
@@ -57,6 +59,16 @@ def chk_python():
     # Return just the version numbers in a list (ie: ['2.7', '3.5']
     return [x.replace(trimthis, '') for x in output]
 
+
+def new_virtualenv(py_version):
+    pass
+
+
+def touch_test():
+    cmd = ['touch', 'tempfile.xxx']
+    return cmd_result(cmd)
+
+
 if __name__ == "__main__":
     print('\n##### System libraries')
     chk_sys_for('python')
@@ -78,3 +90,5 @@ if __name__ == "__main__":
     for v in sorted(versions):
         py = 'python{}'.format(v)
         print('{:30} installed: True'.format(py))
+
+    print('\nTesting touch utility: {}'.format(touch_test()))
