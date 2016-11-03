@@ -60,9 +60,10 @@ def chk_python():
     return [x.replace(trimthis, '') for x in output]
 
 
-def new_virtualenv(py_version, name=VENV_DIR):
+def new_virtualenv(py_version, projectname):
+    VENV = projectname + '/venv'
     # virtualenv checks the python ver so we don't have to worry about that :)
-    cmd = ['virtualenv', '--python=python{}'.format(py_version), name]
+    cmd = ['virtualenv', '--python=python{}'.format(py_version), VENV]
     return cmd_result(cmd)
 
 

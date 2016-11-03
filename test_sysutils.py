@@ -84,28 +84,28 @@ Tests for new_virtualenv(py_version)
 
 
 def test_newvirtualenv_py1():
-    VENV = 'venv_test1_0'
+    name = 'venv_test1_0'
     py = '1.0'  # This is not available, even in the older releases.
-    sysutils.new_virtualenv(py, name=VENV)
-    assert os.path.isdir(VENV) is False        # Should not create any dir.
+    sysutils.new_virtualenv(py, projectname=name)
+    assert os.path.isdir(name + '/venv') is False        # Should not create any dir.
 
 
 @py2version
-@pytest.mark.skip(reason="works - but uses lots of memory/files")
+#  @pytest.mark.skip(reason="works - but uses lots of memory/files")
 def test_newvirtualenv_py2_7():
-    VENV = 'venv_test2_7'
+    name = 'venv_test2_7'
     py = '2.7'
-    result = sysutils.new_virtualenv(py, name=VENV)
+    result = sysutils.new_virtualenv(py, projectname=name)
     assert result is True  # 11_3_16: This is currently a false positive, but leaving it anyway.
 
     # Check that the virtual env directory was created
-    assert os.path.isdir(VENV)        # Error making virtual env directory.
+    assert os.path.isdir(name + '/venv')        # Error making virtual env directory.
 
     # Check that the python2.7 bin is present
-    pythonbin = VENV + '/bin/python2.7'
+    pythonbin = name + '/venv//bin/python2.7'
     assert os.path.exists(pythonbin)  # Error making .env
 
-    pystart.wipe_dir(VENV)   # Clean it up
+    pystart.wipe_dir(name)   # Clean it up
 
 
 """
