@@ -61,11 +61,7 @@ def chk_python():
 
 
 def new_virtualenv(py_version):
-    pass
-
-
-def touch_test():
-    cmd = ['touch', 'tempfile.xxx']
+    cmd = ['virtualenv', '--python=python{}'.format(py_version), VENV_DIR]
     return cmd_result(cmd)
 
 
@@ -92,3 +88,5 @@ if __name__ == "__main__":
         print('{:30} installed: True'.format(py))
 
     print('\nTesting touch utility: {}'.format(touch_test()))
+    print('')
+    print('\nTesting virtualenv 3.5: {}'.format(new_virtualenv('2.7')))
