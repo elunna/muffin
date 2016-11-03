@@ -9,7 +9,8 @@ import wizard
 SUBDIRS = ['src', 'tests', 'data', 'temp']
 #  CORE_MODULES = ['pytest', 'konch', 'ipython']
 PY_MODULES = {
-    '2.7': ['urllib3[secure]', 'pytest', 'ipython'],
+    # We need the security libraries because older versions of py2 don't have good ssl.
+    '2.7': ['urllib3[secure]', 'requests[security]', 'pytest', 'ipython', 'konch'],
     '3.4': ['pytest'],
     '3.5': ['pytest']
 }
