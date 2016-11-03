@@ -1,6 +1,7 @@
 import os
 import pystart
 import test_pystart
+import pytest
 
 """
 Functional tests for pystart.
@@ -57,6 +58,35 @@ def test_wizard():
     test_pystart.wipe_project()
 
 
-def usecase_wizard():
-    # The wizard use a defaults.py for author and license type.
-    pass
+def test_sys_requirements():
+    # After a new project, we should have all these basic things:
+    # python2(or 3 depending)
+    # virtualenv
+    # autoenv
+    # pip,
+    # py.test
+    # konch
+    pytest.fail()
+
+
+def test_virtualenv_py2():
+    # Make a python 2.7 env
+    # Setup the basic project
+    pystart.new_project(test_pystart.VENV_CONFIG)
+    ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
+
+    # Check that the virtual env directory was created
+    assert os.path.isdir(ROOT + 'venv')        # Error making virtual env directory.
+
+    # Check that the python2 bin is present
+    pythonbin = ROOT + 'venv/bin/python2.7'
+    assert os.path.exists(pythonbin)  # Error making .env
+
+    # Check that pip was upgraded?
+
+    # Check that the .env file was created
+    assert os.path.exists(ROOT + '.env')  # Error making .env
+
+    # Check that we can switch into the venv
+
+    # Check that the venv is python 2.7
