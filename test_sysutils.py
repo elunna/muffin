@@ -1,12 +1,8 @@
 import os
+import pystart
 import pytest
-import shutil
 import sysutils
 
-
-def wipe_venv(venv):
-    if os.path.isdir(venv):
-        shutil.rmtree(venv)
 
 """
 Tests for cmd_result(cmd)
@@ -109,7 +105,7 @@ def test_newvirtualenv_py2_7():
     pythonbin = VENV + '/bin/python2.7'
     assert os.path.exists(pythonbin)  # Error making .env
 
-    wipe_venv(VENV)   # Clean it up
+    pystart.wipe_dir(VENV)   # Clean it up
 
 
 """

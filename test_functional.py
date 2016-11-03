@@ -11,7 +11,7 @@ projects that are ready for professional use.
 """
 
 
-def test_wizard():
+def test_newproject():
     """
     Erik wants to start a new project, nothing fancy, but it should at least have this:
         * A modern Directory
@@ -55,7 +55,7 @@ def test_wizard():
     assert os.path.exists(project_name + '/LICENSE')  # Error making LICENSE
 
     # Cleanup
-    test_pystart.wipe_project()
+    pystart.wipe_dir(project_name)
 
 
 def test_sys_requirements():
@@ -69,10 +69,10 @@ def test_sys_requirements():
     pytest.fail()
 
 
-def test_virtualenv_py2():
+def test_setup_project_env():
     # Make a python 2.7 env
     # Setup the basic project
-    pystart.new_project(test_pystart.VENV_CONFIG)
+    pystart.setup_project_env(test_pystart.VENV_CONFIG)
 
     ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
 
@@ -80,3 +80,6 @@ def test_virtualenv_py2():
 
     # Check that the .env file was created
     assert os.path.exists(ROOT + '.env')  # Error making .env
+
+    # Clean up the mess
+    pystart.wipe_dir(ROOT)

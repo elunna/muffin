@@ -1,7 +1,7 @@
 import os
-import shutil
 import pystart
 import pytest
+
 """
 Tests for setup_dirs()
 """
@@ -29,16 +29,11 @@ VENV_CONFIG = {
 }
 
 
-def wipe_project():
-    if os.path.isdir(TEST_PROJ):
-        shutil.rmtree(TEST_PROJ)
-
-
 @pytest.yield_fixture(autouse=True)
 def cleanup():
-    wipe_project()
+    pystart.wipe_dir(TEST_PROJ)
     yield None
-    wipe_project()
+    pystart.wipe_dir(TEST_PROJ)
 
 """
 Tests for setup_dirs(projectname)

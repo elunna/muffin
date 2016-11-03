@@ -3,6 +3,7 @@ import licenses
 import os
 import readme
 import shutil
+import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
@@ -15,6 +16,16 @@ def setup_dirs(projectname):
     for sub in SUBDIRS:
         # Create each subdirectory
         os.makedirs(projectname + '/' + sub)
+
+
+def wipe_dir(venv):
+    if os.path.isdir(venv):
+        shutil.rmtree(venv)
+
+
+def ensure_dir(_dir):
+    if not os.path.exists(_dir):
+        os.makedirs(_dir)
 
 
 def setup_init_files(projectname):
@@ -102,15 +113,22 @@ def make_env(project_name):
     return filepath
 
 
-def setup_virtualenv():
+def setup_project_env(config):
+    project_name = config['projectname']
+    # I don't want this to rely on new_project, so we'll ensure the dir too
+    ensure_dir(project_name)
+
     # Setup python 2 virtualenv
+    sysutils.new_virtualenv(config['python'], project_name)
+
     # Upgrade pip
     # Install needed packages:
     #   py.test
     #
     # Setup an autoenv file???
-    # requirements.txt
-    pass
+    make_env(project_name)
+
+    # Make requirements.txt?
 
 
 def setup_git():
