@@ -22,7 +22,7 @@ def chk_sys_for(app):
     """
     cmd = [app, '--version']
     result = cmd_result(cmd)
-    print('{:30} installed: {}'.format(cmd[0], result))
+    #  print('{:30} installed: {}'.format(cmd[0], result))
     return result
 
 
@@ -34,9 +34,9 @@ def chk_pip_for(lib):
     cmd = ['pip', 'show', lib]
     try:
         ls_output = subprocess.check_output(cmd)
-        result = len(ls_output) > 0
+        #  result = len(ls_output) > 0
         #  print(ls_output)
-        print('{:30} installed: {}'.format(cmd[2], result))
+        #  print('{:30} installed: {}'.format(cmd[2], result))
         if len(ls_output) > 0:
             return True
         else:
@@ -98,28 +98,6 @@ def chk_pip_libraries():
 
 
 if __name__ == "__main__":
-    print('\n##### System libraries')
-    chk_sys_for('python')
-    chk_sys_for('python2')
-    chk_sys_for('python3')
-    chk_sys_for('pip')
-    chk_sys_for('pip3')
-    chk_sys_for('git')
-    chk_sys_for('virtualenv')
-
-    print('\n##### pip libraries')
-    chk_pip_for('konch')
-    chk_pip_for('autoenv')
-    chk_pip_for('weirdo')
-
-    # Versions of python installed
-    print('\nPython Versions')
-
-    versions = chk_python()
-    for v in sorted(versions):
-        py = 'python{}'.format(v)
-        print('{:30} installed: True'.format(py))
-
     print('')
     venv = 'venv_test'
     #  print('\nTesting virtualenv 3.5: {}'.format(new_virtualenv('2.7', venv)))
