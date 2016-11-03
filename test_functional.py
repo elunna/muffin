@@ -54,6 +54,10 @@ def test_newproject():
     # Check that the LICENSE was copied
     assert os.path.exists(project_name + '/LICENSE')  # Error making LICENSE
 
+    # Check that main.py, src/utils.py were copied.
+    assert os.path.exists(project_name + '/main.py')  # Error making main.py
+    assert os.path.exists(project_name + '/src/logger.py')  # Error making utils.py
+
     # Cleanup
     pystart.wipe_dir(project_name)
 
