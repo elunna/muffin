@@ -3,7 +3,7 @@ import os
 import pystart
 
 VENV_DIR = 'venv'
-SYS_LIBS = ['python2', 'python3', 'pip', 'git', 'virtualenv']
+SYS_LIBS = ['python', 'python3', 'pip', 'git', 'virtualenv']
 
 
 def cmd_result(cmd):
