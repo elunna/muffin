@@ -3,12 +3,12 @@
 Main entry point.
 """
 import argparse
-import logger
+from src import logger
 
 
 def main():
     log = logger.setup_logger()
-    log.debug('Hello Equestria!')
+    log.debug('Hello Equestria! From src!')
 
 
 if __name__ == "__main__":
