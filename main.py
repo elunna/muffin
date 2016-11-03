@@ -3,13 +3,16 @@
 Main entry point.
 """
 import argparse
+import logger
 
 
 def main():
-    print('Hello world!')
+    log = logger.setup_logger()
+    log.debug('Hello Equestria!')
 
 
 if __name__ == "__main__":
+    # Setup argparser
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbose', help='increase output verbosity', action="store_true")
     args = parser.parse_args()
