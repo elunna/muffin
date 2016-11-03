@@ -195,3 +195,15 @@ def test_makegitignore_essentialdirectories():
     assert 'venv/*' in lines
     assert 'data/*' in lines
     assert 'tests/*' in lines
+
+
+"""
+Tests for setup_pyfiles(project_name)
+"""
+
+
+def test_setuppyfiles():
+    pystart.setup_dirs(TEST_PROJ)
+    pystart.setup_pyfiles(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/main.py')  # Error making main.py
+    assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making utils.py

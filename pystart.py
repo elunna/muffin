@@ -137,12 +137,13 @@ def setup_git():
     pass
 
 
-# Create a main.py run file
-def setup_main():
-    # Setup logger
-    # Setup argparse, basic.
-    # Create main run func
-    pass
+def setup_pyfiles(project_name):
+    """Setup the main.py, and logger.py modules."""
+    main, logger = 'main.py', 'logger.py'
+    main_path = project_name + '/main.py'
+    logger_path = project_name + '/src/logger.py'
+    shutil.copy(main, main_path)
+    shutil.copy(logger, logger_path)
 
 
 def new_project(config):
@@ -162,6 +163,9 @@ def new_project(config):
 
     # Create the LICENSE
     write_license(config)
+
+    # Create the .py files
+    setup_pyfiles(project_name)
 
 
 if __name__ == "__main__":
