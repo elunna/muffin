@@ -47,6 +47,7 @@ def chk_pip_for(lib):
 
 
 def chk_python():
+    """Returns which versions of Python are installed, as a list (ie: ['2.7', '3.5'])"""
     cmd = ['whereis', 'python']
     output = subprocess.check_output(cmd).split()
 
@@ -56,7 +57,6 @@ def chk_python():
 
     trimthis = '/usr/local/lib/python'
 
-    # Return just the version numbers in a list (ie: ['2.7', '3.5']
     return [x.replace(trimthis, '') for x in output]
 
 
