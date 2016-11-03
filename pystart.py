@@ -7,6 +7,7 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
+VENV_DIR = 'venv'
 
 
 def setup_dirs(projectname):
@@ -119,7 +120,7 @@ def setup_project_env(config):
     ensure_dir(project_name)
 
     # Setup python 2 virtualenv
-    sysutils.new_virtualenv(config['python'], project_name)
+    sysutils.new_virtualenv(config['python'], VENV_DIR)
 
     # Upgrade pip
     # Install needed packages:
