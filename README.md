@@ -28,11 +28,12 @@ usage: $ python pystart
 - [X] Remember project defaults for wizard
 - [X] Update defaults when new ones are input from wizard
 
-- [ ] Main.py: Create empty
-- [ ] Main.py: Module doc
-- [ ] Main.py: logger, and  config file
-- [ ] Main.py: argparse
-- [ ] Main.py: main method, "hello project!"
+- [x] Main.py: Create empty
+- [x] Main.py: Module doc
+- [x] Main.py: import logger
+- [x] main.py: config file
+- [x] Main.py: argparse
+- [x] Main.py: main method, "hello project!"
 
 - [ ] Complete check of system requirements to run this script (and to have the ideal environment)
 - [x] is git installed?
@@ -44,8 +45,8 @@ usage: $ python pystart
 - [ ] is py.test installed?
 
 
-- [ ] Setup virtualenv
-- [ ] Autoenv config?
+- [x] Setup virtualenv
+- [x] Autoenv config file(.env)?
 - [ ] Use Python 2(later option to use python3)
 - [ ] Initialize a git repo
 - [ ] requirements.txt for virtualenv
