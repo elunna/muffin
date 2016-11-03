@@ -7,7 +7,6 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp']
-VENV_DIR = 'venv'
 
 
 def setup_dirs(projectname):
@@ -122,27 +121,6 @@ def make_setup_file(config):
         f.write("/bin/bash bash_cmds")
 
 
-def setup_project_env(config):
-    project_name = config['projectname']
-    # I don't want this to rely on new_project, so we'll ensure the dir too
-    ensure_dir(project_name)
-
-    # Setup python 2 virtualenv
-    sysutils.new_virtualenv(config['python'], VENV_DIR)
-
-    # Upgrade pip
-    # Install needed packages:
-    #   py.test
-    #
-
-    # Setup an autoenv file
-    make_env(project_name)
-
-    # Setup the setup.sh file - lol, this is getting rediculous.
-    make_setup_file(config)
-    # Make requirements.txt?
-
-
 def setup_git():
     # Initialize git repo
     # Create thorough .gitignore
@@ -154,6 +132,28 @@ def setup_pyfiles(project_name):
     main, logger = 'main.py', 'src/logger.py'
     shutil.copy(main, project_name + '/' + main)
     shutil.copy(logger, project_name + '/' + logger)
+
+
+def setup_project_env(config):
+    project_name = config['projectname']
+    # I don't want this to rely on new_project, so we'll ensure the dir too
+    ensure_dir(project_name)
+
+    # Setup python 2 virtualenv
+    sysutils.new_virtualenv(config['python'], project_name)
+
+    # Upgrade pip
+    # Install needed packages:
+    #   py.test
+    #
+
+    # Setup an autoenv file
+    make_env(project_name)
+
+    # Setup the setup.sh file - lol, this is getting rediculous.
+    make_setup_file(config)
+
+    # Make requirements.txt?
 
 
 def new_project(config):
