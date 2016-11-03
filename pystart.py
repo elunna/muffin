@@ -11,8 +11,8 @@ SUBDIRS = ['src', 'tests', 'data', 'temp']
 PY_MODULES = {
     # We need the security libraries because older versions of py2 don't have good ssl.
     '2.7': ['urllib3[secure]', 'requests[security]', 'pytest', 'ipython', 'konch'],
-    '3.4': ['pytest'],
-    '3.5': ['pytest']
+    '3.4': ['pytest', 'ipython', 'konch'],
+    '3.5': ['pytest', 'ipython', 'konch']
 }
 
 
@@ -215,3 +215,5 @@ if __name__ == "__main__":
     print('Starting up project!')
     new_project(config)
     setup_project_env(config)
+
+    # Run the setup file
