@@ -12,9 +12,10 @@ def input_loop(prompt, required=True, validator=None, default=None):
     while True:
         # Show the remembered default (if we have one)
         if default:
-            val = raw_input('{}[{}]:> '.format(prompt, default))
+            deftxt = '[' + default + ']'
+            val = raw_input('{:15}{:>25}:> '.format(prompt, deftxt))
         else:
-            val = raw_input('{}:> '.format(prompt))
+            val = raw_input('{:15}{:>25}:> '.format(prompt, ''))
 
         # If we have a default, make it easy for the user to press enter and accept it.
         if val == '' and default:
@@ -103,6 +104,10 @@ def wizard():
     """
     Collects project info and returns a dict.
     """
+    print('-~- /) PyStart quick project scaffolding wizard! (\ -~-')
+    print('Default values appear in [brackets] - press Enter to accept them :)')
+    print('')
+
     dflt_dict = get_defaults()
     wiz_dict = {}
 
