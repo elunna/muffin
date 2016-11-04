@@ -24,7 +24,8 @@ usage: $ python pystart
 - [X] wizard: Description
 - [X] wizard: License: type
 - [ ] wizard: Ask for starting modules(Beautiful Soup, Scrapy, requests)
-- [ ] wizard: Ask for Python version(2.7, 3.4, 3.5, etc)(can we list the available ones???)
+- [x] wizard: Ask for Python version(2.7, 3.4, 3.5, etc)(can we list the available ones???)
+- [ ] wixard: show available choices if user presses ?
 - [X] Remember project defaults for wizard
 - [X] Update defaults when new ones are input from wizard
 
@@ -35,7 +36,7 @@ usage: $ python pystart
 - [x] Main.py: argparse
 - [x] Main.py: main method, "hello project!"
 
-- [ ] Complete check of system requirements to run this script (and to have the ideal environment)
+- [x] Complete check of system requirements to run this script (and to have the ideal environment)
 # Sys libs
 - [x] is git installed?
 - [x] is virtualenv installed?
@@ -44,16 +45,17 @@ usage: $ python pystart
 - [x] is pip installed?
 - [x] is autoenv installed?
 - [x] is konch installed?
-- [ ] is py.test installed?
+- [x] is py.test installed?
+- [x] is ['urllib3[secure]', 'requests[security]',  installed for py2?
 
 
 - [x] Setup virtualenv
 - [x] Autoenv config file(.env)?
-- [ ] Setup.sh script that executes program installs
-- [ ] Setup.sh: update pip
+- [x] Setup.sh script that executes program installs
+- [x] Setup.sh: update pip
 - [ ] Setup.sh: initialize git repo 
-- [ ] Setup.sh: pip install basic packages(autoenv, konch, pytest)
-- [ ] Use Python 2(later option to use python3)
+- [x] Setup.sh: pip install basic packages(autoenv, konch, pytest)
+- [x] Use Python 2(later option to use python3)
 - [ ] Initialize a git repo
 - [ ] requirements.txt for virtualenv
 
