@@ -30,35 +30,40 @@ def test_newproject():
     After completing the wizard we should have a few things:
     """
     pystart.new_project(test_pystart.MIT_CONFIG)
-    project_name = test_pystart.MIT_CONFIG['projectname']
+    ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
 
     # The directory structure (unit tested)
-    assert os.path.isdir(project_name + '/')        # Error making root dir
-    assert os.path.isdir(project_name + '/src')     # Error making src dir
-    assert os.path.isdir(project_name + '/tests')   # Error making tests dir
-    assert os.path.isdir(project_name + '/data')    # Error making data dir
-    assert os.path.isdir(project_name + '/temp')    # Error making temp dir
+    assert os.path.isdir(ROOT + '')        # Error making root dir
+    assert os.path.isdir(ROOT + 'src')     # Error making src dir
+    assert os.path.isdir(ROOT + 'tests')   # Error making tests dir
+    assert os.path.isdir(ROOT + 'data')    # Error making data dir
+    assert os.path.isdir(ROOT + 'temp')    # Error making temp dir
 
     # __init__ files in the root, src, and tests directories.
-    assert os.path.exists(project_name + '/__init__.py')         # Error making root __init__.py
-    assert os.path.exists(project_name + '/src/__init__.py')     # Error making src __init__.py
-    assert os.path.exists(project_name + '/tests/__init__.py')   # Error making tests __init__.py
+    assert os.path.exists(ROOT + '__init__.py')         # Error making root __init__.py
+    assert os.path.exists(ROOT + 'src/__init__.py')     # Error making src __init__.py
+    assert os.path.exists(ROOT + 'tests/__init__.py')   # Error making tests __init__.py
 
     # README.md.
-    assert os.path.exists(project_name + '/README.md')   # Error making README.md
+    assert os.path.exists(ROOT + 'README.md')   # Error making README.md
 
     # .gitignore
-    assert os.path.exists(project_name + '/.gitignore')  # Error making .gitignore
+    assert os.path.exists(ROOT + '.gitignore')  # Error making .gitignore
 
     # Check that the LICENSE was copied
-    assert os.path.exists(project_name + '/LICENSE')  # Error making LICENSE
+    assert os.path.exists(ROOT + 'LICENSE')  # Error making LICENSE
 
     # Check that main.py, src/utils.py were copied.
-    assert os.path.exists(project_name + '/main.py')  # Error making main.py
-    assert os.path.exists(project_name + '/src/logger.py')  # Error making utils.py
+    assert os.path.exists(ROOT + 'main.py')  # Error making main.py
+    assert os.path.exists(ROOT + 'src/logger.py')  # Error making utils.py
+
+    # Check that the .git dir was made
+    assert os.path.isdir(ROOT + '.git')    # Error making .git dir
+    # Check the git config
+    assert os.path.exists(ROOT + '.git/config')  # Error making .git/config
 
     # Cleanup
-    pystart.wipe_dir(project_name)
+    pystart.wipe_dir(ROOT)
 
 
 def test_setup_project_env():
@@ -75,9 +80,6 @@ def test_setup_project_env():
 
     # Check that the setup.sh file was created.
     assert os.path.exists(ROOT + 'setup.sh')  # Error making setup.sh
-
-    # Check that the .git dir was made
-    assert os.path.isdir(ROOT + '.git')    # Error making .git dir
 
     # Check essential system and pip libraries
     #  assert sysutils.chk_sys_libraries()

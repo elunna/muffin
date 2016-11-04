@@ -165,14 +165,16 @@ def setup_git(config):
 
     # Add user to gitconfig
     filename = config['projectname'] + '/.git/config'
+
     with open(filename, 'a') as f:
+        f.write('\n')
         f.write('[user]\n')
         # User info
         f.write('   name = {}\n'.format(config['author']))
         f.write('   email = {}\n'.format(config['email']))
         f.write('\n')
         # Aliases
-        f.write('[alias]')
+        f.write('[alias]\n')
         f.write('   last = log -1 HEAD')
 
 

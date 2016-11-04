@@ -19,7 +19,6 @@ def cmd_result(cmd):
 
 def cmd_success(cmd):
     result = subprocess.call(cmd)
-    pass
     if result:
         return False
     else:
@@ -37,7 +36,8 @@ def chk_sys_for(app):
 
 
 def run_in_dir(cmd, _dir):
-    subprocess.Popen(cmd, cwd=_dir)
+    p = subprocess.Popen(cmd, cwd=_dir)
+    p.wait()
 
 
 def chk_pip_for(lib):
