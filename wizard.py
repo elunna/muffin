@@ -144,7 +144,9 @@ def wizard():
     available, modules = pystart.XTRA_MODULES, []
 
     for m in available:
-        if input_loop(m, required=False, validator=yesorno):
+        result = input_loop(m, required=False, validator=yesorno, default='N')
+        if result.lower().startswith('y'):
+            print('Module added!')
             modules.append(m)
 
     wiz_dict['modules'] = modules
