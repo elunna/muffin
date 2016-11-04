@@ -1,6 +1,5 @@
 import os
 import pystart
-import sysutils
 import test_pystart
 
 """
@@ -75,7 +74,10 @@ def test_setup_project_env():
     assert os.path.exists(ROOT + '.env')  # Error making .env
 
     # Check that the setup.sh file was created.
-    assert os.path.exists(ROOT + '/setup.sh')  # Error making setup.sh
+    assert os.path.exists(ROOT + 'setup.sh')  # Error making setup.sh
+
+    # Check that the .git dir was made
+    assert os.path.isdir(ROOT + '.git')    # Error making .git dir
 
     # Check essential system and pip libraries
     #  assert sysutils.chk_sys_libraries()
