@@ -46,8 +46,13 @@ $ python main.py 2
 
 ### TODO
 
-- [ ]  Finish README
-- [ ]  Create first functional test
+- [ ] Fill in README details.
+- [ ] First commit: README
+- [ ] First branch:
+- [ ] Create first functional test
+- [ ] Add a screenshot to the README
+- [ ] Configure konch to be really sexy with iPython
+- [ ] Generate requirements.txt with $ pip freeze --local > requirements.txt
 
 ---
 
