@@ -55,7 +55,7 @@ def valid_license(license):
     if result:
         return True
     else:
-        print('License must be one of: {}'.format(available.keys()))
+        print('License must be one of: {}'.format((available.keys())))
         return False
 
 
@@ -65,7 +65,7 @@ def valid_python(python):
     if result:
         return True
     else:
-        print('Python version must be one of: {}'.format(pythons))
+        print('Must be one of: {}'.format(sorted(pythons)))
         return False
 
 
