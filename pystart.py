@@ -15,6 +15,8 @@ PY_MODULES = {
     '3.5': ['pytest', 'ipython', 'konch']
 }
 
+XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests']
+
 
 def setup_dirs(projectname):
     # Create main project directory
