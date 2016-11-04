@@ -55,7 +55,7 @@ def valid_license(license):
     if result:
         return True
     else:
-        print('License must be one of: {}'.format(available))
+        print('License must be one of: {}'.format(available.keys()))
         return False
 
 
