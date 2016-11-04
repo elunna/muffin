@@ -72,6 +72,8 @@ def valid_python(python):
 def yesorno(choice):
     if choice.lower().startswith('y'):
         return True
+    elif choice.lower().startswith('n'):
+        return True
     else:
         return False
 
