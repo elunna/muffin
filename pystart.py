@@ -123,9 +123,10 @@ def make_env(project_name):
 
 
 def make_setup_files(config):
-
     # Make setup.sh
     setupfile = config['projectname'] + '/setup.sh'
+    pip_installs = PY_MODULES[config['python']] + config.get('modules', [])
+
     with open(setupfile, 'w') as f:
         f.write("#!/bin/bash\n")
         f.write("# Purpose: Installs the required modules for {}.\n".format(config['projectname']))
@@ -140,7 +141,7 @@ def make_setup_files(config):
         f.write('pip install --upgrade pip; ')
 
         # Check for core pip libraries
-        for i in PY_MODULES[config['python']]:
+        for i in pip_installs:
             f.write('pip install {}; '.format(i))
 
         f.write('which python; ')

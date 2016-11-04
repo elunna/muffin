@@ -2,6 +2,7 @@ from string import ascii_letters
 from licenses import available
 import json
 import os
+import pystart
 import sysutils
 
 DFLT_FILE = 'defaults.json'
@@ -67,6 +68,13 @@ def valid_python(python):
         return False
 
 
+def yesorno(choice):
+    if choice.lower().startswith('y'):
+        return True
+    else:
+        return False
+
+
 def get_defaults():
     # Read JSON defaults
     with open(DFLT_FILE, 'r') as f:
@@ -127,10 +135,14 @@ def wizard():
     wiz_dict['twitter'] = input_loop('Twitter', required=False,
                                      default=dflt_dict.get('twitter', None))
 
-    # Ask if we want:
-    #   Beautiful Soup
-    #   requests
-    #   scrapy
+    # Ask for custom modules:
+    available, modules = pystart.XTRA_MODULES, []
+
+    for m in available:
+        if input_loop(m, required=False, validator=yesorno):
+            modules.append(m)
+
+    wiz_dict['modules'] = modules
 
     # Update defaults
     update_defaults(dflt_dict, wiz_dict)
