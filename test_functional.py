@@ -78,9 +78,8 @@ def test_setup_project_env():
     assert os.path.exists(ROOT + '/setup.sh')  # Error making setup.sh
 
     # Check essential system and pip libraries
-    assert sysutils.chk_sys_libraries()
-    assert sysutils.chk_pip_libraries()  # This should be run in the virtual environment!
-    assert sysutils.chk_pip_for('pandas')
+    #  assert sysutils.chk_sys_libraries()
+    #  assert sysutils.chk_pip_libraries()  # This should be run in the virtual environment!
 
     # Clean up the mess
     pystart.wipe_dir(ROOT)
