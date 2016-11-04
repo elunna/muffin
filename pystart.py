@@ -15,7 +15,7 @@ PY_MODULES = {
     '3.5': ['pytest', 'ipython', 'konch']
 }
 
-XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests']
+XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests', 'sphinx', 'django']
 
 
 def setup_dirs(projectname):
