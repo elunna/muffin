@@ -155,12 +155,25 @@ def make_setup_files(config):
         f.write('else\n')
         f.write('\texit 1\n')
         f.write('fi\n')
+        f.write('\n')
 
 
-def setup_git():
+def setup_git(config):
     # Initialize git repo
-    # Create thorough .gitignore
-    pass
+    cmd = ['git', 'init']
+    sysutils.run_in_dir(cmd, config['projectname'])
+
+    # Add user to gitconfig
+    filename = config['projectname'] + '/.git/config'
+    with open(filename, 'a') as f:
+        f.write('[user]\n')
+        # User info
+        f.write('   name = {}\n'.format(config['author']))
+        f.write('   email = {}\n'.format(config['email']))
+        f.write('\n')
+        # Aliases
+        f.write('[alias]')
+        f.write('   last = log -1 HEAD')
 
 
 def setup_pyfiles(project_name):
@@ -213,6 +226,8 @@ def new_project(config):
     # Create the .py files
     setup_pyfiles(project_name)
 
+    # Setup git repo
+    setup_git(config)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")
@@ -225,7 +240,8 @@ if __name__ == "__main__":
     setup_project_env(config)
 
     # Run the setup file
-    sysutils.run_setup_script(config['projectname'])
+    cmd = ['sh', 'setup.sh']
+    sysutils.run_in_dir(cmd, config['projectname'])
 
     # Show installed programs summary
     sysutils.chk_sys_libraries()
