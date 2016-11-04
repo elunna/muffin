@@ -6,7 +6,7 @@ import shutil
 import sysutils
 import wizard
 
-SUBDIRS = ['src', 'tests', 'data', 'temp']
+SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
 #  CORE_MODULES = ['pytest', 'konch', 'ipython']
 PY_MODULES = {
     # We need the security libraries because older versions of py2 don't have good ssl.
