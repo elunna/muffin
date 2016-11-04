@@ -10,7 +10,7 @@ usage: $ python pystart
 - [X] /project/tests
 - [X] /project/data
 - [X] /project/temp
-- [ ] /project/logs  (still need this)
+- [X] /project/logs  (still need this)
 
 - [X] Write startup files:
 - [X] __init__.py files for root, src, and tests to indicate packages.
@@ -23,9 +23,9 @@ usage: $ python pystart
 - [X] wizard: Purpose
 - [X] wizard: Description
 - [X] wizard: License: type
-- [ ] wizard: Ask for starting modules(Beautiful Soup, Scrapy, requests)
+- [X] wizard: Ask for starting modules(Beautiful Soup, Scrapy, requests)
 - [x] wizard: Ask for Python version(2.7, 3.4, 3.5, etc)(can we list the available ones???)
-- [ ] wixard: show available choices if user presses ?
+- [X] wixard: show available choices if user makes a mistake
 - [X] Remember project defaults for wizard
 - [X] Update defaults when new ones are input from wizard
 
@@ -57,6 +57,7 @@ usage: $ python pystart
 - [x] Setup.sh: pip install basic packages(autoenv, konch, pytest)
 - [x] Use Python 2(later option to use python3)
 - [ ] Initialize a git repo
+
 - [ ] requirements.txt for virtualenv
 
 # Functional tests for addons
