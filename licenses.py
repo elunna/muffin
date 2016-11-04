@@ -1,3 +1,9 @@
+# These are helpful for tests
+MIT_TEXT = 'The MIT License (MIT)'
+GNU_TEXT = 'GNU GENERAL PUBLIC LICENSE'
+WTFPL_TEXT = 'DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE'
+
+
 def get(license):
     return available.get(license, None)
 
@@ -13,11 +19,6 @@ def current_year():
     return now.year
 
 
-# These are helpful for tests
-MIT_TEXT = 'The MIT License (MIT)'
-GNU_TEXT = 'GNU GENERAL PUBLIC LICENSE'
-
-# The MIT License (MIT://opensource.org/licenses/mit-license.php
 MIT = """The MIT License (MIT)
 Copyright (c) <{year}> <{name}>
 
@@ -35,9 +36,10 @@ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR P
 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+See more at: MIT://opensource.org/licenses/mit-license.php
 """
 
-# http://www.gnu.org/licenses/gpl.html
 GNU = """GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -55,8 +57,28 @@ the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with this program; if
 not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 02110-1301, USA.
+
+See more at: http://www.wtfpl.net/
 """
 
+WTFPL = """            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+
+                    Version 2, December 2004
+
+ Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
+
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. You just DO WHAT THE FUCK YOU WANT TO.
+
+Per {name} in the year of {year}
+See more at: http://www.wtfpl.net/
+"""
 
 GNU_INTERACTIVE = """
 Gnomovision version 69, Copyright (C) {year} {name}
@@ -69,4 +91,5 @@ for details.
 available = {
     'MIT': MIT,
     'GNU': GNU,
+    'WTFPL': WTFPL
 }

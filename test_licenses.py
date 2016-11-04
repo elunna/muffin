@@ -18,6 +18,12 @@ def test_get_GNU():
     assert firstline == expected
 
 
+def test_get_WTFPL():
+    expected = licenses.WTFPL_TEXT.strip()
+    firstline = licenses.get('WTFPL').split('\n')[0].strip()
+    assert firstline == expected
+
+
 def test_get_INVALID():
     expected = None
     firstline = licenses.get('INVALID')
