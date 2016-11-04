@@ -36,8 +36,7 @@ def chk_sys_for(app):
     return result
 
 
-def run_setup_script(_dir):
-    cmd = ['sh', 'setup.sh']
+def run_in_dir(cmd, _dir):
     subprocess.Popen(cmd, cwd=_dir)
 
 
