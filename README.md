@@ -53,18 +53,23 @@ usage: $ python pystart
 - [x] Autoenv config file(.env)?
 - [x] Setup.sh script that executes program installs
 - [x] Setup.sh: update pip
-- [ ] Setup.sh: initialize git repo 
+- [x] Setup.sh: initialize git repo 
 - [x] Setup.sh: pip install basic packages(autoenv, konch, pytest)
 - [x] Use Python 2(later option to use python3)
-- [ ] Initialize a git repo
+- [ ] Option to use PyPy?
+- [ ] Option to use Anaconda?
 
-- [ ] requirements.txt for virtualenv
 
 # Functional tests for addons
 - [ ] Functional test for Selenium
 - [ ] Functional test for Beautiful Soup
 - [ ] Functional test for requests
 
-- [ ] Module outline: Create a template module and test for each. (Module docs, a few stub functions)
+- [ ] manage.py - Create a utility to make managing mundane tasks much easier
+- [ ] cleanup - clear out the temp, data directories
+- [ ] archive - archive the data directory into a gzip/bz, then clear it out.
+- [ ] new module(pop): Create Basic template for a new module and it's corresponding test.
+- [ ] freeze: create/regenerate requirements.txt for virtualenv
 
 - [ ] Add some fun ASCII ponies around to make life interesting.
+- [ ] CC-BY-SA 3.0 : http://creativecommons.org/licenses/by-sa/3.0/
