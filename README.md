@@ -1,4 +1,13 @@
-# Professional Python Project starter
+                      .d888 .d888d8b         
+                     d88P" d88P" Y8P         
+                     888   888               
+88888b.d88b. 888  88888888888888888888888b.  
+888 "888 "88b888  888888   888   888888 "88b 
+888  888  888888  888888   888   888888  888 
+888  888  888Y88b 888888   888   888888  888 
+888  888  888 "Y88888888   888   888888  888 
+
+# Python project template wizard
 > Makes starting up new projects with bells and whistles a breeze!
 
 usage: $ python pystart 
@@ -70,6 +79,12 @@ usage: $ python pystart
 - [ ] archive - archive the data directory into a gzip/bz, then clear it out.
 - [ ] new module(pop): Create Basic template for a new module and it's corresponding test.
 - [ ] freeze: create/regenerate requirements.txt for virtualenv
+- [ ] setup docs(sphinx)
 
 - [ ] Add some fun ASCII ponies around to make life interesting.
 - [ ] CC-BY-SA 3.0 : http://creativecommons.org/licenses/by-sa/3.0/
+
+
+Other modules to ask about:
+    lxml, pillow, 
+    
