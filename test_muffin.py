@@ -81,36 +81,30 @@ Tests for cp_templates(project_name)
 
 
 def test_cptemplates_gitignore_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/.gitignore')    # .gitignore not created
 
 
 def test_cptemplates_env_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/.env')       # Error making main.py
 
 
 def test_cptemplates_konchrc_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/.konchrc')       # Error making main.py
 
 
 def test_cptemplates_pytest_ini_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/pytest.ini')       # Error making main.py
 
 
 def test_cptemplates_main_py_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/main.py')       # Error making main.py
 
 
 def test_cptemplates_logger_py_exists():
-    setup_dirs(TEST_PROJ)
     cp_templates(TEST_PROJ)
-    assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making utils.py
+    assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making /src/logger.py

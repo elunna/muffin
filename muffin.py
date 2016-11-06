@@ -8,7 +8,6 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
-TEMPLATE_DIR = 'templates/'
 CORE_MODULES = ['konch', 'ipython', 'pytest', 'sphinx']
 
 PY_MODULES = {
@@ -116,15 +115,17 @@ def setup_git(config):
 
 
 def cp_templates(project_name):
-    files = ['.gitignore', '.env', '.konchrc', 'pytest.ini', 'main.py']
-    filepath = project_name + '/'
+    TEMPLATE_DIR = 'templates/'
 
-    for f in files:
-        shutil.copy(TEMPLATE_DIR + f, filepath + f)
+    # Want to use shutil.copytree, but the dst dir must not already exist.
+    shutil.copytree(TEMPLATE_DIR, project_name)
+    #  for f in os.listdir(TEMPLATE_DIR):
+        #  template = TEMPLATE_DIR + f
+        #  shutil.copy(template, filepath)
 
     # Potentially should do a separate directory for source/tests?
-    logger = TEMPLATE_DIR + 'logger.py'
-    shutil.copy(logger, filepath + 'src/logger.py')
+    #  logger = TEMPLATE_DIR + 'logger.py'
+    #  shutil.copy(logger, filepath + 'src/logger.py')
 
 
 def write_json_config(config):
