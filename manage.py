@@ -1,6 +1,7 @@
 """
 Inspired by the Django manage - a tool to manage mundane project tasks.
 """
+import argparse
 import json
 import subprocess
 
@@ -67,4 +68,11 @@ def get_defaults():
 
 
 if __name__ == "__main__":
-    setup_sphinx(get_defaults())
+    parser = argparse.ArgumentParser(description="Helper utility for managing mundane project tasks.")
+    parser.add_argument('cmd', type=str, choices=["makedocs"],
+                        help="The task you want to execute.")
+
+    args = parser.parse_args()
+
+    if args.cmd == "makedocs":
+        setup_sphinx(get_defaults())
