@@ -116,6 +116,13 @@ def make_gitignore(project_name):
     return filepath
 
 
+def make_konchrc(project_name):
+    template = '.konchrc.default'
+    filepath = project_name + '/.konchrc'
+    shutil.copy(template, filepath)
+    return filepath
+
+
 def make_env(project_name):
     template = 'env_template.txt'
     filepath = project_name + '/.env'
@@ -208,6 +215,9 @@ def setup_project_env(config):
 
     # Setup an autoenv file
     make_env(project_name)
+
+    # Setup the .konchrc file
+    make_konchrc(project_name)
 
     # Setup the setup.sh file - lol, this is getting rediculous.
     make_setup_files(config)
