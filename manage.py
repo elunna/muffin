@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Inspired by the Django manage - a tool to manage mundane project tasks.
 """
@@ -13,17 +14,18 @@ def clean():
         Removes all *.pyc files.
     """
     commands = [
-        'rm /data/*',
-        'rm /temp/*',
-        'rm /logs/*',
+        'rm -v data/*',
+        'rm -v temp/*',
+        'rm -v logs/*',
+        'rm -rf .cache',
+        'find . -type f -name "*.py[co]" -delete',
         'find . -type d -name "__pycache__" -delete 2>/dev/null',
-        'find . -type d -name ".cache" -delete',
-        'find . -type d -name ".ropeproject" -delete',
-        'find . -type f -name "*.pyc" -delete',
+        #  'find . -type d -name ".cache" -delete',
+        #  'find . -type d -name ".ropeproject" -delete',
     ]
     for cmd in commands:
-        proc = subprocess.call(cmd, shell=True)
-        proc.wait()
+        x = subprocess.call(cmd, shell=True)
+        print('{}: exit {}'.format(cmd, x))
 
 
 def archive():
