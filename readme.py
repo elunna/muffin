@@ -53,6 +53,9 @@ $ python main.py 2
 - [ ] Add a screenshot to the README
 - [ ] Configure konch to be really sexy with iPython
 - [ ] Generate requirements.txt with $ pip freeze --local > requirements.txt
+- [ ] Setup sphinx docs: $ python manage.py docs
+- [ ] Build sphinx docs: $ project/doc/make html
+- [ ] Start first sphinx documentation!
 
 ---
 
