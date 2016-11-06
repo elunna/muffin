@@ -1,6 +1,6 @@
 import os
 import muffin
-import test_muffin
+import test_configs
 
 """
 Functional tests for muffinX.
@@ -29,15 +29,15 @@ def test_newproject():
     He is presented with a wizard which asks him all the basic info.
     After completing the wizard we should have a few things:
     """
-    muffin.new_project(test_muffin.MIT_CONFIG)
-    ROOT = test_muffin.MIT_CONFIG['projectname'] + '/'
+    muffin.new_project(test_configs.MIT_CONFIG)
+    ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
 
     # The directory structure (unit tested)
-    assert os.path.isdir(ROOT + '')        # Error making root dir
-    assert os.path.isdir(ROOT + 'src')     # Error making src dir
-    assert os.path.isdir(ROOT + 'tests')   # Error making tests dir
-    assert os.path.isdir(ROOT + 'data')    # Error making data dir
-    assert os.path.isdir(ROOT + 'temp')    # Error making temp dir
+    assert os.path.isdir(ROOT + '')                     # Error making root dir
+    assert os.path.isdir(ROOT + 'src')                  # Error making src dir
+    assert os.path.isdir(ROOT + 'tests')                # Error making tests dir
+    assert os.path.isdir(ROOT + 'data')                 # Error making data dir
+    assert os.path.isdir(ROOT + 'temp')                 # Error making temp dir
 
     # __init__ files in the root, src, and tests directories.
     assert os.path.exists(ROOT + '__init__.py')         # Error making root __init__.py
@@ -45,45 +45,42 @@ def test_newproject():
     assert os.path.exists(ROOT + 'tests/__init__.py')   # Error making tests __init__.py
 
     # README.md.
-    assert os.path.exists(ROOT + 'README.md')   # Error making README.md
+    assert os.path.exists(ROOT + 'README.md')           # Error making README.md
 
     # .gitignore
-    assert os.path.exists(ROOT + '.gitignore')  # Error making .gitignore
+    assert os.path.exists(ROOT + '.gitignore')          # Error making .gitignore
 
     # Check that the LICENSE was copied
-    assert os.path.exists(ROOT + 'LICENSE')  # Error making LICENSE
+    assert os.path.exists(ROOT + 'LICENSE')             # Error making LICENSE
 
     # Check that main.py, src/utils.py were copied.
-    assert os.path.exists(ROOT + 'main.py')  # Error making main.py
-    assert os.path.exists(ROOT + 'src/logger.py')  # Error making utils.py
+    assert os.path.exists(ROOT + 'main.py')             # Error making main.py
+    assert os.path.exists(ROOT + 'src/logger.py')       # Error making utils.py
 
     # Check that the .git dir was made
-    assert os.path.isdir(ROOT + '.git')    # Error making .git dir
-    # Check the git config
-    assert os.path.exists(ROOT + '.git/config')  # Error making .git/config
+    assert os.path.isdir(ROOT + '.git')                 # Error making .git dir
 
-    # Cleanup
-    muffin.wipe_dir(ROOT)
+    # Check the git config
+    assert os.path.exists(ROOT + '.git/config')         # Error making .git/config
+
+    muffin.wipe_dir(ROOT)  # Cleanup
 
 
 def test_setup_project_env():
-    # Make a python 2.7 env
-    # Setup the basic project
-    muffin.setup_project_env(test_muffin.VENV_CONFIG)
+    # Setup Python 2.7 env
+    muffin.setup_project_env(test_configs.VENV_CONFIG)
+    ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
 
-    ROOT = test_muffin.MIT_CONFIG['projectname'] + '/'
+    # Check that the .env file was created
+    assert os.path.exists(ROOT + '.env')                # Error making .env
+
+    # Check that the setup.sh file was created.
+    assert os.path.exists(ROOT + 'setup.sh')            # Error making setup.sh
 
     # Check that pip was upgraded?
 
-    # Check that the .env file was created
-    assert os.path.exists(ROOT + '.env')  # Error making .env
-
-    # Check that the setup.sh file was created.
-    assert os.path.exists(ROOT + 'setup.sh')  # Error making setup.sh
-
     # Check essential system and pip libraries
     #  assert sysutils.chk_sys_libraries()
-    #  assert sysutils.chk_pip_libraries()  # This should be run in the virtual environment!
+    #  assert sysutils.chk_pip_libraries()              # Should be run in the virtualenv
 
-    # Clean up the mess
-    muffin.wipe_dir(ROOT)
+    muffin.wipe_dir(ROOT)  # Cleanup
