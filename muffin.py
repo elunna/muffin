@@ -8,6 +8,7 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
+TEMPLATE_DIR = 'templates/'
 CORE_MODULES = ['konch', 'ipython', 'pytest', 'sphinx']
 
 PY_MODULES = {
@@ -56,20 +57,6 @@ def write_license(config):
     filename = config['projectname'] + '/LICENSE'
     with open(filename, 'w') as f:
         f.write(text)
-
-
-def make_konchrc(project_name):
-    template = '.konchrc.default'
-    filepath = project_name + '/.konchrc'
-    shutil.copy(template, filepath)
-    return filepath
-
-
-def make_env(project_name):
-    template = 'env_template.txt'
-    filepath = project_name + '/.env'
-    shutil.copy(template, filepath)
-    return filepath
 
 
 def make_setup_files(config):
@@ -128,22 +115,16 @@ def setup_git(config):
         f.write('   last = log -1 HEAD')
 
 
-def make_gitignore(project_name):
-    """
-    Creates the .gitignore file. We'll just copy the one stored away - it should be pretty
-    thorough - it's pretty cheap to maintain and saves a lot of future work!
-    """
-    template = 'gitignore_template.txt'
-    filepath = project_name + '/.gitignore'
-    shutil.copy(template, filepath)
-    return filepath
+def cp_templates(project_name):
+    files = ['.gitignore', '.env', '.konchrc', 'pytest.ini', 'main.py']
+    filepath = project_name + '/'
 
+    for f in files:
+        shutil.copy(TEMPLATE_DIR + f, filepath + f)
 
-def setup_pyfiles(project_name):
-    """Setup the main.py, and logger.py modules."""
-    main, logger = 'main.py', 'src/logger.py'
-    shutil.copy(main, project_name + '/' + main)
-    shutil.copy(logger, project_name + '/' + logger)
+    # Potentially should do a separate directory for source/tests?
+    logger = TEMPLATE_DIR + 'logger.py'
+    shutil.copy(logger, filepath + 'src/logger.py')
 
 
 def write_json_config(config):
@@ -164,13 +145,6 @@ def setup_project_env(config):
     # Upgrade pip
     # Install needed packages:
     #   py.test
-    #
-
-    # Setup an autoenv file
-    make_env(project_name)
-
-    # Setup the .konchrc file
-    make_konchrc(project_name)
 
     # Setup the setup.sh file - lol, this is getting rediculous.
     make_setup_files(config)
@@ -190,17 +164,14 @@ def new_project(config):
     # Create the README.md
     readme.make_readme(config)
 
-    # Create the .gitignore
-    make_gitignore(project_name)
-
     # Create the LICENSE
     write_license(config)
 
-    # Create the .py files
-    setup_pyfiles(project_name)
-
     # Setup git repo
     setup_git(config)
+
+    # Setup the config files from templates
+    cp_templates(project_name)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")

@@ -74,46 +74,43 @@ def test_writelicense_GNU():
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 """
-Tests for make_gitignore(info_dict)
+Tests for cp_templates(project_name)
 """
 
+# cp_templates when dir does not exist?
 
-def test_makegitignore_exists():
+
+def test_cptemplates_gitignore_exists():
     setup_dirs(TEST_PROJ)
-    # Verify that make_readme returns the filepath
-    f = make_gitignore(TEST_PROJ)
-    assert os.path.exists(f)  # .gitignore was not created in project/
+    cp_templates(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/.gitignore')    # .gitignore not created
 
 
-def test_makegitignore_essentialfiles():
+def test_cptemplates_env_exists():
     setup_dirs(TEST_PROJ)
-    filepath = make_gitignore(TEST_PROJ)
-    with open(filepath, 'r') as f:
-        lines = f.read().splitlines()
-    assert '*.pyc' in lines
-    assert '*.log' in lines
-    assert 'db.sqlite3' in lines
+    cp_templates(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/.env')       # Error making main.py
 
 
-def test_makegitignore_essentialdirectories():
+def test_cptemplates_konchrc_exists():
     setup_dirs(TEST_PROJ)
-    filepath = make_gitignore(TEST_PROJ)
-    with open(filepath, 'r') as f:
-        lines = f.read().splitlines()
-    assert '__pycache__/*' in lines
-    assert '.ropeproject/*' in lines
-    assert 'venv/*' in lines
-    assert 'data/*' in lines
-    assert 'tests/*' in lines
+    cp_templates(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/.konchrc')       # Error making main.py
 
 
-"""
-Tests for setup_pyfiles(project_name)
-"""
-
-
-def test_setuppyfiles():
+def test_cptemplates_pytest_ini_exists():
     setup_dirs(TEST_PROJ)
-    setup_pyfiles(TEST_PROJ)
-    assert os.path.exists(TEST_PROJ + '/main.py')  # Error making main.py
+    cp_templates(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/pytest.ini')       # Error making main.py
+
+
+def test_cptemplates_main_py_exists():
+    setup_dirs(TEST_PROJ)
+    cp_templates(TEST_PROJ)
+    assert os.path.exists(TEST_PROJ + '/main.py')       # Error making main.py
+
+
+def test_cptemplates_logger_py_exists():
+    setup_dirs(TEST_PROJ)
+    cp_templates(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making utils.py
