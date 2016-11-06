@@ -79,10 +79,20 @@ def get_defaults():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Helper utility for managing mundane project tasks.")
-    parser.add_argument('cmd', type=str, choices=["makedocs"],
-                        help="The task you want to execute.")
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-c', '--clean', action='store_true',
+                       help="Clean up __pycache__, .ropeprojects, .cache dirs, and .pyc files.")
+
+    group.add_argument('-m', '--makedocs', action='store_true',
+                       help="Gets the Sphinx docs setup up and ready for building.")
+
+    group.add_argument('-s', '--servedocs', action='store_true',
+                       help="Serves up the Sphinx docs in the localserver.")
 
     args = parser.parse_args()
 
-    if args.cmd == "makedocs":
+    if args.clean:
+        clean()
+    elif args.makedocs:
         setup_sphinx(get_defaults())
