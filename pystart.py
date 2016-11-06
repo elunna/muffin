@@ -1,4 +1,5 @@
 import argparse
+import json
 import licenses
 import os
 import readme
@@ -185,6 +186,13 @@ def setup_pyfiles(project_name):
     shutil.copy(logger, project_name + '/' + logger)
 
 
+def write_json_config(config):
+    # Write the default settings to the project folder
+    filepath = config['projectname'] + '/config.json'
+    with open(filepath, 'w') as f:
+        json.dump(config, f)
+
+
 def setup_project_env(config):
     project_name = config['projectname']
     # I don't want this to rely on new_project, so we'll ensure the dir too
@@ -248,3 +256,6 @@ if __name__ == "__main__":
     # Show installed programs summary
     #  sysutils.chk_sys_libraries()
     #  sysutils.chk_pip_libraries(config['python'])
+
+    # Write the project config to json
+    write_json_config(config)

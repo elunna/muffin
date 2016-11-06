@@ -1,6 +1,7 @@
 """
 Inspired by the Django manage - a tool to manage mundane project tasks.
 """
+import json
 import subprocess
 
 
@@ -53,13 +54,17 @@ def setup_sphinx(config):
         '--no-batchfile',
         'doc',
     ]
-    result = sysutils.cmd_success(cmd)
-    if result:
-        print('Sphinx docs should have setup a /doc directory.')
-        print("Run 'make html' to build the docs.")
-    else:
-        print('Error setting up Sphinx docs :(')
+    subprocess.call(cmd)
+    print('Sphinx docs should have setup a /doc directory.')
+    print("Run '$ /doc/make html' to build the docs.")
+
+
+def get_defaults():
+    with open('config.json', 'r') as f:
+        contents = f.read()
+        defaults = json.loads(contents)
+    return defaults
 
 
 if __name__ == "__main__":
-    pass
+    setup_sphinx(get_defaults())
