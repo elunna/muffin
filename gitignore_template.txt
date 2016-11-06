@@ -19,3 +19,4 @@ venv/*
 todo.txt
 db.sqlite3
 local_settings.py
+config.json
