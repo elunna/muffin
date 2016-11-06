@@ -7,13 +7,23 @@ import subprocess
 
 
 def clean():
+    """Cleans out non-essential project files:
+        From directories: /data, /temp, /logs directories
+        Removes .ropeproject, __pycache__, .cache directories
+        Removes all *.pyc files.
     """
-    Cleans out non-essential project files:
-        * /data
-        * /temp
-        * /logs directories
-        *.pyc files.
-    """
+    commands = [
+        'rm /data/*',
+        'rm /temp/*',
+        'rm /logs/*',
+        'find . -type d -name "__pycache__" -delete 2>/dev/null',
+        'find . -type d -name ".cache" -delete',
+        'find . -type d -name ".ropeproject" -delete',
+        'find . -type f -name "*.pyc" -delete',
+    ]
+    for cmd in commands:
+        proc = subprocess.call(cmd, shell=True)
+        proc.wait()
 
 
 def archive():
