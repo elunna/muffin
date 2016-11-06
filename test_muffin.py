@@ -11,6 +11,8 @@ MIT_CONFIG = {
     'author': 'lunatunez',
     'description': 'Short blurb',
     'license': 'MIT',
+    'email': 'rdash@cloudsdale.net',
+    'twitter': 'rdashie',
 }
 
 GNU_CONFIG = {
@@ -18,6 +20,8 @@ GNU_CONFIG = {
     'author': 'lunatunez',
     'description': 'Short blurb',
     'license': 'GNU',
+    'email': 'rdash@cloudsdale.net',
+    'twitter': 'rdashie',
 }
 
 VENV_CONFIG = {
