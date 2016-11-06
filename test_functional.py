@@ -1,11 +1,11 @@
 import os
-import pystart
-import test_pystart
+import muffin
+import test_muffin
 
 """
-Functional tests for pystart.
+Functional tests for muffinX.
 
-Pystart is a Python project templating engine. It is for quickly and efficiently setting up
+muffinX is a Python project templating engine. It is for quickly and efficiently setting up
 projects that are ready for professional use.
 """
 
@@ -29,8 +29,8 @@ def test_newproject():
     He is presented with a wizard which asks him all the basic info.
     After completing the wizard we should have a few things:
     """
-    pystart.new_project(test_pystart.MIT_CONFIG)
-    ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
+    muffin.new_project(test_muffin.MIT_CONFIG)
+    ROOT = test_muffin.MIT_CONFIG['projectname'] + '/'
 
     # The directory structure (unit tested)
     assert os.path.isdir(ROOT + '')        # Error making root dir
@@ -63,15 +63,15 @@ def test_newproject():
     assert os.path.exists(ROOT + '.git/config')  # Error making .git/config
 
     # Cleanup
-    pystart.wipe_dir(ROOT)
+    muffin.wipe_dir(ROOT)
 
 
 def test_setup_project_env():
     # Make a python 2.7 env
     # Setup the basic project
-    pystart.setup_project_env(test_pystart.VENV_CONFIG)
+    muffin.setup_project_env(test_muffin.VENV_CONFIG)
 
-    ROOT = test_pystart.MIT_CONFIG['projectname'] + '/'
+    ROOT = test_muffin.MIT_CONFIG['projectname'] + '/'
 
     # Check that pip was upgraded?
 
@@ -86,4 +86,4 @@ def test_setup_project_env():
     #  assert sysutils.chk_pip_libraries()  # This should be run in the virtual environment!
 
     # Clean up the mess
-    pystart.wipe_dir(ROOT)
+    muffin.wipe_dir(ROOT)

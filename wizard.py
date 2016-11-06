@@ -2,7 +2,7 @@ from string import ascii_letters
 from licenses import available
 import json
 import os
-import pystart
+import muffin
 import sysutils
 
 DFLT_FILE = 'defaults.json'
@@ -106,7 +106,7 @@ def wizard():
     """
     Collects project info and returns a dict.
     """
-    print('-~- /) PyStart quick project scaffolding wizard! (\ -~-')
+    print('-~- /) muffinX quick project scaffolding wizard! (\ -~-')
     print('Default values appear in [brackets] - press Enter to accept them :)')
     print('')
 
@@ -143,7 +143,7 @@ def wizard():
                                      default=dflt_dict.get('twitter', None))
 
     # Ask for custom modules:
-    available, modules = pystart.XTRA_MODULES, []
+    available, modules = muffin.XTRA_MODULES, []
 
     for m in available:
         result = input_loop(m, required=False, validator=yesorno, default='N')

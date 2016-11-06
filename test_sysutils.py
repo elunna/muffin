@@ -1,5 +1,5 @@
 import os
-import pystart
+import muffin
 import pytest
 import sysutils
 
@@ -119,4 +119,4 @@ def test_newvirtualenv_py2_7():
     pythonbin = name + '/venv//bin/python2.7'
     assert os.path.exists(pythonbin)  # Error making .env
 
-    pystart.wipe_dir(name)   # Clean it up
+    muffin.wipe_dir(name)   # Clean it up

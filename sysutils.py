@@ -1,6 +1,6 @@
 import subprocess
 import os
-import pystart
+import muffin
 
 VENV_DIR = 'venv'
 SYS_LIBS = ['python', 'python3', 'pip', 'git', 'virtualenv']
@@ -72,7 +72,7 @@ def chk_sys_libraries():
 
 def chk_pip_libraries(py_ver):
     """Core pip libraries that should be in the virtualenv after setup."""
-    pip_libs = pystart.PY_MODULES[py_ver]
+    pip_libs = muffin.PY_MODULES[py_ver]
     for l in pip_libs:
         if chk_pip_for(l) is False:
             print('{} is not installed, this is required for Python{}.'.format(l, py_ver))

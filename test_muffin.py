@@ -1,5 +1,5 @@
 import os
-import pystart
+from muffin import *
 import pytest
 
 """
@@ -26,6 +26,8 @@ VENV_CONFIG = {
     'description': 'Short blurb',
     'license': 'GNU',
     'python': '2.7',
+    'email': 'rdash@cloudsdale.net',
+    'twitter': 'rdashie',
 }
 
 VENV_CONFIG_PKGS = {
@@ -40,9 +42,9 @@ VENV_CONFIG_PKGS = {
 
 @pytest.yield_fixture(autouse=True)
 def cleanup():
-    pystart.wipe_dir(TEST_PROJ)
+    wipe_dir(TEST_PROJ)
     yield None
-    pystart.wipe_dir(TEST_PROJ)
+    wipe_dir(TEST_PROJ)
 
 """
 Tests for setup_dirs(projectname)
@@ -50,20 +52,20 @@ Tests for setup_dirs(projectname)
 
 
 def test_setupdirs_makes_project_dir():
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     assert os.path.isdir(TEST_PROJ)  # Error making project dir
 
 
 def test_setupdirs_subdirs():
     # Uses a test generator to go through all the subdirectories we want to test.
-    for i in pystart.SUBDIRS:
+    for i in SUBDIRS:
         subdir = TEST_PROJ + '/' + i
         yield check_dir, subdir
 
 
 def check_dir(d):
     # This has to go here bc cleanup get called before and after this method.
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     assert os.path.isdir(d)  # Directory doesn't exist
 
 """
@@ -81,8 +83,8 @@ def test_setupinitfiles():
 
 
 def check_init_file(filename):
-    pystart.setup_dirs(TEST_PROJ)
-    pystart.setup_init_files(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
+    setup_init_files(TEST_PROJ)
     assert os.path.exists(filename)  # Filename doesn't exist
 
 
@@ -92,12 +94,12 @@ Tests for make_readme(info_dict)
 
 
 def readme_factory(**params):
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     config = MIT_CONFIG
     if params:
         config.update(params)
 
-    return pystart.make_readme(config)
+    return make_readme(config)
 
 
 def test_makereadme_empty():
@@ -160,16 +162,16 @@ Tests for write_license(config)
 
 
 def test_writelicense_MIT():
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     lic_path = TEST_PROJ + '/LICENSE'
-    pystart.write_license(MIT_CONFIG)
+    write_license(MIT_CONFIG)
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 
 def test_writelicense_GNU():
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     lic_path = TEST_PROJ + '/LICENSE'
-    pystart.write_license(GNU_CONFIG)
+    write_license(GNU_CONFIG)
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 """
@@ -178,15 +180,15 @@ Tests for make_gitignore(info_dict)
 
 
 def test_makegitignore_exists():
-    pystart.setup_dirs(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
     # Verify that make_readme returns the filepath
-    f = pystart.make_gitignore(TEST_PROJ)
+    f = make_gitignore(TEST_PROJ)
     assert os.path.exists(f)  # .gitignore was not created in project/
 
 
 def test_makegitignore_essentialfiles():
-    pystart.setup_dirs(TEST_PROJ)
-    filepath = pystart.make_gitignore(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
+    filepath = make_gitignore(TEST_PROJ)
     with open(filepath, 'r') as f:
         lines = f.read().splitlines()
     assert '*.pyc' in lines
@@ -195,8 +197,8 @@ def test_makegitignore_essentialfiles():
 
 
 def test_makegitignore_essentialdirectories():
-    pystart.setup_dirs(TEST_PROJ)
-    filepath = pystart.make_gitignore(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
+    filepath = make_gitignore(TEST_PROJ)
     with open(filepath, 'r') as f:
         lines = f.read().splitlines()
     assert '__pycache__/*' in lines
@@ -212,7 +214,7 @@ Tests for setup_pyfiles(project_name)
 
 
 def test_setuppyfiles():
-    pystart.setup_dirs(TEST_PROJ)
-    pystart.setup_pyfiles(TEST_PROJ)
+    setup_dirs(TEST_PROJ)
+    setup_pyfiles(TEST_PROJ)
     assert os.path.exists(TEST_PROJ + '/main.py')  # Error making main.py
     assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making utils.py
