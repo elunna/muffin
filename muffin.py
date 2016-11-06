@@ -8,15 +8,16 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
-#  CORE_MODULES = ['pytest', 'konch', 'ipython']
+CORE_MODULES = ['konch', 'ipython', 'pytest', 'sphinx']
+
 PY_MODULES = {
     # We need the security libraries because older versions of py2 don't have good ssl.
-    '2.7': ['urllib3[secure]', 'requests[security]', 'pytest', 'ipython', 'konch'],
-    '3.4': ['pytest', 'ipython', 'konch'],
-    '3.5': ['pytest', 'ipython', 'konch']
+    '2.7': ['urllib3[secure]', 'requests[security]'] + CORE_MODULES,
+    '3.4': [] + CORE_MODULES,
+    '3.5': [] + CORE_MODULES,
 }
 
-XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests', 'sphinx', 'django']
+XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests', 'django', 'selenium']
 
 
 def setup_dirs(projectname):
