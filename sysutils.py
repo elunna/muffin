@@ -25,6 +25,11 @@ def cmd_success(cmd):
         return True
 
 
+def run_in_dir(cmd, _dir):
+    p = subprocess.Popen(cmd, cwd=_dir)
+    p.wait()
+
+
 def chk_sys_for(app):
     """
     Returns True if the library is installed in the linux system, False otherwise.
@@ -35,11 +40,6 @@ def chk_sys_for(app):
     return result
 
 
-def run_in_dir(cmd, _dir):
-    p = subprocess.Popen(cmd, cwd=_dir)
-    p.wait()
-
-
 def chk_pip_for(lib):
     """
     Returns True if the library is installed in pip, False otherwise.
@@ -47,11 +47,7 @@ def chk_pip_for(lib):
     """
     cmd = ['pip', 'show', lib]
     try:
-        ls_output = subprocess.check_output(cmd)
-        if len(ls_output) > 0:
-            return True
-        else:
-            return False
+        return cmd_success(cmd)
     except OSError as e:
         if e.errno == os.errno.ENOENT:
             return False
