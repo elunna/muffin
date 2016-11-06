@@ -7,6 +7,7 @@ MIT_CONFIG = {
     'license': 'MIT',
     'email': 'rdash@cloudsdale.net',
     'twitter': 'rdashie',
+    #  'template': 'templates'
 }
 
 GNU_CONFIG = {

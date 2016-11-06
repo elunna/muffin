@@ -20,15 +20,6 @@ PY_MODULES = {
 XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests', 'django', 'selenium']
 
 
-def setup_dirs(projectname):
-    # Create main project directory
-    os.makedirs(projectname)
-
-    for sub in SUBDIRS:
-        # Create each subdirectory
-        os.makedirs(projectname + '/' + sub)
-
-
 def wipe_dir(venv):
     if os.path.isdir(venv):
         shutil.rmtree(venv)
@@ -37,18 +28,6 @@ def wipe_dir(venv):
 def ensure_dir(_dir):
     if not os.path.exists(_dir):
         os.makedirs(_dir)
-
-
-def setup_init_files(projectname):
-    # Make __init__.py files
-    init_files = [
-        '/__init__.py',
-        '/src/__init__.py',
-        '/tests/__init__.py'
-    ]
-    for i in init_files:
-        filename = projectname + i
-        open(filename, 'w').close()
 
 
 def write_license(config):
@@ -114,18 +93,16 @@ def setup_git(config):
         f.write('   last = log -1 HEAD')
 
 
-def cp_templates(project_name):
-    TEMPLATE_DIR = 'templates/'
+def cp_templates(config):
+    TEMPLATE_DIR = config.get('template', None)
+    project = config.get('projectname', None)
+    if not project:
+        raise Exception('Projectname not set!!!')
 
-    # Want to use shutil.copytree, but the dst dir must not already exist.
-    shutil.copytree(TEMPLATE_DIR, project_name)
-    #  for f in os.listdir(TEMPLATE_DIR):
-        #  template = TEMPLATE_DIR + f
-        #  shutil.copy(template, filepath)
+    if not TEMPLATE_DIR:
+        raise Exception('Template directory not set!!!')
 
-    # Potentially should do a separate directory for source/tests?
-    #  logger = TEMPLATE_DIR + 'logger.py'
-    #  shutil.copy(logger, filepath + 'src/logger.py')
+    shutil.copytree(TEMPLATE_DIR, project)
 
 
 def write_json_config(config):
@@ -154,13 +131,8 @@ def setup_project_env(config):
 
 
 def new_project(config):
-    project_name = config['projectname']
-
-    # Create the directory structure
-    setup_dirs(project_name)
-
-    # Populate the __init_.py files
-    setup_init_files(project_name)
+    # Setup the project from the template folder
+    cp_templates(config)
 
     # Create the README.md
     readme.make_readme(config)
@@ -171,8 +143,6 @@ def new_project(config):
     # Setup git repo
     setup_git(config)
 
-    # Setup the config files from templates
-    cp_templates(project_name)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")
