@@ -34,9 +34,31 @@ def freeze():
     subprocess.call(cmd, shell=True)
 
 
-def doc():
-    # sphinx-quickstart --sep --dot=_ -p bestpony -a "Erik Lunna" -v 1.0 -r 1.0 -l en --suffix=.rst --master=index --ext-autodoc --ext-doctest --ext-viewcode --makefile --no-batchfile doc
-    pass
+def setup_sphinx(config):
+    cmd = [
+        'sphinx-quickstart',
+        '--sep',
+        '--dot=_',
+        '-p', config.get('projectname', ''),
+        '-a', config.get('author', ''),
+        '-v', '1.0',
+        '-r', '1.0',
+        '-l', 'en',
+        '--suffix=.rst',
+        '--master=index',
+        '--ext-autodoc',
+        '--ext-doctest',
+        '--ext-viewcode',
+        '--makefile',
+        '--no-batchfile',
+        'doc',
+    ]
+    result = sysutils.cmd_success(cmd)
+    if result:
+        print('Sphinx docs should have setup a /doc directory.')
+        print("Run 'make html' to build the docs.")
+    else:
+        print('Error setting up Sphinx docs :(')
 
 
 if __name__ == "__main__":

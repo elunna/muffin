@@ -246,5 +246,5 @@ if __name__ == "__main__":
     sysutils.run_in_dir(cmd, config['projectname'])
 
     # Show installed programs summary
-    sysutils.chk_sys_libraries()
-    sysutils.chk_pip_libraries(config['python'])
+    #  sysutils.chk_sys_libraries()
+    #  sysutils.chk_pip_libraries(config['python'])
