@@ -27,8 +27,13 @@ def cmd_success(cmd):
 
 
 def run_in_dir(cmd, _dir):
-    p = subprocess.Popen(cmd, cwd=_dir)
-    p.wait()
+    try:
+        p = subprocess.Popen(cmd, cwd=_dir)
+        p.wait()
+        return True
+    except OSError as e:
+        if e.errno == os.errno.ENOENT:
+            return False
 
 
 def chk_sys_for(app):
@@ -120,10 +125,34 @@ def sys_info():
     print(platform.system())
     print(platform.processor())
 
+
+def enter_venv(_dir='.'):
+    # This enters the virtual env - but in a new shell, so it won't finish the script
+    env = _dir + '/.env'
+    if os.path.exists(env):
+        # Tries to execute the .env file in a directory.
+        #  cmd = ['source', '.env'.format(dir)]
+        cmd = ['/bin/bash', '--rcfile', env]
+    else:
+        # If there isn't a venv, tries to run the activate script.
+        cmd = ['source', '{}/venv/bin/activate'.format(dir)]
+
+    try:
+        p = subprocess.Popen(cmd, cwd=_dir)
+        p.wait()
+        return True
+    except OSError as e:
+        if e.errno == os.errno.ENOENT:
+            return False
+
+
 if __name__ == "__main__":
     chk_sys_libraries()
     chk_pip_libraries('2.7')
     sys_info()
     print('Running in virtual env: {}'.format(in_venv()))
 
-    # Attempt to enter venv(in a dir)
+    print('Attempting to enter venv in current dir.')
+    enter_venv()
+
+    print('Running in virtual env: {}'.format(in_venv()))
