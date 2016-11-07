@@ -7,7 +7,7 @@ VENV_DIR = 'venv'
 SYS_LIBS = ['python', 'python3', 'pip', 'git', 'virtualenv']
 
 
-def run_cmd_result(cmd):
+def cmd_exists(cmd):
     # Python 3.3+: can use subprocess.DEVNULL rather than open(os.devnull).
     try:
         devnull = open(os.devnull, 'w')
@@ -42,7 +42,7 @@ def chk_sys_for(app):
     This is installed by pip.
     """
     cmd = [app, '--version']
-    result = run_cmd_result(cmd)
+    result = cmd_exists(cmd)
     return result
 
 
@@ -103,7 +103,7 @@ def new_virtualenv(py_version, projectname):
     VENV = projectname + '/venv'
     # virtualenv checks the python ver so we don't have to worry about that :)
     cmd = ['virtualenv', '--python=python{}'.format(py_version), VENV]
-    return run_cmd_result(cmd)
+    return cmd_exists(cmd)
 
 
 def in_venv():

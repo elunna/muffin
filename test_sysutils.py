@@ -9,13 +9,30 @@ Tests for run_cmd_result(cmd)
 """
 
 
-def test_runcmdresult_touch():
+def test_cmdexists_touch_returnsTrue():
     testfile = 'tempfile.xxx'
-    result = sysutils.run_cmd_result(['touch', testfile])
+    result = sysutils.cmd_exists(['touch', testfile])
     assert result is True
     assert os.path.exists(testfile)
 
     os.remove(testfile)  # Cleanup the file
+
+
+def test_cmdexists_ls_returnsTrue():
+    result = sysutils.cmd_exists(['ls'])
+    assert result is True
+
+
+def test_cmdexists_ls_everything_returnsTrue():
+    # It may not be a valid argument, but the cmd exists
+    result = sysutils.cmd_exists(['ls', '--everything'])
+    assert result is True
+
+
+def test_cmdexists_twilicane_returnsFalse():
+    result = sysutils.cmd_exists(['twilicane'])
+    assert result is False
+
 
 """
 Tests for run_cmd_success(cmd)
