@@ -14,10 +14,22 @@ def cleanup():
 Tests for wipe_dir()
 """
 
+
+def test_wipedir_created_dir_dne():
+    testdir = 'some_random_directory_xxx1234'
+    ensure_dir(testdir)
+    wipe_dir(testdir)
+    assert os.path.isdir(testdir) is False
+
 """
 Tests for ensure_dir()
 """
 
+
+def test_ensuredir_exists():
+    testdir = 'some_random_directory_xxx1234'
+    ensure_dir(testdir)
+    assert os.path.isdir(testdir)
 
 """
 Tests for write_license(config)
