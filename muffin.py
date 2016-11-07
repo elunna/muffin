@@ -39,7 +39,7 @@ def write_license(config):
 
 
 def make_setup_sh(config):
-    # Make setup.sh
+    ensure_dir(config['projectname'])
     setupfile = config['projectname'] + '/setup.sh'
     pip_installs = PY_MODULES[config['python']] + config.get('modules', [])
 

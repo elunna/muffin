@@ -5,6 +5,7 @@ FULL_CONFIG = {
     'author': 'lunatunez',
     'description': 'Short blurb',
     'license': 'MIT',
+    'python': '2.7',
     'email': 'rdash@cloudsdale.net',
     'twitter': 'rdashie',
     'template': 'templates'

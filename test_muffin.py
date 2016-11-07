@@ -48,6 +48,11 @@ def test_writelicense_WTFPL():
 Tests for make_setup_sh(config)
 """
 
+
+def test_makesetupsh_exists():
+    make_setup_sh(FULL_CONFIG)
+    assert os.path.exists(FULL_CONFIG['projectname'] + '/setup.sh')  # Error making setup.sh
+
 """
 Tests for setup_git(config)
 """
