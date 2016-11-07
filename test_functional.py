@@ -2,34 +2,22 @@ import os
 import muffin
 import test_configs
 
-"""
-Functional tests for muffinX.
+""" Functional tests for muffinX.
 
-muffinX is a Python project templating engine. It is for quickly and efficiently setting up
-projects that are ready for professional use.
+    muffinX is a Python project templating engine. It is for quickly and efficiently setting up
+    projects that are ready for professional use.
+
+    Erik wants to start a new project, really fast.
+    Erik starts : $ python muffin.py
+
+    He is presented with a wizard which asks him all the basic info.
+    Then it's muffin time!!!
 """
 
 
 def test_newproject():
-    """
-    Erik wants to start a new project, nothing fancy, but it should at least have this:
-        * A modern Directory
-            root_project_dir/
-                /src
-                /tests
-                /data
-                /temp
-        * README.md for git
-        * .gitigore for git
-    The README.md and .gitignore are essential, but annoying to make, so he would rather stream-
-    line the creation and make life as painless as possible - I mean, there is code to be written!
-
-    Erik starts : $ python startpy.py
-
-    He is presented with a wizard which asks him all the basic info.
-    After completing the wizard we should have a few things:
-    """
-    muffin.new_project(test_configs.MIT_CONFIG)
+    # We'll just test 2.7 for this
+    muffin.new_project(test_configs.FULL_CONFIG)
     ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
 
     # The directory structure (unit tested)
@@ -65,10 +53,12 @@ def test_newproject():
 
     muffin.wipe_dir(ROOT)  # Cleanup
 
+PYTHONS = ['2.7', '3.4', '3.5']
+
 
 def test_setup_project_env():
     # Setup Python 2.7 env
-    muffin.setup_project_env(test_configs.VENV_PY27)
+    muffin.new_venv(test_configs.VENV_PY27)
     ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
 
     # Check that the setup.sh file was created.

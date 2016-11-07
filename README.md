@@ -10,7 +10,45 @@
 # muffinX Python project template wizard
 > Makes starting up new projects with bells and whistles a breeze!
 
-usage: $ python pystart 
+### Wat should a good python template engine have????
+* Should have a modern directory structure:
+    /src and /tests for separated source and testing.
+    /data, /temp, and /logs for managing all the crap that will be pouring in.
+
+* Should have *inpeccable documentation*:
+    - README.md for git
+    - Sphinx docs ready to use, and a config file to make the setup really quick.
+
+* *Git* ready
+    - .gitigore with the essential crap ignored.
+    - some all-around useful git-hooks
+    - Really nice README.md
+    - A LICENSE that we can choose from a list of the most popular.
+
+* Some *AWESOME utilities* included by default:
+    - Sphinx documentation
+    - Pytest
+    - ipython
+    - Konch, with some premade great defaults.
+
+* Should have SCARY *virtual environment support*
+    - Create a custom virtual environment!
+    - Includes
+    - Choose from different Python versions
+    - Choose different modules to include in the pip install
+
+* Should be *FLEXIBLE!*
+    - The wizard lets you keep defaults saved so you can just "Enter" through the common ones.
+    - The templates folder can be tweaked for your preference,
+    - or make your own templates directory structure, it just has to start with 'template'
+
+* Should be like other AMAZING systems, like Django!
+    - Yup, we have a *manage.py* - and it rocks.
+    - Cut down on boring, mundane project maintenance, use manage.py fool!
+
+
+### usage: 
+$ python pystart 
 
 ### TODO
 - [X] Setup the directory structure 
