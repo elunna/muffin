@@ -24,6 +24,18 @@ def test_get_WTFPL():
     assert firstline == expected
 
 
+def test_get_APACHE():
+    expected = licenses.APACHE_TEXT.strip()
+    firstline = licenses.get('APACHE').split('\n')[0].strip()
+    assert firstline == expected
+
+
+def test_get_BSD():
+    expected = licenses.BSD_TEXT.strip()
+    firstline = licenses.get('BSD').split('\n')[0].strip()
+    assert firstline == expected
+
+
 def test_get_INVALID():
     expected = None
     firstline = licenses.get('INVALID')
