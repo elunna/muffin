@@ -30,6 +30,7 @@ def test_ensuredir_exists():
     testdir = 'some_random_directory_xxx1234'
     ensure_dir(testdir)
     assert os.path.isdir(testdir)
+    wipe_dir(testdir)
 
 """
 Tests for write_license(config)
