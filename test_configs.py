@@ -28,6 +28,16 @@ VENV_PY27 = {
     'python': '2.7',
 }
 
+VENV_PY34 = {
+    'projectname': TEST_PROJ,
+    'python': '3.4',
+}
+
+VENV_PY35 = {
+    'projectname': TEST_PROJ,
+    'python': '3.5',
+}
+
 VENV_CONFIG_PKGS = {
     'projectname': TEST_PROJ,
     'python': '2.7',
