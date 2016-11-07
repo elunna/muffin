@@ -162,17 +162,15 @@ def test_newvirtualenv_py1():
 def test_newvirtualenv_py2_7():
     name = 'venv_test2_7'
     py = '2.7'
-    result = sysutils.new_virtualenv(py, projectname=name)
-    assert result is True  # 11_3_16: This is currently a false positive, but leaving it anyway.
+    sysutils.new_virtualenv(py, projectname=name)
 
     # Check that the virtual env directory was created
     assert os.path.isdir(name + '/venv')        # Error making virtual env directory.
 
     # Check that the python2.7 bin is present
-    pythonbin = name + '/venv//bin/python2.7'
+    pythonbin = name + '/venv/bin/python2.7'
     assert os.path.exists(pythonbin)  # Error making .env
 
     muffin.wipe_dir(name)   # Clean it up
 
 # Note: Python 3.4 and 3.5 environment tests in test_functional.py
-
