@@ -51,12 +51,17 @@ def test_runcmdsuccess_touch_invalid_arg():
     assert result is False
 
 
+def test_runcmdsuccess_invalid_cmd_returneFalse():
+    result = sysutils.run_cmd_success(['twilicane'])
+    assert result is False
+
+
 """
 Tests for run_cmd_in_dir(cmd)
 """
 
 
-def test_runcmdindir_invalid_returnsTrue():
+def test_runcmdindir_invaliddir_returnsTrue():
     _dir = 'nonexistant/'
     testfile = 'tempfile.xxx'
     result = sysutils.run_cmd_in_dir(['touch', testfile], _dir)
@@ -74,6 +79,13 @@ def test_runcmdindir_valid_returnsFalse():
 
     muffin.wipe_dir(_dir)
 
+
+def test_runcmdindir_badcmd_returnsFalse():
+    _dir = 'rundir/'
+    muffin.ensure_dir(_dir)
+    result = sysutils.run_cmd_in_dir(['twilicane'], _dir)
+    assert result is False
+    muffin.wipe_dir(_dir)
 
 """
 Tests for chk_sys_for(app)
@@ -161,3 +173,6 @@ def test_newvirtualenv_py2_7():
     assert os.path.exists(pythonbin)  # Error making .env
 
     muffin.wipe_dir(name)   # Clean it up
+
+# Note: Python 3.4 and 3.5 environment tests in test_functional.py
+

@@ -19,14 +19,18 @@ def cmd_exists(cmd):
 
 
 def run_cmd_success(cmd):
-    result = subprocess.call(cmd)
-    if result:
-        return False
-    else:
-        return True
+    try:
+        result = subprocess.call(cmd)
+        if result == 0:
+            return True
+        else:
+            return False
+    except OSError as e:
+        if e.errno == os.errno.ENOENT:
+            return False
 
 
-def run_cmd_in_dir(cmd, _dir):
+def run_cmd_in_dir(cmd, _dir='templates'):
     try:
         p = subprocess.Popen(cmd, cwd=_dir)
         p.wait()
