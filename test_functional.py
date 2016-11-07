@@ -56,10 +56,20 @@ def test_newproject():
 PYTHONS = ['2.7', '3.4', '3.5']
 
 
-def test_setup_project_env():
-    # Setup Python 2.7 env
-    muffin.new_venv(test_configs.VENV_PY27)
-    ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
+def test_venv_all_python_verisons():
+    # Uses a test generator to go through all the subdirectories we want to test.
+    for py in PYTHONS:
+        VENV_CONFIG = {
+            'projectname': 'testproject',
+            'python': py,
+            'template': 'templates'
+        }
+        yield check_venv, VENV_CONFIG
+
+
+def check_venv(config):
+    muffin.new_venv(config)
+    ROOT = config['projectname'] + '/'
 
     # Check that the setup.sh file was created.
     assert os.path.exists(ROOT + 'setup.sh')            # Error making setup.sh

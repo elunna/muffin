@@ -117,10 +117,10 @@ def new_venv(config):
     project_name = config['projectname']
     ensure_dir(project_name)
 
-    # Setup python 2 virtualenv
+    # Setup virtualenv
     sysutils.new_virtualenv(config['python'], project_name)
 
-    # Setup the setup.sh file - lol, this is getting rediculous.
+    # Setup the setup.sh file
     make_setup_files(config)
 
 
