@@ -1,6 +1,7 @@
-import subprocess
 import os
 import muffin
+import subprocess
+import sys
 
 VENV_DIR = 'venv'
 SYS_LIBS = ['python', 'python3', 'pip', 'git', 'virtualenv']
@@ -100,6 +101,29 @@ def new_virtualenv(py_version, projectname):
     return cmd_result(cmd)
 
 
+def in_venv():
+    if hasattr(sys, 'real_prefix'):
+        return True
+    else:
+        return False
+
+
+def sys_info():
+    import platform
+    print('Python versions installed: {}'.format(chk_python()))
+    print('Python {} '.format(sys.version))
+    print('Python {} '.format(platform.python_version()))
+    print(platform.machine())
+    print(platform.version())
+    print(platform.platform())
+    print(platform.uname())
+    print(platform.system())
+    print(platform.processor())
+
 if __name__ == "__main__":
     chk_sys_libraries()
     chk_pip_libraries('2.7')
+    sys_info()
+    print('Running in virtual env: {}'.format(in_venv()))
+
+    # Attempt to enter venv(in a dir)
