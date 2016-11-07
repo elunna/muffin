@@ -57,6 +57,16 @@ def test_makesetupsh_exists():
 Tests for setup_git(config)
 """
 
+
+def test_setupgit_git_dir_exists():
+    setup_git(FULL_CONFIG)
+    assert os.path.isdir(FULL_CONFIG['projectname'] + '/.git')                 # Error making .git dir
+
+
+def test_setupgit_git_config_exists():
+    setup_git(FULL_CONFIG)
+    assert os.path.exists(FULL_CONFIG['projectname'] + '/.git/config')         # Error making .git/config
+
 """
 Tests for cp_templates(project_name)
 """

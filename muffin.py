@@ -75,7 +75,7 @@ def make_setup_sh(config):
 
 
 def setup_git(config):
-    # Initialize git repo
+    ensure_dir(config['projectname'])
     cmd = ['git', 'init']
     sysutils.run_in_dir(cmd, config['projectname'])
 
