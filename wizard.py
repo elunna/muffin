@@ -69,6 +69,18 @@ def valid_python(python):
         return False
 
 
+def valid_template(template):
+    # Valid templates begin with 'template_'
+    if not template.startswith('template'):
+        return False
+
+    # Check if there is a dir
+    if os.path.isdir(template):
+        return True
+    else:
+        return False
+
+
 def yesorno(choice):
     if choice.lower().startswith('y'):
         return True
@@ -133,6 +145,11 @@ def wizard():
     wiz_dict['license'] = input_loop('License type',
                                      validator=valid_license,
                                      default=dflt_dict.get('license', None))
+
+    # Ask for template
+    wiz_dict['template'] = input_loop('Project Template', required=True,
+                                      validator=valid_template,
+                                      default='templates')
 
     # Ask for Email
     wiz_dict['email'] = input_loop('Email', required=False,

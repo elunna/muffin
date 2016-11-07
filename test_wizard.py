@@ -38,3 +38,20 @@ def test_validlicense_GNU():
 
 def test_validlicense_XXX():
     assert wizard.valid_license('XXX') is False
+
+
+"""
+Tests for valid_template(template)
+"""
+
+
+def test_validtemplate_invalid_returnsFalse():
+    assert wizard.valid_template('somethine') is False
+
+
+def test_validtemplate_validname_but_dne_returnsFalse():
+    assert wizard.valid_template('template_234087adskf') is False
+
+
+def test_validtemplate_validname_exists_returnsTrue():
+    assert wizard.valid_template('templates') is True
