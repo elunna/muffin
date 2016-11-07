@@ -68,7 +68,7 @@ def test_newproject():
 
 def test_setup_project_env():
     # Setup Python 2.7 env
-    muffin.setup_project_env(test_configs.VENV_CONFIG)
+    muffin.setup_project_env(test_configs.VENV_PY27)
     ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
 
     # Check that the setup.sh file was created.

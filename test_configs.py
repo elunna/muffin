@@ -13,37 +13,23 @@ MIT_CONFIG = {
 GNU_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
-    'description': 'Short blurb',
     'license': 'GNU',
-    'email': 'rdash@cloudsdale.net',
-    'twitter': 'rdashie',
 }
 
-GNU_CONFIG = {
+WTFPL_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',
-    'description': 'Short blurb',
     'license': 'WTFPL',
-    'email': 'rdash@cloudsdale.net',
-    'twitter': 'rdashie',
 }
 
 
-VENV_CONFIG = {
+VENV_PY27 = {
     'projectname': TEST_PROJ,
-    'author': 'lunatunez',
-    'description': 'Short blurb',
-    'license': 'GNU',
     'python': '2.7',
-    'email': 'rdash@cloudsdale.net',
-    'twitter': 'rdashie',
 }
 
 VENV_CONFIG_PKGS = {
     'projectname': TEST_PROJ,
-    'author': 'lunatunez',
-    'description': 'Short blurb',
-    'license': 'GNU',
     'python': '2.7',
     'packages': ['pytest', 'autoenv', 'konch', 'pip', 'pandas']
 }
