@@ -19,7 +19,7 @@ def cleanup():
 def readme_factory(**params):
     muffin.ensure_dir(test_configs.TEST_PROJ)
     # Just create the directory
-    config = test_configs.MIT_CONFIG
+    config = test_configs.FULL_CONFIG
     if params:
         config.update(params)
 

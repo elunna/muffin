@@ -3,16 +3,21 @@ import pytest
 from muffin import *
 from test_configs import *
 
-"""
-Tests for setup_dirs()
-"""
-
 
 @pytest.yield_fixture(autouse=True)
 def cleanup():
     wipe_dir(TEST_PROJ)
     yield None
     wipe_dir(TEST_PROJ)
+
+"""
+Tests for wipe_dir()
+"""
+
+"""
+Tests for ensure_dir()
+"""
+
 
 """
 Tests for write_license(config)
@@ -40,12 +45,20 @@ def test_writelicense_WTFPL():
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 """
+Tests for make_setup_script(config)
+"""
+
+"""
+Tests for setup_git(config)
+"""
+
+"""
 Tests for cp_templates(project_name)
 """
 
 
 def test_cptemplate_makes_project_dir():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.isdir(TEST_PROJ)  # Error making project dir
 
 
@@ -58,37 +71,37 @@ def test_cptemplate__subdirs():
 
 def check_dir(d):
     # This has to go here bc cleanup get called before and after this method.
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.isdir(d)  # Directory doesn't exist
 
 
 def test_cptemplates_gitignore_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/.gitignore')    # .gitignore not created
 
 
 def test_cptemplates_env_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/.env')       # Error making main.py
 
 
 def test_cptemplates_konchrc_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/.konchrc')       # Error making main.py
 
 
 def test_cptemplates_pytest_ini_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/pytest.ini')       # Error making main.py
 
 
 def test_cptemplates_main_py_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/main.py')       # Error making main.py
 
 
 def test_cptemplates_logger_py_exists():
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(TEST_PROJ + '/src/logger.py')  # Error making /src/logger.py
 
 
@@ -102,5 +115,17 @@ def test_cptemplates_init_files():
 
 
 def check_init_file(filename):
-    cp_templates(MIT_CONFIG)
+    cp_templates(FULL_CONFIG)
     assert os.path.exists(filename)  # Filename doesn't exist
+
+"""
+Tests for save_config(config)
+"""
+
+
+"""
+Tests for new_venv(config)
+Tests for new_project(config)
+
+These will be tested under tests_functional
+"""

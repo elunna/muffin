@@ -106,29 +106,22 @@ def cp_templates(config):
     shutil.copytree(TEMPLATE_DIR, project)
 
 
-def write_json_config(config):
+def save_config(config):
     # Write the default settings to the project folder
     filepath = config['projectname'] + '/config.json'
     with open(filepath, 'w') as f:
         json.dump(config, f)
 
 
-def setup_project_env(config):
+def new_venv(config):
     project_name = config['projectname']
-    # I don't want this to rely on new_project, so we'll ensure the dir too
     ensure_dir(project_name)
 
     # Setup python 2 virtualenv
     sysutils.new_virtualenv(config['python'], project_name)
 
-    # Upgrade pip
-    # Install needed packages:
-    #   py.test
-
     # Setup the setup.sh file - lol, this is getting rediculous.
     make_setup_files(config)
-
-    # Make requirements.txt?
 
 
 def new_project(config):
@@ -153,7 +146,7 @@ if __name__ == "__main__":
     print(config)
     print('Starting up project!')
     new_project(config)
-    setup_project_env(config)
+    new_venv(config)
 
     # Run the setup file
     cmd = ['sh', 'setup.sh']
@@ -164,4 +157,4 @@ if __name__ == "__main__":
     #  sysutils.chk_pip_libraries(config['python'])
 
     # Write the project config to json
-    write_json_config(config)
+    save_config(config)
