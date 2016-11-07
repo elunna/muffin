@@ -107,6 +107,7 @@ def cp_templates(config):
 
 
 def save_config(config):
+    ensure_dir(config['projectname'])
     # Write the default settings to the project folder
     filepath = config['projectname'] + '/config.json'
     with open(filepath, 'w') as f:

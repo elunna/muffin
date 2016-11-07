@@ -150,6 +150,13 @@ Tests for save_config(config)
 """
 
 
+def test_saveconfig_exists():
+    save_config(FULL_CONFIG)
+    projectdir = FULL_CONFIG['projectname']
+    assert os.path.isdir(projectdir)  # Project directory doesn't exist
+    assert os.path.exists(projectdir + '/config.json')  # config.json doesn't exist
+
+
 """
 Tests for new_venv(config)
 Tests for new_project(config)
