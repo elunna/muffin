@@ -19,6 +19,16 @@ GNU_CONFIG = {
     'twitter': 'rdashie',
 }
 
+GNU_CONFIG = {
+    'projectname': TEST_PROJ,
+    'author': 'lunatunez',
+    'description': 'Short blurb',
+    'license': 'WTFPL',
+    'email': 'rdash@cloudsdale.net',
+    'twitter': 'rdashie',
+}
+
+
 VENV_CONFIG = {
     'projectname': TEST_PROJ,
     'author': 'lunatunez',

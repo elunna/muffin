@@ -32,6 +32,13 @@ def test_writelicense_GNU():
     write_license(GNU_CONFIG)
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
+
+def test_writelicense_WTFPL():
+    ensure_dir(TEST_PROJ)
+    lic_path = TEST_PROJ + '/LICENSE'
+    write_license(GNU_CONFIG)
+    assert os.path.exists(lic_path)  # LICENSE file doesn't exist
+
 """
 Tests for cp_templates(project_name)
 """
