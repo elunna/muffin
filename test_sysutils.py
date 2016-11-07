@@ -5,33 +5,57 @@ import sysutils
 
 
 """
-Tests for cmd_result(cmd)
+Tests for run_cmd_result(cmd)
 """
 
 
-def test_cmdresult_touch():
+def test_runcmdresult_touch():
     testfile = 'tempfile.xxx'
-    result = sysutils.cmd_result(['touch', testfile])
+    result = sysutils.run_cmd_result(['touch', testfile])
     assert result is True
     assert os.path.exists(testfile)
 
     os.remove(testfile)  # Cleanup the file
 
 """
-Tests for cmd_success(cmd)
+Tests for run_cmd_success(cmd)
 """
 
 
-def test_cmdsuccess_touch():
+def test_runcmdsuccess_touch():
     testfile = 'tempfile.xxx'
-    result = sysutils.cmd_success(['touch', testfile])
+    result = sysutils.run_cmd_success(['touch', testfile])
     assert result is True
     os.remove(testfile)  # Cleanup the file
 
 
-def test_cmdsuccess_touch_invalid_arg():
-    result = sysutils.cmd_success(['touch', '-XXX'])
+def test_runcmdsuccess_touch_invalid_arg():
+    result = sysutils.run_cmd_success(['touch', '-XXX'])
     assert result is False
+
+
+"""
+Tests for run_cmd_in_dir(cmd)
+"""
+
+
+def test_runcmdindir_invalid_returnsTrue():
+    _dir = 'nonexistant/'
+    testfile = 'tempfile.xxx'
+    result = sysutils.run_cmd_in_dir(['touch', testfile], _dir)
+    assert result is False
+
+
+def test_runcmdindir_valid_returnsFalse():
+    _dir = 'rundir/'
+    testfile = 'tempfile.xxx'
+    muffin.ensure_dir(_dir)
+    result = sysutils.run_cmd_in_dir(['touch', testfile], _dir)
+
+    assert result is True
+    assert os.path.exists(_dir + testfile)
+
+    muffin.wipe_dir(_dir)
 
 
 """

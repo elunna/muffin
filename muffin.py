@@ -77,7 +77,7 @@ def make_setup_sh(config):
 def setup_git(config):
     ensure_dir(config['projectname'])
     cmd = ['git', 'init']
-    sysutils.run_in_dir(cmd, config['projectname'])
+    sysutils.run_cmd_in_dir(cmd, config['projectname'])
 
     # Add user to gitconfig
     filename = config['projectname'] + '/.git/config'
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
     # Run the setup file
     cmd = ['sh', 'setup.sh']
-    sysutils.run_in_dir(cmd, config['projectname'])
+    sysutils.run_cmd_in_dir(cmd, config['projectname'])
 
     # Show installed programs summary
     #  sysutils.chk_sys_libraries()
