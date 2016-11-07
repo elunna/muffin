@@ -38,7 +38,7 @@ def write_license(config):
         f.write(text)
 
 
-def make_setup_files(config):
+def make_setup_sh(config):
     # Make setup.sh
     setupfile = config['projectname'] + '/setup.sh'
     pip_installs = PY_MODULES[config['python']] + config.get('modules', [])
@@ -121,7 +121,7 @@ def new_venv(config):
     sysutils.new_virtualenv(config['python'], project_name)
 
     # Setup the setup.sh file
-    make_setup_files(config)
+    make_setup_sh(config)
 
 
 def new_project(config):

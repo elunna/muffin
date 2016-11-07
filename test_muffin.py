@@ -45,7 +45,7 @@ def test_writelicense_WTFPL():
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
 """
-Tests for make_setup_script(config)
+Tests for make_setup_sh(config)
 """
 
 """
