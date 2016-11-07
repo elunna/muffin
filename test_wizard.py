@@ -1,3 +1,4 @@
+import pytest
 import wizard
 
 # Tests for input_loop
@@ -76,3 +77,28 @@ def test_yesorno_invalid():
     assert wizard.yesorno('z') is False
     assert wizard.yesorno('') is False
     assert wizard.yesorno(' ') is False
+
+"""
+Tests for get_defaults(def_file=DFLT_FILE)
+"""
+
+
+def test_getdefaults_dflt_file_returnsDict():
+    result = wizard.get_defaults()
+    assert isinstance(result, dict)
+
+
+def test_getdefaults_fileexists_returnsDict():
+    filepath = 'defaults.json'
+    result = wizard.get_defaults(filepath)
+    assert isinstance(result, dict)
+
+
+def test_getdefaults_fileDNE_raisesException():
+    filepath = 'youarenotpossible.txt'
+    with pytest.raises(IOError):
+        wizard.get_defaults(filepath)
+
+"""
+Tests for update_defaults(dflt_dict, wiz_dict)
+"""

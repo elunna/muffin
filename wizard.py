@@ -90,9 +90,10 @@ def yesorno(choice):
         return False
 
 
-def get_defaults():
+def get_defaults(def_file=DFLT_FILE):
     # Read JSON defaults
-    with open(DFLT_FILE, 'r') as f:
+
+    with open(def_file, 'r') as f:
         contents = f.read()
         defaults = json.loads(contents)
     return defaults
