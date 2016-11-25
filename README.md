@@ -1,16 +1,16 @@
                       .d888 .d888d8b         
                      d88P" d88P" Y8P         
                      888   888               
-88888b.d88b. 888  88888888888888888888888b. b.   d8
-888 "888 "88b888  888888   888   888888 "88b 88 88 
-888  888  888888  888888   888   888888  888  888
-888  888  888Y88b 888888   888   888888  888 88 88
-888  888  888 "Y88888888   888   888888  88888   88
+88888b.d88b. 888  88888888888888888888888b. 
+888 "888 "88b888  888888   888   888888 "88b
+888  888  888888  888888   888   888888  888
+888  888  888Y88b 888888   888   888888  888
+888  888  888 "Y88888888   888   888888  888
 
 # muffinX Python project template wizard
 > Makes starting up new projects with bells and whistles a breeze!
 
-### Wat should a good python template engine have????
+### What should a good python template engine have????
 * Should have a modern directory structure:
     /src and /tests for separated source and testing.
     /data, /temp, and /logs for managing all the crap that will be pouring in.
@@ -63,6 +63,7 @@ $ python pystart
 - [X] __init__.py files for root, src, and tests to indicate packages.
 - [X] initial README.md file.
 - [X] .gitignore
+- [ ] Command line option to only create a README.md
 
 - [X] Basic wizard to specify project info:
 - [X] wizard: Project name
@@ -75,6 +76,7 @@ $ python pystart
 - [X] wixard: show available choices if user makes a mistake
 - [X] Remember project defaults for wizard
 - [X] Update defaults when new ones are input from wizard
+- [ ] Allow None for some wizard choices
 
 - [x] Main.py: Create empty
 - [x] Main.py: Module doc
@@ -94,7 +96,6 @@ $ python pystart
 - [x] is konch installed?
 - [x] is py.test installed?
 - [x] is ['urllib3[secure]', 'requests[security]',  installed for py2?
-
 
 - [x] Setup virtualenv
 - [x] Autoenv config file(.env)?
@@ -119,10 +120,13 @@ $ python pystart
 - [ ] freeze: create/regenerate requirements.txt for virtualenv
 - [ ] setup docs(sphinx)
 
-- [ ] Add some fun ASCII ponies around to make life interesting.
 - [ ] CC-BY-SA 3.0 : http://creativecommons.org/licenses/by-sa/3.0/
-
+- [ ] argparse - debug option, verbose built in 
 
 Other modules to ask about:
     lxml, pillow, 
-    
+
+How to check coverage, with pytest?
+Travis CI?
+PyPi?
+Attach githooks? 
