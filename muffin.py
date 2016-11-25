@@ -9,7 +9,7 @@ import sysutils
 import wizard
 
 SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
-CORE_MODULES = ['konch', 'ipython', 'pytest', 'sphinx']
+CORE_MODULES = []
 
 PY_MODULES = {
     # We need the security libraries because older versions of py2 don't have good ssl.
@@ -18,7 +18,8 @@ PY_MODULES = {
     '3.5': [] + CORE_MODULES,
 }
 
-XTRA_MODULES = ['beautifulsoup4', 'scrapy', 'requests', 'django', 'selenium']
+XTRA_MODULES = ['konch', 'ipython', 'pytest', 'sphinx', 'beautifulsoup4',
+                'scrapy', 'requests', 'django', 'selenium']
 
 
 def wipe_dir(venv):
