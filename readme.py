@@ -1,13 +1,16 @@
+""" Manages the creation of a nice README.md for a project. """
+
+
 def make_readme(info_dict):
+    """ Creates the README.md file and uses the passed in dictionary to fill in
+        the fields. Returns the filepath of the created file.
     """
-    Creates the README.md file and uses the passed in dictionary to fill in the fields.
-    Returns the filepath of the created file.
-    """
+
     filename = info_dict['projectname'] + '/' + 'README.md'
     twitter = info_dict.get('twitter', None)
     email = info_dict.get('email', None)
     date = get_date()
-    license = info_dict['license']
+    lic = info_dict['license']
 
     with open(filename, 'w') as f:
         f.write('# Project Name: {}'.format(info_dict['projectname']))
@@ -32,7 +35,7 @@ def make_readme(info_dict):
             f.write('##### Email -- {}'.format(email))
             f.write('\n')
         f.write('\n')
-        f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(license))
+        f.write('[![](http://img.shields.io/badge/license-{}-blue.svg)]'.format(lic))
         f.write('\n')
         f.write('[{}]: See ``LICENSE`` for full text.'.format(info_dict['license']))
         f.write('\n')
@@ -41,6 +44,7 @@ def make_readme(info_dict):
 
 
 def get_date():
+    """ Gets the current date. """
     import datetime as dt
     now = dt.datetime.now()
     return str(now.date())
@@ -92,7 +96,7 @@ $ python main.py 2
 
 ---
 
-### TODO
+### Todo List:
 
 - [ ] Fill in README details.
 - [ ] First commit: README

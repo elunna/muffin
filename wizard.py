@@ -1,14 +1,20 @@
+"""
+  " Provides console interactive wizard to let the user customize their project.
+  """
 from string import ascii_letters
-from licenses import available
+from .licenses import available
 import json
 import os
-import muffin
-import sysutils
+from . import muffin
+from . import sysutils
 
 DFLT_FILE = 'defaults.json'
 
 
 def input_loop(prompt, required=True, validator=None, default=None):
+    """ Provides the user with a loop to enter their choice in. Loops until they
+        enter valid info for the given setting.
+    """
     while True:
         # Show the remembered default (if we have one)
         if default:
@@ -35,6 +41,10 @@ def input_loop(prompt, required=True, validator=None, default=None):
 
 
 def valid_projectname(projectname):
+    """ Returns True if the project name is valid, False otherwise.
+        Valid project names cannot contain spaces or any special characters
+        other than underscores.
+    """
     # Can only contain alphabetic characters or underscores.
     n = projectname
     if ' ' in n:
@@ -50,8 +60,9 @@ def valid_projectname(projectname):
         return True
 
 
-def valid_license(license):
-    result = license.strip().upper() in available
+def valid_license(lic):
+    """ Returns True if the user picked a valid license abbreviation, False otherwise."""
+    result = lic.strip().upper() in available
     if result:
         return True
     else:
@@ -60,6 +71,7 @@ def valid_license(license):
 
 
 def valid_python(python):
+    """ Returns True if the user picked a Python version that is available, False otherwise. """
     pythons = sysutils.chk_python()
     result = python in pythons
     if result:
@@ -70,6 +82,7 @@ def valid_python(python):
 
 
 def valid_template(template):
+    """ Returns True if the template directory exists, False otherwise. """
     # Valid templates begin with 'template_'
     if not template.startswith('template'):
         return False
@@ -82,6 +95,7 @@ def valid_template(template):
 
 
 def yesorno(choice):
+    """ Returns True if the choice starts with an uppercase or lowercase 'n' or 'y'."""
     if choice.lower().startswith('y'):
         return True
     elif choice.lower().startswith('n'):
@@ -91,6 +105,7 @@ def yesorno(choice):
 
 
 def get_defaults(def_file=DFLT_FILE):
+    """ Retrieves the global muffin defaults. """
     # Read JSON defaults
 
     with open(def_file, 'r') as f:
@@ -100,6 +115,7 @@ def get_defaults(def_file=DFLT_FILE):
 
 
 def update_defaults(dflt_dict, wiz_dict):
+    """ Updates the global muffin defaults. """
     # Update only the fields in the json defaults, and only write if they changed.
     keys = dflt_dict.keys()
     update = False
@@ -116,10 +132,8 @@ def update_defaults(dflt_dict, wiz_dict):
 
 
 def wizard():
-    """
-    Collects project info and returns a dict.
-    """
-    print('-~- /) muffinX quick project scaffolding wizard! (\ -~-')
+    """ Collects project info and returns a dict. """
+    print(r'-~- /) muffinX quick project scaffolding wizard! (\ -~-')
     print('Default values appear in [brackets] - press Enter to accept them :)')
     print('')
 
@@ -161,9 +175,9 @@ def wizard():
                                      default=dflt_dict.get('twitter', None))
 
     # Ask for custom modules:
-    available, modules = muffin.XTRA_MODULES, []
+    avail, modules = muffin.XTRA_MODULES, []
 
-    for m in available:
+    for m in avail:
         result = input_loop(m, required=False, validator=yesorno, default='N')
         if result.lower().startswith('y'):
             print('Module added!')

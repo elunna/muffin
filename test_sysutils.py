@@ -1,12 +1,9 @@
+""" Tests for the sysutils module. """
+
 import os
-import muffin
+from . import muffin
 import pytest
-import sysutils
-
-
-"""
-Tests for run_cmd_result(cmd)
-"""
+from . import sysutils
 
 
 def test_cmdexists_touch_returnsTrue():
@@ -34,11 +31,6 @@ def test_cmdexists_twilicane_returnsFalse():
     assert result is False
 
 
-"""
-Tests for run_cmd_success(cmd)
-"""
-
-
 def test_runcmdsuccess_touch():
     testfile = 'tempfile.xxx'
     result = sysutils.run_cmd_success(['touch', testfile])
@@ -47,18 +39,13 @@ def test_runcmdsuccess_touch():
 
 
 def test_runcmdsuccess_touch_invalid_arg():
-    result = sysutils.run_cmd_success(['touch', '-XXX'])
+    result = sysutils.run_cmd_success(['touch', '-xxx'])
     assert result is False
 
 
 def test_runcmdsuccess_invalid_cmd_returneFalse():
     result = sysutils.run_cmd_success(['twilicane'])
     assert result is False
-
-
-"""
-Tests for run_cmd_in_dir(cmd)
-"""
 
 
 def test_runcmdindir_invaliddir_returnsTrue():
@@ -87,10 +74,6 @@ def test_runcmdindir_badcmd_returnsFalse():
     assert result is False
     muffin.wipe_dir(_dir)
 
-"""
-Tests for chk_sys_for(app)
-"""
-
 
 def test_chksysfor_nonexistant():
     cmd = 'weirdo'
@@ -103,11 +86,6 @@ def test_chksysfor_ls():
     cmd = 'ls'
     expected = True
     assert sysutils.chk_sys_for(cmd) == expected
-
-
-"""
-Tests for chk_pip_for(lib)
-"""
 
 
 def test_chkpipfor_nonexistant():
@@ -123,9 +101,6 @@ def test_chkpipfor_pip():
     assert sysutils.chk_pip_for(cmd) == expected
 
 
-"""
-Tests for chk_python()
-"""
 py2version = pytest.mark.skipif(sysutils.chk_sys_for('python2') is False,
                                 reason="python2 required")
 
@@ -143,11 +118,6 @@ def test_chkpython_2():
 def test_chkpython_3():
     result = sysutils.chk_python()
     assert '2.7' in result
-
-
-"""
-Tests for new_virtualenv(py_version)
-"""
 
 
 def test_newvirtualenv_py1():

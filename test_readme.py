@@ -1,12 +1,10 @@
-import muffin
+""" Tests for the readme module. """
+
+from . import muffin
 import os
 import pytest
-import readme
-import test_configs
-
-"""
-Tests for make_readme(info_dict)
-"""
+from . import readme
+from . import test_configs
 
 
 @pytest.yield_fixture(autouse=True)
@@ -33,49 +31,51 @@ def test_makereadme_empty():
 
 
 def test_makereadme_author():
-    readme = readme_factory()
+    README = readme_factory()
     t = "##### Author: lunatunez"
-    with open(readme, 'r') as f:
+    with open(README, 'r') as f:
         assert t in f.read().splitlines()  # Check if Author field is in README
 
 
 def test_makereadme_title_header():
-    readme = readme_factory()
+    README = readme_factory()
     t = "# Project Name: testproject"
-    with open(readme, 'r') as f:
+    with open(README, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
 def test_makereadme_blurb():
-    readme = readme_factory()
+    README = readme_factory()
     t = "> Short blurb"
-    with open(readme, 'r') as f:
+    with open(README, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
 def test_makereadme_email():
-    readme = readme_factory(email='rdash@cloudsdale.net')
+    README = readme_factory(email='rdash@cloudsdale.net')
     t = '##### Email -- rdash@cloudsdale.net'
-    with open(readme, 'r') as f:
+    with open(README, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
 def test_makereadme_twitter():
-    readme = readme_factory(twitter='rdashie')
+    README = readme_factory(twitter='rdashie')
     t = '##### Twitter -- [@rdashie](https://twitter.com/rdashie)'
-    with open(readme, 'r') as f:
+    with open(README, 'r') as f:
         assert t in f.read().splitlines()  # Check if Project Name field is in README
 
 
 def test_makereadme_mit_license():
-    readme = readme_factory(license='MIT')
+    README = readme_factory(license='MIT')
     expected = '[![](http://img.shields.io/badge/license-MIT-blue.svg)]'
-    with open(readme, 'r') as f:
-        assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
+    with open(README, 'r') as f:
+        # Check if MIT Licence is in README
+        assert any(l.strip() == expected for l in f.readlines())
 
 
 def test_makereadme_gnu_license():
-    readme = readme_factory(license='GNU')
+    README = readme_factory(license='GNU')
     expected = '[![](http://img.shields.io/badge/license-GNU-blue.svg)]'
-    with open(readme, 'r') as f:
-        assert any(l.strip() == expected for l in f.readlines())  # Check if MIT Licence is in README
+    with open(README, 'r') as f:
+        # Check if MIT Licence is in README
+        assert any(l.strip() == expected for l in f.readlines())

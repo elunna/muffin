@@ -1,6 +1,7 @@
+""" Tests for the muffin module. """
 import os
 import pytest
-from muffin import *
+from .muffin import *
 from test_configs import *
 
 
@@ -10,10 +11,6 @@ def cleanup():
     yield None
     wipe_dir(TEST_PROJ)
 
-"""
-Tests for wipe_dir()
-"""
-
 
 def test_wipedir_created_dir_dne():
     testdir = 'some_random_directory_xxx1234'
@@ -21,20 +18,12 @@ def test_wipedir_created_dir_dne():
     wipe_dir(testdir)
     assert os.path.isdir(testdir) is False
 
-"""
-Tests for ensure_dir()
-"""
-
 
 def test_ensuredir_exists():
     testdir = 'some_random_directory_xxx1234'
     ensure_dir(testdir)
     assert os.path.isdir(testdir)
     wipe_dir(testdir)
-
-"""
-Tests for write_license(config)
-"""
 
 
 def test_writelicense_MIT():
@@ -57,18 +46,10 @@ def test_writelicense_WTFPL():
     write_license(WTFPL_CONFIG)
     assert os.path.exists(lic_path)  # LICENSE file doesn't exist
 
-"""
-Tests for make_setup_sh(config)
-"""
-
 
 def test_makesetupsh_exists():
     make_setup_sh(FULL_CONFIG)
     assert os.path.exists(FULL_CONFIG['projectname'] + '/setup.sh')  # Error making setup.sh
-
-"""
-Tests for setup_git(config)
-"""
 
 
 def test_setupgit_git_dir_exists():
@@ -79,10 +60,6 @@ def test_setupgit_git_dir_exists():
 def test_setupgit_git_config_exists():
     setup_git(FULL_CONFIG)
     assert os.path.exists(FULL_CONFIG['projectname'] + '/.git/config')         # Error making .git/config
-
-"""
-Tests for cp_templates(project_name)
-"""
 
 
 def test_cptemplate_makes_project_dir():
@@ -146,21 +123,9 @@ def check_init_file(filename):
     cp_templates(FULL_CONFIG)
     assert os.path.exists(filename)  # Filename doesn't exist
 
-"""
-Tests for save_config(config)
-"""
-
 
 def test_saveconfig_exists():
     save_config(FULL_CONFIG)
     projectdir = FULL_CONFIG['projectname']
     assert os.path.isdir(projectdir)  # Project directory doesn't exist
     assert os.path.exists(projectdir + '/config.json')  # config.json doesn't exist
-
-
-"""
-Tests for new_venv(config)
-Tests for new_project(config)
-
-These will be tested under tests_functional
-"""

@@ -1,9 +1,6 @@
-import licenses
+""" Tests for the licenses module"""
 
-
-"""
-Tests for get(license):
-"""
+from . import licenses
 
 
 def test_get_MIT():
@@ -41,38 +38,34 @@ def test_get_INVALID():
     firstline = licenses.get('INVALID')
     assert firstline is expected
 
-"""
-Tests for format_text(license, name, date=None):
-"""
-
 
 def test_formattext_MIT():
-    license = licenses.get('MIT')
+    lic = licenses.get('MIT')
     name = 'lunatunez'
     date = '2016'
     expected = 'Copyright (c) <2016> <lunatunez>'
-    result = licenses.format_text(license, year=date, name=name)
+    result = licenses.format_text(lic, year=date, name=name)
     # Result is on MIT line 1
     line1 = result.split('\n')[1]
     assert expected == line1
 
 
 def test_formattext_GNU():
-    license = licenses.get('GNU')
+    lic = licenses.get('GNU')
     name = 'lunatunez'
     date = '2016'
     expected = 'Copyright (C) 2016  lunatunez'
-    result = licenses.format_text(license, year=date, name=name)
+    result = licenses.format_text(lic, year=date, name=name)
     # Result is on GNU line 4
     line4 = result.split('\n')[4]
     assert expected == line4
 
 
 def test_formattext_currentyear():
-    license = licenses.get('MIT')
+    lic = licenses.get('MIT')
     name = 'lunatunez'
     year = str(licenses.current_year())
-    result = licenses.format_text(license, name=name)
+    result = licenses.format_text(lic, name=name)
     # Result is on MIT line 1
     line1 = result.split('\n')[1]
     assert year in line1  # Current year was not found where it should be

@@ -1,12 +1,11 @@
+"""
+  " Tests for the wizard module.
+  " How to test input_loop?
+  " This is an interactive console function. How to test?
+  """
+
 import pytest
-import wizard
-
-# Tests for input_loop
-# This is an interactive console function. How to test?
-
-"""
-Tests for valid_projectname(projectname)
-"""
+from . import wizard
 
 
 def test_valid_projectname_nospaces():
@@ -27,11 +26,6 @@ def test_valid_projectname_spacesonends():
     assert wizard.valid_projectname(t) == expected
 
 
-"""
-Tests for valid_license(license)
-"""
-
-
 def test_validlicense_MIT():
     assert wizard.valid_license('mit')
 
@@ -41,12 +35,7 @@ def test_validlicense_GNU():
 
 
 def test_validlicense_XXX():
-    assert wizard.valid_license('XXX') is False
-
-
-"""
-Tests for valid_template(template)
-"""
+    assert wizard.valid_license('xxx') is False
 
 
 def test_validtemplate_invalid_returnsFalse():
@@ -61,11 +50,6 @@ def test_validtemplate_validname_exists_returnsTrue():
     assert wizard.valid_template('templates') is True
 
 
-"""
-Tests for yesorno(choice)
-"""
-
-
 def test_yesorno_valid():
     assert wizard.yesorno('n') is True
     assert wizard.yesorno('N') is True
@@ -77,10 +61,6 @@ def test_yesorno_invalid():
     assert wizard.yesorno('z') is False
     assert wizard.yesorno('') is False
     assert wizard.yesorno(' ') is False
-
-"""
-Tests for get_defaults(def_file=DFLT_FILE)
-"""
 
 
 def test_getdefaults_dflt_file_returnsDict():
@@ -98,7 +78,3 @@ def test_getdefaults_fileDNE_raisesException():
     filepath = 'youarenotpossible.txt'
     with pytest.raises(IOError):
         wizard.get_defaults(filepath)
-
-"""
-Tests for update_defaults(dflt_dict, wiz_dict)
-"""

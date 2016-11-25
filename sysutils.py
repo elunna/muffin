@@ -1,5 +1,10 @@
+"""
+  " Tools for running shell commands, managing pip and system modules, and
+  " installing the virtual environments.
+  """
+
 import os
-import muffin
+from . import muffin
 import subprocess
 import sys
 
@@ -8,6 +13,7 @@ SYS_LIBS = ['python', 'python3', 'pip', 'git', 'virtualenv']
 
 
 def cmd_exists(cmd):
+    """ Tests if a shell command exists. Returns True is it does, False otherwise."""
     # Python 3.3+: can use subprocess.DEVNULL rather than open(os.devnull).
     try:
         devnull = open(os.devnull, 'w')
@@ -19,6 +25,9 @@ def cmd_exists(cmd):
 
 
 def run_cmd_success(cmd):
+    """ Tests if a shell command ran successfully. Returns True if successful,
+        and False it it failed or the command doesn't exist.
+    """
     try:
         result = subprocess.call(cmd)
         if result == 0:
@@ -31,6 +40,7 @@ def run_cmd_success(cmd):
 
 
 def run_cmd_in_dir(cmd, _dir='templates'):
+    """ Runs a shell command in a specific directory. """
     try:
         p = subprocess.Popen(cmd, cwd=_dir)
         p.wait()
@@ -41,9 +51,8 @@ def run_cmd_in_dir(cmd, _dir='templates'):
 
 
 def chk_sys_for(app):
-    """
-    Returns True if the library is installed in the linux system, False otherwise.
-    This is installed by pip.
+    """ Returns True if the library is installed in the linux system, False
+        otherwise. This is installed by pip.
     """
     cmd = [app, '--version']
     result = cmd_exists(cmd)
@@ -51,9 +60,8 @@ def chk_sys_for(app):
 
 
 def chk_pip_for(lib):
-    """
-    Returns True if the library is installed in pip, False otherwise.
-    This is installed by pip.
+    """ Returns True if the library is installed in pip, False otherwise. This is
+        installed by pip.
     """
     cmd = ['pip', 'show', lib]
     try:
@@ -64,7 +72,7 @@ def chk_pip_for(lib):
 
 
 def chk_sys_libraries():
-    """Essential libraries to get this template engine working."""
+    """ Essential libraries to get this template engine working."""
     # Add pip3?
     for l in SYS_LIBS:
         if chk_sys_for(l) is False:
@@ -72,8 +80,7 @@ def chk_sys_libraries():
             return False
         else:
             print('{:30} is installed'.format(l))
-    else:
-        return True
+    return True
 
 
 def chk_pip_libraries(py_ver):
@@ -85,12 +92,13 @@ def chk_pip_libraries(py_ver):
             return False
         else:
             print('{:30} is installed'.format(l))
-    else:
-        return True
+    return True
 
 
 def chk_python():
-    """Returns which versions of Python are installed, as a list (ie: ['2.7', '3.5'])"""
+    """ Returns which versions of Python are installed, as a list
+        (ie: ['2.7', '3.5'])
+    """
     cmd = ['whereis', 'python']
     output = subprocess.check_output(cmd).split()
 
@@ -104,6 +112,7 @@ def chk_python():
 
 
 def new_virtualenv(py_version, projectname):
+    """ Creates a new python virtualenv. """
     VENV = projectname + '/venv'
     # virtualenv checks the python ver so we don't have to worry about that :)
     cmd = ['virtualenv', '--python=python{}'.format(py_version), VENV]
@@ -111,6 +120,9 @@ def new_virtualenv(py_version, projectname):
 
 
 def in_venv():
+    """ Returns True if the shell is currently running in a virtualenv,
+        False otherwise.
+   """
     if hasattr(sys, 'real_prefix'):
         return True
     else:
@@ -118,6 +130,7 @@ def in_venv():
 
 
 def sys_info():
+    """ Displays a summary of system info. """
     import platform
     print('Python versions installed: {}'.format(chk_python()))
     print('Python {} '.format(sys.version))
@@ -131,7 +144,9 @@ def sys_info():
 
 
 def enter_venv(_dir='.'):
-    # This enters the virtual env - but in a new shell, so it won't finish the script
+    """ Attempts to enter a virtualenv
+        This enters the virtual env - but in a new shell, so it won't finish the script
+    """
     env = _dir + '/.env'
     if os.path.exists(env):
         # Tries to execute the .env file in a directory.

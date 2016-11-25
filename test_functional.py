@@ -1,10 +1,6 @@
-import os
-import muffin
-import test_configs
-
 """ Functional tests for muffinX.
 
-    muffinX is a Python project templating engine. It is for quickly and efficiently setting up
+    muffin is a Python project templating engine. It is for quickly and efficiently setting up
     projects that are ready for professional use.
 
     Erik wants to start a new project, really fast.
@@ -15,7 +11,13 @@ import test_configs
 """
 
 
+import os
+from . import muffin
+from . import test_configs
+
+
 def test_newproject():
+    """ Funationally Tests the creation of a new project. """
     # We'll just test 2.7 for this
     muffin.new_project(test_configs.FULL_CONFIG)
     ROOT = test_configs.MIT_CONFIG['projectname'] + '/'
@@ -57,6 +59,7 @@ PYTHONS = ['2.7', '3.4', '3.5']
 
 
 def test_venv_all_python_verisons():
+    """ Functionally tests the creation of all types of Python virtualenvs. """
     # Uses a test generator to go through all the subdirectories we want to test.
     for py in PYTHONS:
         VENV_CONFIG = {
@@ -68,6 +71,7 @@ def test_venv_all_python_verisons():
 
 
 def check_venv(config):
+    """ Checks a virtualenv if it was setup properly. """
     muffin.new_venv(config)
     ROOT = config['projectname'] + '/'
 

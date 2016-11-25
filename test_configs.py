@@ -1,3 +1,5 @@
+""" Configuration dictionaries for testing the muffin project. """
+
 TEST_PROJ = 'testproject'
 
 FULL_CONFIG = {
