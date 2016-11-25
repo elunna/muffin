@@ -1,3 +1,6 @@
+"""
+  " Manages all the license text for possible licenses the user might choose.
+  """
 # These are helpful for tests
 MIT_TEXT = 'The MIT License (MIT)'
 GNU_TEXT = 'GNU GENERAL PUBLIC LICENSE'
@@ -6,16 +9,21 @@ APACHE_TEXT = 'Apache License'
 BSD_TEXT = 'The BSD 3-Clause License'
 
 
-def get(license):
-    return available.get(license, None)
+def get(lic):
+    """ Returns a full license text. """
+    return available.get(lic, None)
 
 
-def format_text(license, name, year=None):
+def format_text(lic, name, year=None):
+    """ Inserts the given name and year into the license text. If no year is
+        given, it defaults to the current year.
+    """
     year = str(current_year())
-    return license.format(year=year, name=name) or None
+    return lic.format(year=year, name=name) or None
 
 
 def current_year():
+    """ Returns the current year. """
     import datetime as dt
     now = dt.datetime.now()
     return now.year
