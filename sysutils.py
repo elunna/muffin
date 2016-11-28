@@ -4,7 +4,7 @@
   """
 
 import os
-from . import muffin
+import muffin
 import subprocess
 import sys
 

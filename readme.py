@@ -5,8 +5,10 @@ def make_readme(info_dict):
     """ Creates the README.md file and uses the passed in dictionary to fill in
         the fields. Returns the filepath of the created file.
     """
-
-    filename = info_dict['projectname'] + '/' + 'README.md'
+    if info_dict.get('path', None):
+        filename = info_dict['path'] + '/' + 'README.md'
+    else:
+        filename = info_dict['projectname'] + '/' + 'README.md'
     twitter = info_dict.get('twitter', None)
     email = info_dict.get('email', None)
     date = get_date()

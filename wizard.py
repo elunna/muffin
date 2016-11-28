@@ -2,13 +2,14 @@
   " Provides console interactive wizard to let the user customize their project.
   """
 from string import ascii_letters
-from .licenses import available
+from licenses import available
 import json
 import os
-from . import muffin
-from . import sysutils
+import muffin
+import sysutils
 
-DFLT_FILE = 'defaults.json'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+DFLT_FILE = dir_path + '/defaults.json'
 
 
 def input_loop(prompt, required=True, validator=None, default=None):

@@ -3,13 +3,14 @@
 
 import argparse
 import json
-from .muffin import licenses
+import licenses
 import os
-from .muffin import readme
+import readme
 import shutil
-from .muffin import sysutils
-from .muffin import wizard
+import sysutils
+import wizard
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 SUBDIRS = ['src', 'tests', 'data', 'temp', 'logs']
 CORE_MODULES = []
 
@@ -109,12 +110,12 @@ def cp_templates(conf):
     """ Copies the designated template from the folder given in the config
         dictionary.
     """
-    TEMPLATE_DIR = conf.get('template', None)
+    TEMPLATE_DIR = dir_path + '/' + conf.get('template', None)
     project = conf.get('projectname', None)
     if not project:
         raise Exception('Projectname not set!!!')
 
-    if not TEMPLATE_DIR:
+    if not os.path.exists(TEMPLATE_DIR):
         raise Exception('Template directory not set!!!')
 
     shutil.copytree(TEMPLATE_DIR, project)
@@ -160,21 +161,23 @@ def new_project(conf):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streamlined Python project scaffolding.")
+    parser.add_argument('-r', '--readme', action='store_true',
+                        help="Only create a README.md")
     args = parser.parse_args()
 
     config = wizard.wizard()
-    print(config)
-    print('Starting up project!')
+
+    if args.readme:
+        config['path'] = os.getcwd()
+        readme.make_readme(config)
+        exit()
+
     new_project(config)
     new_venv(config)
 
     # Run the setup file
     cmd = ['sh', 'setup.sh']
     sysutils.run_cmd_in_dir(cmd, config['projectname'])
-
-    # Show installed programs summary
-    #  sysutils.chk_sys_libraries()
-    #  sysutils.chk_pip_libraries(config['python'])
 
     # Write the project config to json
     save_config(config)
