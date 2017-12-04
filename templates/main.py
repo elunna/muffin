@@ -6,16 +6,17 @@ import argparse
 from src import logger
 
 
-def main():
-    log = logger.setup_logger()
-    log.debug('Hello Equestria! From src!')
+def setup_parser():
+    # Setup argparser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--verbose', help='Increase output verbosity.', action="store_true")
+    return parser
 
 
 if __name__ == "__main__":
-    # Setup argparser
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-v', '--verbose', help='increase output verbosity', action="store_true")
     args = parser.parse_args()
-
+	log = logger.setup_logger()
+    log.debug('Hello Equestria!')
+    
     if args.verbose:
-        main()
+		log.debug('Verbose enabled!')
