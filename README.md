@@ -7,20 +7,20 @@
 888  888  888Y88b 888888   888   888888  888
 888  888  888 "Y88888888   888   888888  888
 
-# muffinX Python project template wizard
+# muffin Python project template wizard
 > Makes starting up new projects with bells and whistles a breeze!
 
 ### What should a good python template engine have????
 * Should have a modern directory structure:
     /src and /tests for separated source and testing.
-    /data, /temp, and /logs for managing all the crap that will be pouring in.
+    /data, /temp, and /logs for managing all the data that will be pouring in.
 
 * Should have *inpeccable documentation*:
     - README.md for git
     - Sphinx docs ready to use, and a config file to make the setup really quick.
 
 * *Git* ready
-    - .gitigore with the essential crap ignored.
+    - .gitigore with the essentials ignored.
     - some all-around useful git-hooks
     - Really nice README.md
     - A LICENSE that we can choose from a list of the most popular.
